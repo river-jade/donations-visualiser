@@ -1,0 +1,501 @@
+{
+  "nodes": [
+    {
+      "id": "david_shoebridge", 
+      "playcount": 17349, 
+      "name": "David Shoebridge", 
+      "match": 0.008012965587063233, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "bank_of_queensland", 
+      "playcount": 7895, 
+      "name": "Bank of Queensland", 
+      "match": 0.003646455894280029, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "act_greens", 
+      "playcount": 35124, 
+      "name": "ACT Greens", 
+      "match": 0.016222687375641767, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "act_cfmeu", 
+      "playcount": 12500, 
+      "name": "ACT CFMEU", 
+      "match": 0.005773362720519363, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "south_australian_greens", 
+      "playcount": 53970, 
+      "name": "South Australian Greens", 
+      "match": 0.024927070882114398, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "amanda_bresnan", 
+      "playcount": 13055, 
+      "name": "Amanda Bresnan", 
+      "match": 0.006029700025310422, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "robin_chapple", 
+      "playcount": 13934, 
+      "name": "Robin Chapple", 
+      "match": 0.006435682891817344, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "alison_xamon", 
+      "playcount": 11697, 
+      "name": "Alison Xamon", 
+      "match": 0.0054024818993531985, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "united_community", 
+      "playcount": 3358, 
+      "name": "United Community", 
+      "match": 0.0015509561612403215, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "scott_ludlam", 
+      "playcount": 6831, 
+      "name": "Scott Ludlam", 
+      "match": 0.0031550272595094212, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "victorian_greens", 
+      "playcount": 244596, 
+      "name": "Victorian Greens", 
+      "match": 0.11297131423905232, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "election_funding_authority", 
+      "playcount": 24910, 
+      "name": "Election Funding Authority", 
+      "match": 0.011505157229450986, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "jan_barham", 
+      "playcount": 21242, 
+      "name": "Jan Barham", 
+      "match": 0.009811021672741784, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "grahame_bowland", 
+      "playcount": 2169, 
+      "name": "Grahame Bowland", 
+      "match": 0.0010017938992645198, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "ausaid", 
+      "playcount": 110000, 
+      "name": "AusAID", 
+      "match": 0.05080559194057039, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "mark_parnell", 
+      "playcount": 16566, 
+      "name": "Mark Parnell", 
+      "match": 0.0076513221462499005, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "jamie_parker", 
+      "playcount": 17016, 
+      "name": "Jamie Parker", 
+      "match": 0.007859163204188597, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "jeremy_buckingham", 
+      "playcount": 18686, 
+      "name": "Jeremy Buckingham", 
+      "match": 0.008630484463649984, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "giz_watson", 
+      "playcount": 18035, 
+      "name": "Giz Watson", 
+      "match": 0.008329807733165336, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "tasmanian_greens", 
+      "playcount": 52599, 
+      "name": "Tasmanian Greens", 
+      "match": 0.024293848458927837, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "nsw_greens", 
+      "playcount": 147393, 
+      "name": "NSW Greens", 
+      "match": 0.06807626011724083, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "australian_greens,_victorian_branch", 
+      "playcount": 15000, 
+      "name": "Australian Greens, Victorian Branch", 
+      "match": 0.006928035264623235, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "commonwealth_bank", 
+      "playcount": 18974, 
+      "name": "Commonwealth Bank", 
+      "match": 0.00876350274073075, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "lee_rhiannon", 
+      "playcount": 19243, 
+      "name": "Lee Rhiannon", 
+      "match": 0.008887745506476327, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "shane_rattenbury", 
+      "playcount": 18243, 
+      "name": "Shane Rattenbury", 
+      "match": 0.008425876488834779, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "john_kaye", 
+      "playcount": 17536, 
+      "name": "John Kaye", 
+      "match": 0.008099335093362203, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "australian_greens", 
+      "playcount": 121900, 
+      "name": "Australian Greens", 
+      "match": 0.05630183325050482, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "cate_faehrmann", 
+      "playcount": 16880, 
+      "name": "Cate Faehrmann", 
+      "match": 0.007796349017789347, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "caroline_le_couteur", 
+      "playcount": 33710, 
+      "name": "Caroline Le Couteur", 
+      "match": 0.015569604584696617, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "meredith_hunter", 
+      "playcount": 14123, 
+      "name": "Meredith Hunter", 
+      "match": 0.006522976136151597, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "cameron_poustie", 
+      "playcount": 2200, 
+      "name": "Cameron Poustie", 
+      "match": 0.0010161118388114078, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "bendigo_bank", 
+      "playcount": 21720, 
+      "name": "Bendigo Bank", 
+      "match": 0.010031795063174444, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "city_of_south_perth", 
+      "playcount": 3475, 
+      "name": "City of South Perth", 
+      "match": 0.0016049948363043827, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "electoral_funding_authority", 
+      "playcount": 814883, 
+      "name": "Electoral Funding Authority", 
+      "match": 0.3763692107027984, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "scott_ryan", 
+      "playcount": 2497, 
+      "name": "Scott Ryan", 
+      "match": 0.0011532869370509478, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "rachel_siewert", 
+      "playcount": 9237, 
+      "name": "Rachel Siewert", 
+      "match": 0.004266284115954988, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "ruth_greble", 
+      "playcount": 2700, 
+      "name": "Ruth Greble", 
+      "match": 0.0012470463476321823, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "val_waldron", 
+      "playcount": 25000, 
+      "name": "Val Waldron", 
+      "match": 0.011546725441038725, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "greens_wa", 
+      "playcount": 97595, 
+      "name": "Greens WA", 
+      "match": 0.04507610677672697, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "the_greens_wa", 
+      "playcount": 12000, 
+      "name": "The Greens WA", 
+      "match": 0.005542428211698588, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "the_greens_nsw", 
+      "playcount": 15000, 
+      "name": "The Greens NSW", 
+      "match": 0.006928035264623235, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "richard_stiles", 
+      "playcount": 15500, 
+      "name": "Richard Stiles", 
+      "match": 0.00715896977344401, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "lynn_maclaren", 
+      "playcount": 14909, 
+      "name": "Lynn Maclaren", 
+      "match": 0.006886005184017854, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "chilla_bulbeck", 
+      "playcount": 2074, 
+      "name": "Chilla Bulbeck", 
+      "match": 0.0009579163425885726, 
+      "artist": "artist"
+    }, 
+    {
+      "id": "city_of_fremantle", 
+      "playcount": 1792, 
+      "name": "City of Fremantle", 
+      "match": 0.0008276692796136559, 
+      "artist": "artist"
+    }
+  ], 
+  "links": [
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "david_shoebridge"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "bank_of_queensland"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "act_greens"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "act_cfmeu"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "south_australian_greens"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "amanda_bresnan"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "robin_chapple"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "alison_xamon"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "united_community"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "scott_ludlam"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "victorian_greens"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "election_funding_authority"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "jan_barham"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "grahame_bowland"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "ausaid"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "mark_parnell"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "jamie_parker"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "jeremy_buckingham"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "giz_watson"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "tasmanian_greens"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "nsw_greens"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "australian_greens,_victorian_branch"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "commonwealth_bank"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "lee_rhiannon"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "shane_rattenbury"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "john_kaye"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "australian_greens"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "cate_faehrmann"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "caroline_le_couteur"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "meredith_hunter"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "cameron_poustie"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "bendigo_bank"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "city_of_south_perth"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "electoral_funding_authority"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "scott_ryan"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "rachel_siewert"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "ruth_greble"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "val_waldron"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "greens_wa"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "the_greens_wa"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "the_greens_nsw"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "richard_stiles"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "lynn_maclaren"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "chilla_bulbeck"
+    }, 
+    {
+      "source": "you_can_call_me_al_paul_simon", 
+      "target": "city_of_fremantle"
+    }
+  ]
+}
