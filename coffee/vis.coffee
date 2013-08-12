@@ -123,7 +123,7 @@ Network = () ->
   # of the visualization
   layout = "force"
   filter = "all"
-  sort = "songs"
+  sort = "parties"
   # groupCenters will store our radial layout for
   # the group by artist layout.
   groupCenters = null
@@ -513,7 +513,7 @@ $ ->
     activate("sorts", newSort)
     myNetwork.toggleSort(newSort)
 
-  $("#song_select").on "change", (e) ->
+  $("#party_select").on "change", (e) ->
     songFile = $(this).val()
     d3.json "data/#{songFile}", (json) ->
       myNetwork.updateData(json)
