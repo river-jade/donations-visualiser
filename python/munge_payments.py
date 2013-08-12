@@ -6,8 +6,8 @@ import xml.etree.ElementTree as ET
 import json
 import locale
 
-def xmltojson(filename, name, party_id):
-  tree = ET.parse(filename)
+def parsexml(filename, name, party_id):
+  tree = ET.parse('xml/' + filename)
   root = tree.getroot()
 
   payments = defaultdict(int)
@@ -15,7 +15,7 @@ def xmltojson(filename, name, party_id):
   locale.setlocale( locale.LC_ALL, '' )
 
   for node in root:
-      payments[node.find('PayerClientNm').text] += int(node.find('AmountReceived').text)
+    payments[node.find('PayerClientNm').text] += int(node.find('AmountReceived').text)
 
   totalpayments = sum(payments.values())
   nodes = [{'name':name, 
@@ -23,17 +23,20 @@ def xmltojson(filename, name, party_id):
       'playcount':totalpayments, 'id':party_id}]
   links = []
   for key, val in payments.iteritems():
-     node = {}
-     id = key.replace(' ', '_').lower()
-     node['match'] = float(val) / totalpayments
-     node['name'] = key
-     node['amount'] = locale.currency(val, grouping=True)
-     node['playcount'] = val
-     node['id'] = id
-     nodes.append(node)
-     links.append({'source': id, 'target': party_id})
-     
-  fp = open(party_id + '.json', 'w')
+    node = {}
+    id = key.replace(' ', '_').lower()
+    node['match'] = float(val) / totalpayments
+    node['name'] = key
+    node['amount'] = locale.currency(val, grouping=True)
+    node['playcount'] = val
+    node['id'] = id
+    nodes.append(node)
+    links.append({'source': id, 'target': party_id})
+
+  return nodes, links
+
+def writejsonfile(nodes, links, filename):
+  fp = open('data/' + filename + '.json', 'w')
   json.dump({'nodes': nodes, 'links': links}, fp, indent=2)
 
 Party = namedtuple('Party', ['filename', 'name', 'party_id'])
@@ -47,6 +50,15 @@ parties = [
       "Liberal Party", "liberal_party")
 ]
 
-for party in parties:
-  xmltojson(*party)
+if __name__ == "__main__":
+  all_nodes = []
+  all_links = []
+  for party in parties:
+    nodes, links = parsexml(*party)
+    all_nodes.extend(nodes)
+    all_links.extend(links)
+    writejsonfile(nodes, links, party.party_id)
+
+  writejsonfile(all_nodes, all_links, "all")
+
 

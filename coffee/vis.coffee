@@ -247,7 +247,7 @@ Network = () ->
   setupData = (data) ->
     # initialize circle radius scale
     countExtent = d3.extent(data.nodes, (d) -> d.playcount)
-    circleRadius = d3.scale.sqrt().range([3, 21]).domain(countExtent)
+    circleRadius = d3.scale.sqrt().domain(countExtent).range([8,40])
 
     data.nodes.forEach (n) ->
       # set initial x/y to values within the width/height
@@ -393,7 +393,7 @@ Network = () ->
     if layout == "force"
       force.on("tick", forceTick)
         .charge(-200)
-        .linkDistance(50)
+        .linkDistance(80)
     else if layout == "radial"
       force.on("tick", radialTick)
         .charge(charge)
@@ -522,5 +522,5 @@ $ ->
     searchTerm = $(this).val()
     myNetwork.updateSearch(searchTerm)
 
-  d3.json "data/greens.json", (json) ->
+  d3.json "data/all.json", (json) ->
     myNetwork("#vis", json)
