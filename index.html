@@ -29,50 +29,44 @@
     <h1>Australian Political Donations</h1>
     <p>Shows a graph of donations to Australian political parties in the 2011/2012 fiscal year.</p>
     </header>
-    <div id="controls">
-      <div id="controls-stuff">
-        <div id="party_selection" class="control">
-          <h3>Select political party</h3>
-          <select id="party_select" autocomplete="off">
-            <option value="all.json">All parties</option>
-            <option value="australian_greens_party.json">Australian Greens</option>
-            <option value="liberal_party.json">Liberal Party</option>
-            <option value="australian_labor_party.json">Australian Labor Party</option>
-          </select>
-        </div>
-        <div id="layouts" class="control">
-          <h3>Layout</h3>
-          <div class="control-group">
-            <a id="force" class="active">Force Directed</a>
-            <a id="radial">Artists</a>
-          </div>
-        </div>
-        <div id="filters" class="control">
-          <h3>Filter</h3>
-          <div class="control-group">
-            <a id="all" class="active">All</a>
-            <a id="popular">Popular</a>
-            <a id="obscure">Obscure</a>
-          </div>
-        </div>
-        <div id="sorts" class="control">
-          <h3>Sort</h3>
-          <div class="control-group">
-            <a id="parties" class="active">Parties</a>
-            <a id="links">Links</a>
-          </div>
-        </div>
-        <div id="search_section" class="control">
-          <h3>Search</h3>
-            <input type="text" class="text-input" id="search" value="" autocomplete="off"/></p>
-        </div>
+
+      <div id="party_selection" class="control">
+        <h3>Select political party</h3>
+        <select id="party_select">
+          <option value="all.json">All parties</option>
+          <option value="australian_greens_party.json">Australian Greens</option>
+          <option value="liberal_party.json">Liberal Party</option>
+          <option value="australian_labor_party.json">Australian Labor Party</option>
+        </select>
+
       </div>
-    </div>
+    <div id="controls">
+      <div id="layouts" class="control">
+        <h3>Layout</h3>
+        <a id="force" class="active">Force Directed</a>
+        <a id="radial">Artists</a>
+      </div>
+      <div id="filters" class="control">
+        <h3>Filter</h3>
+        <a id="all" class="active">All</a>
+        <a id="popular">Popular</a>
+        <a id="obscure">Obscure</a>
+      </div>
+      <div id="sorts" class="control">
+        <h3>Sort</h3>
+        <a id="parties" class="active">Parties</a>
+        <a id="links">Links</a>
+      </div>
+      <div id="search_section" class="control">
+        <form id="search_form" action=""  method="post">
+          <p class="search_title">Search <input type="text" class="text-input" id="search" value="" /></p>
+        </form>
+      </div>
     <div id="main" role="main">
       <div id="vis"></div>
     </div>
     <footer>
-    <p>Data obtained from <a href="http://periodicdisclosures.aec.gov.au/AnalysisPartyGroup.aspx">AEC Periodic Disclosures</a>.</p>
+    <p>Data from the AEC website: <a href="http://periodicdisclosures.aec.gov.au/AnalysisPartyGroup.aspx">http://periodicdisclosures.aec.gov.au/AnalysisPartyGroup.aspx</a></p>
 
     </footer>
   </div> <!--! end of #container -->
@@ -84,9 +78,10 @@
 
   <script defer src="js/plugins.js"></script>
   <script defer src="js/script.js"></script>
+  <script src="js/libs/coffee-script.js"></script>
   <script src="js/libs/d3.v2.js"></script>
   <script src="js/Tooltip.js"></script>
-  <script src="js/donations-visualiser.js"></script>
+  <script type="text/coffeescript" src="coffee/vis.coffee"></script>
 
   <script> // Change UA-XXXXX-X to be your site's ID
     window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
