@@ -114,7 +114,6 @@ Network = function() {
   var otherHeights = 0;
 
   heightElements.forEach(function(l) {
-      console.log(d3.select(l));
       otherHeights += d3.select(l)[0][0].clientHeight;
   });
 
@@ -148,7 +147,11 @@ Network = function() {
            .on("dragend", dragended);
 
   charge = function(node) {
-    return -Math.pow(node.radius, 2.0) / 2;
+    return -Math.pow(node.radius, 2.0) / 1.5;
+  };
+
+  chargeForce = function(node) {
+      return -2.5*Math.pow(node.radius, 2.0);
   };
 
   resizeWindow = function() {
@@ -158,9 +161,12 @@ Network = function() {
       width = x;
       height = y-otherHeights;
 
-      //console.log(network.vis);
-
       d3.select("div#vis").select("svg").attr("width", width).attr("height", height);
+      force.size([width, height]);
+      force.start();
+      if (layout === "radial") {
+         updateLinks();
+      }
   }
 
   network = function(selection, data) {
@@ -254,7 +260,7 @@ Network = function() {
       } else {
         d.searched = false;
         return element.style("fill", function(d) {
-          return nodeColors(d.amount);
+          return nodeColors(d.count);
         }).style("stroke-width", 1.0);
       }
     });
@@ -399,7 +405,9 @@ Network = function() {
     link = linksG.selectAll("line.link").data(curLinksData, function(d) {
       return "" + d.source.id + "_" + d.target.id;
     });
-    link.enter().append("line").attr("class", "link").attr("stroke", "#ddd").attr("stroke-opacity", 0.8).attr("x1", function(d) {
+    link.enter().append("line").attr("class", "link").attr("stroke", "#ddd").attr("stroke-opacity", 0.8);
+    
+    link.attr("x1", function(d) {
       return d.source.x;
     }).attr("y1", function(d) {
       return d.source.y;
@@ -413,7 +421,7 @@ Network = function() {
   setLayout = function(newLayout) {
     layout = newLayout;
     if (layout === "force") {
-      return force.on("tick", forceTick).charge(-200).linkDistance(80);
+      return force.on("tick", forceTick).charge(chargeForce).linkDistance(80);
     } else if (layout === "radial") {
       return force.on("tick", radialTick).charge(charge);
     }
@@ -430,15 +438,10 @@ Network = function() {
     }).attr("cy", function(d) {
       return d.y;
     });
-    return link.attr("x1", function(d) {
-      return d.source.x;
-    }).attr("y1", function(d) {
-      return d.source.y;
-    }).attr("x2", function(d) {
-      return d.target.x;
-    }).attr("y2", function(d) {
-      return d.target.y;
-    });
+    if (e.alpha < 0.03) {
+        force.stop();
+    }
+    return updateLinks();
   };
   radialTick = function(e) {
     node.each(moveToRadialLayout(e.alpha));
@@ -448,9 +451,9 @@ Network = function() {
       return d.y;
     });
     if (e.alpha < 0.03) {
-      force.stop();
-      return updateLinks();
+        force.stop();
     }
+    return updateLinks();
   };
   moveToRadialLayout = function(alpha) {
     var k;
