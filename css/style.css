@@ -9,7 +9,6 @@ a, a:visited {
 
 #container {
   width: 100%;
-  //padding: 5px 0 10px 0;
   margin: auto;
 }
 
@@ -23,7 +22,6 @@ header {
 }
 
 #controls {
-    //padding-top: 10px;
     text-align: center;
     margin: 0 auto;
     background-color: #eee;
