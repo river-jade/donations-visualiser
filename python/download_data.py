@@ -7,6 +7,9 @@ import mechanize, cookielib
 import os, re, httplib
 #from bs4 import BeautifulSoup
 
+httplib.HTTPConnection._http_vsn = 10
+httplib.HTTPConnection._http_vsn_str = 'HTTP/1.0'
+
 MECHANIZE_DEBUG=False
 
 url = 'http://periodicdisclosures.aec.gov.au/AnalysisParty.aspx'
@@ -17,7 +20,7 @@ cookies = cookielib.LWPCookieJar()
 browser.set_cookiejar(cookies)
 
 #browser.set_handle_equiv(True)
-#browser.set_handle_gzip(True)
+#browser.set_handle_gzip(False)
 #browser.set_handle_redirect(True)
 #browser.set_handle_referer(True)
 #browser.set_handle_robots(False)
