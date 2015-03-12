@@ -2,10 +2,27 @@
 
 #from urllib import urlencode
 #from urllib2 import urlopen
-import mechanize, cookielib, xmltodict, json
+import mechanize, cookielib, xmltodict, json, csv
 
 import os, re, httplib
 #from bs4 import BeautifulSoup
+
+PartyInfo = {}
+
+def load_party_info():
+    party_file = open("parties.txt", "r")
+
+    csv_parties = csv.DictReader(party_file, delimiter='|')
+
+    for party in csv_parties:
+        PartyInfo[party['Label']] = {
+            'Party': party['Party'],
+            'ShowByDefault': True if party['DefaultState'] == 'Active' else False,
+            'Branch': party['Branch']
+        }
+
+    party_file.close()
+
 
 def download_data(url):
     httplib.HTTPConnection._http_vsn = 10
@@ -66,7 +83,7 @@ def download_data(url):
     
         for item in parties_select.items:
             party_name = parties_select.get_item_attrs(item.name)['label']
-            print "Retrieving data for " + party_name + " for " + year['label']
+            print "    Retrieving data for " + party_name + " for " + year['label']
     
             browser.select_form(nr=2)
             browser[parties_select.name] = [parties_select.get_item_attrs(item.name)['value'],]
@@ -93,7 +110,10 @@ def download_data(url):
                 data['DocumentElement'] = {}
 
             data['DocumentElement']['Year'] = year['label']
-            data['DocumentElement']['Party'] = party_name
+            data['DocumentElement']['Party'] = { 'Label': party_name,
+                                                 'ShowByDefault': PartyInfo[party_name]['ShowByDefault'],
+                                                 'Name':  PartyInfo[party_name]['Party'],
+                                                 'Branch': PartyInfo[party_name]['Branch'] }
     
             f = open(filename, 'w')
             f.write(json.dumps(data['DocumentElement']))
@@ -106,4 +126,5 @@ def download_data(url):
   
 if __name__ == "__main__":
     url = 'http://periodicdisclosures.aec.gov.au/AnalysisParty.aspx'
+    load_party_info()
     files = download_data(url)

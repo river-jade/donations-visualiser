@@ -30,7 +30,7 @@ header {
 
 #controls-stuff {
     margin: 0 auto;
-    width: 960px;
+    width: 1020px;
 }
 
 #controls-stuff:after {
@@ -38,6 +38,11 @@ header {
     display: block;
     height: 0;
     clear: both;
+}
+
+#year-slider {
+    width: 80%;
+    margin: 0 auto;
 }
 
 .control-group {
@@ -118,9 +123,4 @@ hr.tooltip-hr {
   font-weight:bold;
 }
 
-
-line.link {
-  fill: none;
-  stroke-width: 1.5px;
-}
 
