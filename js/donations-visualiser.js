@@ -147,8 +147,68 @@ function search() {
 }
 
 function nodeClick(node, i) {
+    if (clickedNode) {
+        clickedNode.clicked = false;
+    }
     clickedNode = node;
+    clickedNode.clicked = true;
+    nodeElements.style("stroke", function(n) {
+        if (n === clickedNode) {
+            return "#000";
+        } else {
+            return "#ddd";
+        }
+    });
     updateInfoPanel();
+    
+}
+
+function rowOver(row, i) {
+    row.node.searched = true;
+    linkElements.style("stroke", function(l) {
+        if (l.source === row.node || l.target === row.node) {
+            return "#555";
+        } else {
+            return "#ddd";
+        }
+    }).style("stroke-opacity", function(l) {
+        if (l.source === row.node || l.target === row.node) {
+            return 1.0;
+        } else {
+            return 0.5;
+        }
+    });
+
+    nodeElements.style("stroke", function(n) {
+        if (n.searched || n.clicked) {
+            return "#000";
+        } else if (neighbours(row.node, n)) {
+            return "#555";
+        } else {
+            return "#ddd";
+        }
+    }).style("stroke-width", function(n) {
+        if (neighbours(row.node, n)) {
+            return 2.0;
+        } else {
+            return 1.0;
+        }
+    });
+}
+
+function rowOut(row, i) {
+    row.node.searched = false;
+    linkElements
+        .style("stroke", "#ddd")
+        .style("stroke-opacity", 0.5);
+
+    nodeElements.style("stroke", function(n) {
+        if (n.searched || n.clicked) {
+            return "#000";
+        } else {
+            return "#ddd";
+        }
+    }).style("stroke-width", 1.0);
 }
 
 function updateInfoPanel() {
@@ -172,18 +232,35 @@ function updateInfoPanel() {
             top10 = top10.slice(0,10);
         }
 
+        top10.forEach(function(d) { 
+            d.entity = entities[d.key];
+            d.node = drawNodes[nodeIds.entities[d.key]];
+        });
+
         html = "<h3><a href=\"http://www.google.com/#q="+ clickedNode.Name + "\" title=\"Search Google for this Party\" target=\"_blank\">" + clickedNode.Name + "</a></h3>\n";
         html += "<hr />\n";
         html += "<h4>Details</h4>\n";
         html += "<p>Type: Party</p>\n";
         html += "<p>Total Amount Received: " + dollarFormat(totalAmount) + "</p>";
         html += "<p>Top 10 Payers:</p>\n";
-        html += "<table class=\"table table-striped table-condensed table-hover\"><tbody>\n";
-        top10.forEach(function(d) {
-            html += "<tr><td class=\"small\">" + entities[d.key].Name + "</td><td class=\"pull-right small\"> " + dollarFormat(d.values) + "</td></tr>\n";
-        });
+        html += "<table id=\"info-table\" class=\"table table-striped table-condensed table-hover\"><tbody>\n";
         html += "</tbody></table>\n";
         html += "<h4>Total Amounts Received</h4>\n";
+        html += "<svg></svg";
+        d3.select("#info-panel").html(html);
+
+        d3.select("#info-table").select("tbody").selectAll("tr")
+            .data(top10)
+          .enter().append("tr")
+            .on("mouseover", rowOver)
+            .on("mouseout", rowOut)
+            .on("click", function(row) { 
+                rowOut(row);
+                nodeClick(row.node); 
+            })
+            .html(function(d) {
+                return "<td class=\"small\">" + d.entity.Name + "</td><td class=\"pull-right small\">" + dollarFormat(d.values) + "</td>";
+            });
     } else {
         var entity = -1;
 
@@ -204,24 +281,38 @@ function updateInfoPanel() {
         if (top10.length > 10) {
             top10 = top10.slice(0, 10);
         }
+
+        top10.forEach(function(d) { 
+            d.party = parties[d.key];
+            d.node = drawNodes[nodeIds.parties[d.key]];
+        });
+
         html = "<h3><a href=\"http://www.google.com/#q="+ clickedNode.Name + "\" title=\"Search Google for this Entity\" target=\"_blank\">" + clickedNode.Name + "</a></h3>\n";
         html += "<hr />\n";
         html += "<h4>Details</h4>\n";
         html += "<p>Type: Payer</p>\n";
         html += "<p>Total Amount Paid: " + dollarFormat(totalAmount) + "</p>";
         html += "<p>Top 10 Receivers:</p>\n";
-        html += "<table class=\"table table-striped table-condensed table-hover\"><tbody>\n";
-        top10.forEach(function(d) {
-            html += "<tr><td class=\"small\">" + parties[d.key] + "</td><td class=\"pull-right small\"> " + dollarFormat(d.values) + "</td></tr>\n";
-        });
+        html += "<table id=\"info-table\" class=\"table table-striped table-condensed table-hover\"><tbody>\n";
         html += "</tbody></table>\n";
         html += "<h4>Total Amounts Paid</h4>\n";
+        html += "<svg></svg";
+        d3.select("#info-panel").html(html);
+
+        d3.select("#info-table").select("tbody").selectAll("tr")
+            .data(top10)
+          .enter().append("tr")
+            .on("mouseover", rowOver)
+            .on("mouseout", rowOut)
+            .on("click", function(row) { nodeClick(row.node); })
+            .html(function(d) {
+                return "<td class=\"small\">" + d.party + "</td><td class=\"pull-right small\">" + dollarFormat(d.values) + "</td>";
+            });
     }
 
 
-    d3.select("#info-panel").html(html);
 
-    var margins = { top: 0, right: 0, bottom: 25, left: 30 },
+    var margins = { top: 0, right: 0, bottom: 25, left: 50 },
         chartWidth = 270 - margins.left - margins.right,
         chartHeight = 120 - margins.top - margins.bottom,
         years = getYears(),
@@ -235,7 +326,7 @@ function updateInfoPanel() {
             .scale(y)
             .orient("left")
             .ticks(5, "$s"),
-        chart = d3.select("#info-panel").append("svg")
+        chart = d3.select("#info-panel").select("svg")
                     .attr("width", chartWidth + margins.left + margins.right)
                     .attr("height", chartHeight + margins.top + margins.bottom)
                   .append("g")
@@ -293,7 +384,7 @@ function nodeOver(node, i) {
     });
 
     nodeElements.style("stroke", function(n) {
-        if (n.searched) {
+        if (n.searched || n.clicked) {
             return "#000";
         } else if (neighbours(node, n)) {
             return "#555";
@@ -314,7 +405,7 @@ function nodeOut(node, i) {
     linkElements.style("stroke", "#ddd")
                 .style("stroke-opacity", 0.5)
     nodeElements.style("stroke", function(n) {
-                    if (n.searched) {
+                    if (n.searched || n.clicked) {
                         return "#000";
                     } else {
                         return "#ddd";

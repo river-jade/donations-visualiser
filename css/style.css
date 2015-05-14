@@ -60,6 +60,10 @@ form#filters label, form#filters input, form#filters select {
     margin: 0 15px 0 15px;
 }
 
+#info-table tr:hover {
+    cursor: pointer;
+}
+
 #hover-info {
   position: absolute;
   top: 100px;
