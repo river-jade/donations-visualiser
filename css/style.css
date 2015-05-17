@@ -64,6 +64,10 @@ form#filters label, form#filters input, form#filters select {
     cursor: pointer;
 }
 
+#info-table tr.nohover:hover {
+    cursor: auto;
+}
+
 #hover-info {
   position: absolute;
   top: 100px;

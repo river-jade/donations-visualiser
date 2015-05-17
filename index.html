@@ -27,8 +27,8 @@
                 <input type="text" class="text-input" id="search" value="" autocomplete="off"/>
             </div>
             <div class="form-group">
-                <label for="year_select">Select Years<a href="#"><span class="normal small pull-right" id="year-select-all">select all</span></a></label>
-                <select id="year_select" autocomplete="off" multiple>
+                <label for="year_select">Select Financial Year</label>
+                <select id="year_select" autocomplete="off">
                 </select>
             </div>
             <div class="form-group">
@@ -44,10 +44,9 @@
             <div class="form-group">
                 <label for="view_select">Select View</label>
                 <select id="view_select" autocomplete="off">
-                    <option value="0">Top 20</option>
-                    <option value="1">Top 20</option>
-                    <option value="2">Top 20</option>
-                    <option value="3">Top 20</option>
+                    <option value="all" selected>All</option>
+                    <option value="top20">Top 20</option>
+                    <option value="top-bottom">Top 20/Bottom 20</option>
                 </select>
             </div>
         </form>
@@ -84,25 +83,25 @@
                of political parties and the information they have reported to the 
                <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> declaring the receipts that they have received.
                Political parties are required by Australian law to provide this information on a yearly basis for all
-               amounts greater than $12,400. Donors to political parties in Australia must also declare their donations.</p>
-            <p>This information is required to be provided to the AEC by 17 November each year and is subsequently made public
-               by the AEC.</p>
-            <p>All periodic disclosures published by the AEC is available for analysis.  Filters can help you extract meaningful
-               information.  The filters can be accessed by clicking on the <span class="glyphicon glyphicon-filter"></span> icon 
-               on the upper left of the chart.  This will open the filter controls, allowing you to search for a party or donor, 
-               select the years, parties or receipt types that interest you and also change the type of the display to a number 
-               of different options.</p>
-            <p>It is possible that by selecting certain combinations of filters (in particular, multiple years) that the amount of
-               data displayed could result in slow performance.  If this happens you can limit your filters to return a more
-               restrictive set of data.</p>
-            <p>It is also possible to zoom in and out of the chart by either using your mouse scroll wheel, track pad or the slider
+               amounts greater than $12,400 (current for the 2013-2014 year). Donors to political parties in Australia must 
+               also declare their donations.</p>
+            <p>This information is required to be provided to the AEC by 17 November each year and is subsequently made public.</p>
+            <p>All periodic disclosures published by the AEC are available for analysis on this site.  Filters can help you extract 
+               meaningful information.  The filters can be accessed by clicking on the <span class="glyphicon glyphicon-filter"></span> 
+               icon on the upper left of the chart.  This will open the filter controls, allowing you to search for a party or donor, 
+               select the year, parties or receipt types that interest you and also change the type of the view to a number of different 
+               options.</p>
+            <p>It is possible that by selecting certain combinations of filters that the amount of data displayed could result in slow 
+               performance.  If this happens you can limit your filters to return a more restrictive set of data.</p>
+            <p>It is also possible to zoom in and out of the chart by using your mouse scroll wheel, track pad or the slider
                control under the filter controls toggle button.</p>
             <p>Additional information regarding any party or entity on the main chart is displayed if you click on a node.  This
                will open the information panel on the right of the main display.  This panel can be toggled by clicking on the
-               <span class="glyphicon glyphicon-info-sign"></span> button, located in the upper right of the main display.</p>
+               <span class="glyphicon glyphicon-info-sign"></span> button, located in the upper right of the main display.  You can
+               also click on an entry in the displayed table to select another political party or payer.</p>
             <p>We love receiving feedback, and you can reach us at 
-               <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.  We do our best to read
-               and reply to all messages.</p>
+               <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.  We do our best to read and reply to 
+               all messages.</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -123,7 +122,7 @@
                <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> and presents it in a graphical view
                to make visual analysis of the donations to all political parties in Australia easier and
                more intuitive.</p>
-            <p>The data is present as a force directed layout showing both links and magnitudes of donations
+            <p>The data is presented as a force directed layout showing both links and magnitudes of donations
                to all major parties.  The data can be filtered and detailed information is available by clicking
                on any node in the layout.</p>
             <p>For questions or to provide feedback, please send email to <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
