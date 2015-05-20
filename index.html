@@ -21,7 +21,7 @@
   <body>
     <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
         <p class="navmenu-brand" href="#">Filters</p>
-        <form id="filters">
+        <form id="filters" action="javascript:;">
             <div class="form-group">
                 <label for="search">Search<a href="#"><span class="normal small pull-right" id="clear-search">clear</span></a></label>
                 <input type="text" class="text-input" id="search" value="" autocomplete="off"/>
@@ -32,22 +32,26 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="party_select">Select Parties<a href="#"><span class="normal small pull-right" id="party-select-all">select all</span></a></label>
-                <select id="party_select" autocomplete="off" multiple>
-                </select>
+                <label>Select Parties
+                    <span class="normal small pull-right">select:
+                        <a href="javascript:;" id="party-select-all">all</a>&nbsp;
+                        <a href="javascript:;" id="party-select-invert">invert</a>
+                    </span>
+                </label>
+                <div id="party_select"></div>
             </div>
             <div class="form-group">
-                <label for="receipt_type_select">Select Type<a href="#"><span class="normal small pull-right" id="receipt-type-select-all">select all</span></a></label>
-                <select id="receipt_type_select" autocomplete="off" multiple>
-                </select>
+                <label>Select Receipt Type
+                    <span class="normal small pull-right">select:
+                        <a href="javascript:;" id="receipt-type-select-all">all</a>&nbsp;
+                        <a href="javascript:;" id="receipt-type-select-invert">invert</a>
+                    </span>
+                </label>
+                <div id="receipt_type_select"></div>
             </div>
             <div class="form-group">
-                <label for="view_select">Select View</label>
-                <select id="view_select" autocomplete="off">
-                    <option value="all" selected>All</option>
-                    <option value="top20">Top 20</option>
-                    <option value="top-bottom">Top 20/Bottom 20</option>
-                </select>
+                <label>Filter Values</label>
+                <div id="value-filter"><input type="range" orient="horizontal" /></div>
             </div>
         </form>
     </div>

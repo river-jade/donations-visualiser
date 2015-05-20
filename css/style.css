@@ -48,6 +48,10 @@ form#filters label, form#filters input, form#filters select {
     width: 100%;
 }
 
+form#filters input[type=checkbox] {
+    width: 12px;
+}
+
 .navbar-right {
     margin-right: 15px !important;
 }
@@ -109,6 +113,11 @@ hr.tooltip-hr {
   position: absolute;
   top: 100px;
   left: 24px;
+}
+
+#party_select {
+    height: 210px;
+    overflow-y: scroll;
 }
 
 input[type=range][orient=vertical]
