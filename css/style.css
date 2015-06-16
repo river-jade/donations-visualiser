@@ -11,6 +11,10 @@ body {
     padding: 0;
 }
 
+.navmenu {
+    overflow-x: hidden;
+}
+
 .navbar-toggle {
   float: left;
   margin-left: 15px;
@@ -70,6 +74,20 @@ form#filters input[type=checkbox] {
 
 #info-table tr.nohover:hover {
     cursor: auto;
+}
+
+#value-filter {
+    width: 260px;
+    margin: 0 auto;
+}
+
+.value-filter-value {
+    width: 40% !important;
+    margin-top: 25px;
+}
+
+.value-filter-value.pull-right {
+    text-align: right;
 }
 
 #hover-info {
