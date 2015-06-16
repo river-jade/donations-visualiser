@@ -6,7 +6,7 @@ var w = window,
     height = w.innerHeight || e.clientHeight || g.clientHeight;
 
 var party_map = {}, entity_map = {}, years = [], receipt_types, 
-    clickedNode = null, filterShown = false, infoShown = false, oldYear = -1;
+    clickedNode = null, filterShown = true, infoShown = true, oldYear = -1;
 
 var svg = d3.select("div#vis").append("svg").attr("width", width).attr("height", height);
 
@@ -43,20 +43,44 @@ var resizeWindow = function() {
                        force.start();
                     }
 d3.select(w).on("resize", resizeWindow);
+
+function showFilterPanel() {
+    $('.navmenu-fixed-left').offcanvas('show');
+    d3.select("#filter-button").transition().ease("linear").style("left", "310px");
+    d3.select("#filter-toggle").html("<span class=\"glyphicon glyphicon-chevron-left\"></span>");
+    d3.select("#zoom-controls").transition().ease("linear").style("left", "324px");
+    filterShown = true;
+}
+
+function hideFilterPanel() {
+    $('.navmenu-fixed-left').offcanvas('hide');
+    d3.select("#filter-button").transition().ease("linear").style("left", "10px");
+    d3.select("#zoom-controls").transition().ease("linear").style("left", "24px");
+    d3.select("#filter-toggle").html("<span class=\"glyphicon glyphicon-filter\"></span>");
+    filterShown = false;
+}
+
+function showInfoPanel() {
+    $('.navmenu-fixed-right').offcanvas('show');
+        d3.select("#info-button").transition().ease("linear").style("right", "310px");
+        d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
+        infoShown = true;
+}
+
+function hideInfoPanel() {
+    $('.navmenu-fixed-right').offcanvas('hide');
+        d3.select("#info-button").transition().ease("linear").style("right", "10px");
+        d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-info-sign\"></span>");
+        infoShown = false;
+}
+
 $('.navmenu-fixed-left').offcanvas({ autohide: false, toggle: false });
 $('.navmenu-fixed-left').offcanvas('hide');
 $('#filter-toggle').on('click', function(d) {
-    $('.navmenu-fixed-left').offcanvas('toggle');
     if (filterShown) {
-        d3.select("#filter-button").transition().ease("linear").style("left", "10px");
-        d3.select("#zoom-controls").transition().ease("linear").style("left", "24px");
-        d3.select("#filter-toggle").html("<span class=\"glyphicon glyphicon-filter\"></span>");
-        filterShown = false;
+        hideFilterPanel();
     } else {
-        d3.select("#filter-button").transition().ease("linear").style("left", "310px");
-        d3.select("#filter-toggle").html("<span class=\"glyphicon glyphicon-chevron-left\"></span>");
-        d3.select("#zoom-controls").transition().ease("linear").style("left", "324px");
-        filterShown = true;
+        showFilterPanel();
     }
 });
 
@@ -65,13 +89,9 @@ $('.navmenu-fixed-right').offcanvas('hide');
 $('#info-toggle').on('click', function(d) {
     $('.navmenu-fixed-right').offcanvas('toggle');
     if (infoShown) {
-        d3.select("#info-button").transition().ease("linear").style("right", "10px");
-        d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-info-sign\"></span>");
-        infoShown = false;
+        hideInfoPanel();
     } else {
-        d3.select("#info-button").transition().ease("linear").style("right", "310px");
-        d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
-        infoShown = true;
+        showInfoPanel();
     }
 });
 
@@ -105,10 +125,11 @@ var data_request = d3.json("data/all_data.json")
                          d3.select("#loading-progress").style("width", progress + "%");
                      })
                      .on("load", function(data) { 
-                         console.log("loaded");
                          d3.select("#loading-progress").style("width", "100%");
                          $("#loading-modal").modal('hide');
                          processData(data);
+                         showInfoPanel();
+                         showFilterPanel();
                      })
                      .on("error", function() { console.log("error"); })
                      .get();
