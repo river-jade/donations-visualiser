@@ -607,9 +607,9 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         var displayFormat = d3.format("$0,0f");
         value_slider.scale(d3.scale.log().domain(extents));
         value_slider.min(extents[0]).max(extents[1]);
-        value_slider.value(extents);
+        value_slider.value([20000, extents[1]]);
 
-        d3.select("#value-filter-min").attr("value", displayFormat(extents[0]));
+        d3.select("#value-filter-min").attr("value", displayFormat(20000));
         d3.select("#value-filter-max").attr("value", displayFormat(extents[1]));
         d3.select("#value-filter").html("");
         d3.select("#value-filter").call(value_slider);
@@ -730,7 +730,11 @@ function processData(data) {
       .enter().append("div")
         .attr("class", "checkbox")
         .html(function(d, i) {
-            return "<label><input type=\"checkbox\" value=\"" + i + "\" checked=\"true\">" + d + "</label>";
+            //if (d == "Donation") {
+                return "<label><input type=\"checkbox\" value=\"" + i + "\" checked=\"true\">" + d + "</label>";
+            //} else {
+            //    return "<label><input type=\"checkbox\" value=\"" + i + "\">" + d + "</label>";
+            //}
         });
 
     d3.select("#year_select").selectAll("option")
