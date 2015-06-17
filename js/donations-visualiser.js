@@ -95,12 +95,6 @@ $('#info-toggle').on('click', function(d) {
     }
 });
 
-$("#loading-modal").modal({
-    show: true, 
-    keyboard: false, 
-    backdrop: "static"
-});
-
 d3.select("#party-select-all").on("click", selectAllParties);
 d3.select("#party-select-invert").on("click", invertPartiesSelection);
 d3.select("#receipt-type-select-all").on("click", selectAllReceiptTypes);
@@ -118,13 +112,29 @@ var force = d3.layout.force()
               .gravity(0.4)
               .on("tick", tick);
 
+var progress_counter = 0;
+
 
 var data_request = d3.json("data/all_data.json")
                      .on("progress", function() { 
-                         var progress = d3.event.loaded * 100 / d3.event.total;
-                         d3.select("#loading-progress").style("width", progress + "%");
+                         progress_counter++;
+
+                         if (progress_counter == 3) {
+                             $("#loading-modal").modal({
+                                 show: true, 
+                                 keyboard: false, 
+                                 backdrop: "static"
+                             });
+                         } else if (progress_counter > 3) {
+                             if (d3.event.loaded != d3.event.total) {
+
+                                 var progress = d3.event.loaded * 100 / d3.event.total;
+                                 d3.select("#loading-progress").style("width", progress + "%");
+                             }
+                         }
                      })
                      .on("load", function(data) { 
+                         console.log(d3.event);
                          d3.select("#loading-progress").style("width", "100%");
                          $("#loading-modal").modal('hide');
                          processData(data);
