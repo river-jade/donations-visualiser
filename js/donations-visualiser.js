@@ -262,9 +262,9 @@ function rowOut(row, i) {
 }
 
 function updateInfoPanel() {
-    if (clickedNode == null) return;
     var html, yearTotals = [];
 
+    if (clickedNode == null) return;
     if (clickedNode.Type == "Party") {
         var top10 = clickedNode.entityTotals.sort(function(a, b) { return b.values.total - a.values.total; }).slice(0, 10);
         yearTotals = d3.nest().key(function(d) { return d.Year; }).rollup(function(leaves) { return d3.sum(leaves, function(e) { return e.Amount; }); }).entries(clickedNode.receipts);
@@ -471,9 +471,6 @@ function updateLabels() {
     }
 }
 
-function updateSlider() {
-}
-
 function filterData() {
     var selectedYear = +d3.select("#year_select").selectAll("option").filter(function(d) { return this.selected; }).node().value,
         allParties = d3.select("#party_select").selectAll("input").map(function(d) { return +d.value; }),
@@ -522,6 +519,7 @@ function filterData() {
                     selectedParties.indexOf(d.Party) != -1);
         });
 
+
         if (node.filteredPayments.length > 0) {
             node.total = d3.sum(node.filteredPayments, function(d) { return d.Amount; });
             node.partyTotals = d3.nest()
@@ -538,6 +536,9 @@ function filterData() {
                     party_map[p.key].children.push(node);
                 }
             });
+        } else {
+            node.partyTotals = [];
+            node.total = 0;
         }
     });
 
@@ -601,15 +602,18 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         return;
     }
 
-    var entity_nodes = nodes.filter(function(d) { return d.Type == "Entity"; });
+    //var entity_nodes = nodes.filter(function(d) { return d.Type == "Entity"; });
 
-    var extents = d3.extent(entity_nodes, function(n) { return n.total; });
+    //var extents = d3.extent(entity_nodes, function(n) { return n.total; });
+    var extents = d3.extent(nodes, function(n) { return n.total; });
 
 
     var start = extents[0],
         end = extents[1],
-        mean = d3.mean(entity_nodes, function(d) { return d.total; }),
-        median = d3.median(entity_nodes, function(d) { return d.total; });    
+        //mean = d3.mean(entity_nodes, function(d) { return d.total; }),
+        //median = d3.median(entity_nodes, function(d) { return d.total; });    
+        mean = d3.mean(nodes, function(d) { return d.total; }),
+        median = d3.median(nodes, function(d) { return d.total; });    
 
     sizeScale.domain([start, median, mean, end])
 
@@ -632,21 +636,19 @@ function update(partyNodes, parties, selectedParties, resetControls) {
             .text(function(d) { return Math.round(Math.log(d) / Math.LN10); });
     }
 
-
-
     nodeElements = nodesG.selectAll(".node")
                        .data(force.nodes(), function(d, i) { 
                            return d.name + "-" + i; 
                        });
 
-    nodeElements.enter().append("path").attr("class", "node")
-        .attr("d", d3.svg.symbol()
+    nodeElements.enter().append("path").attr("class", "node");
+    nodeElements.attr("d", d3.svg.symbol()
                      .size(function(d) { 
                          d.size = sizeScale(d.total); 
-                         if (d.Type == 'Party') d.size *= 2.5;
+                         if (d.Type == 'Party') d.size *= 2;
                          return d.size; })
                      .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
-    nodeElements.attr("id", function(d, i) { return "node-" + i; })
+                .attr("id", function(d, i) { return "node-" + i; })
                 .style("stroke", "#ddd")
                 .style("stroke-width", 1.0)
                 .style("fill", function(d, i) { return nodeColors(d.name); })
@@ -667,6 +669,8 @@ function update(partyNodes, parties, selectedParties, resetControls) {
                                        .style("stroke-width", 1.0)
                                        .style("stroke-opacity", 0.5);
     linkElements.exit().remove();
+
+    updateInfoPanel();
 
     force.start();
 }
