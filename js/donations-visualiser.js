@@ -75,7 +75,7 @@ function hideInfoPanel() {
 }
 
 $('.navmenu-fixed-left').offcanvas({ autohide: false, toggle: false });
-$('.navmenu-fixed-left').offcanvas('hide');
+//$('.navmenu-fixed-left').offcanvas('hide');
 $('#filter-toggle').on('click', function(d) {
     if (filterShown) {
         hideFilterPanel();
@@ -85,7 +85,7 @@ $('#filter-toggle').on('click', function(d) {
 });
 
 $('.navmenu-fixed-right').offcanvas({autohide: false, toggle: false });
-$('.navmenu-fixed-right').offcanvas('hide');
+//$('.navmenu-fixed-right').offcanvas('hide');
 $('#info-toggle').on('click', function(d) {
     $('.navmenu-fixed-right').offcanvas('toggle');
     if (infoShown) {
@@ -137,8 +137,10 @@ var data_request = d3.json("data/all_data.json")
                          d3.select("#loading-progress").style("width", "100%");
                          $("#loading-modal").modal('hide');
                          processData(data);
-                         showInfoPanel();
-                         showFilterPanel();
+                         setTimeout(function() {
+                             showInfoPanel();
+                             showFilterPanel();
+                         }, 500);
                      })
                      .on("error", function() { console.log("error"); })
                      .get();
