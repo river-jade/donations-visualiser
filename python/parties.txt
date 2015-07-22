@@ -304,8 +304,8 @@ Progressive Labour Party|Progressive Labour Party|National|Active
 Progressive Labour Party - NATIONAL|Progressive Labour Party|National|Active
 Progressive Labour Party - WA Branch - WA|Progressive Labour Party|WA|Active
 Queensland First|Queensland First|QLD|Active
-Queensland Greens|Queensland Greens|QLD|Active
-Queensland Greens - NATIONAL|Queensland Greens|National|Active
+Queensland Greens|Australian Greens|QLD|Active
+Queensland Greens - NATIONAL|Australian Greens|National|Active
 Rebuild Australia Party|Rebuild Australia Party|National|Active
 Reclaim Australia: Reduce Immigration|Reclaim Australia: Reduce Immigration|National|Active
 Republican Party of Australia|Republican Party of Australia|National|Active
@@ -338,22 +338,22 @@ Stable Population Party of Australia|Stable Population Party of Australia|Nation
 Stop CSG Party|Stop CSG Party|National|Active
 Tasmania First Party|Tasmania First Party|TAS|Active
 Tasmania First Party - NATIONAL|Tasmania First Party|National|Active
-Tasmanian Greens|Tasmanian Greens|TAS|Active
-Tasmanian Greens - NATIONAL|Tasmanian Greens|National|Active
+Tasmanian Greens|Australian Greens|TAS|Active
+Tasmanian Greens - NATIONAL|Australian Greens|National|Active
 Tasmanian Independent Senator Brian Harradine Grou|Tasmanian Independent Senator Brian Harradine Group|National|Active
 Tasmanian Independent Senator Brian Harradine Group|Tasmanian Independent Senator Brian Harradine Group|National|Active
 Tasmanian Independent Senator Brian Harradine Group - NATIONAL|Tasmanian Independent Senator Brian Harradine Group|National|Active
 Taxi Operators Political Service (Oceania)|Taxi Operators Political Service (Oceania)|National|Active
 Taxi Operators Political Service (Oceania) - NATIONAL|Taxi Operators Political Service (Oceania)|National|Active
 The 23 Million|The 23 Million|National|Active
-The ACT Greens|The ACT Greens|National|Active
-The ACT Greens - ACT|The ACT Greens|ACT|Active
-The ACT Greens Inc|The ACT Greens|National|Active
+The ACT Greens|Australian Greens|National|Active
+The ACT Greens - ACT|Australian Greens|ACT|Active
+The ACT Greens Inc|Australian Greens|National|Active
 The Aged and Disability Pensioners Party|The Aged and Disability Pensioners Party|National|Active
 The Aged and Disability Pensioners Party - NATIONAL|The Aged and Disability Pensioners Party|National|Active
 The Aged and Disability Pensioners Party - VIC|The Aged and Disability Pensioners Party|VIC|Active
-The Australian Greens - Victoria|The Australian Greens|VIC|Active
-The Australian Greens - Victoria - NATIONAL|The Australian Greens|National|Active
+The Australian Greens - Victoria|Australian Greens|VIC|Active
+The Australian Greens - Victoria - NATIONAL|Australian Greens|National|Active
 The Australian Recreation and Fishing Party|The Australian Recreation and Fishing Party|National|Active
 The Australian Shooters Party|The Australian Shooters Party|National|Active
 The Australian Shooters Party - NATIONAL|The Australian Shooters Party|National|Active
@@ -367,11 +367,11 @@ The Fishing Party QLD - QLD|The Fishing Party|QLD|Active
 The Great Australians|The Great Australians|National|Active
 The Great Australians - NATIONAL|The Great Australians|National|Active
 The Great Australians - QLD|The Great Australians|QLD|Active
-The Greens (WA) Inc|The Greens|WA|Active
-The Greens (WA) Inc - NATIONAL|The Greens|WA|Active
-The Greens NSW|The Greens|NSW|Active
-The Greens NSW - NATIONAL|The Greens|National|Active
-The Greens NSW - NSW|The Greens|NSW|Active
+The Greens (WA) Inc|Australian Greens|WA|Active
+The Greens (WA) Inc - NATIONAL|Australian Greens|WA|Active
+The Greens NSW|Australian Greens|NSW|Active
+The Greens NSW - NATIONAL|Australian Greens|National|Active
+The Greens NSW - NSW|Australian Greens|NSW|Active
 The Seniors|The Seniors|National|Active
 The Territory Green Party|The Territory Green Party|National|Active
 The Territory Green Party - NT|The Territory Green Party|NT|Active

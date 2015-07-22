@@ -59,7 +59,10 @@ def download_data(url):
 
     response = browser.open(url)
 
-    browser.select_form(nr=2)
+    #browser.select_form(nr=1)
+    for form in browser.forms():
+        if form.attrs.get("id") == "formMaster":
+            browser.form = form
 
     control = browser.form.find_control('ctl00$dropDownListPeriod')
 
@@ -71,25 +74,37 @@ def download_data(url):
 
 
     for year in year_data:
-        browser.select_form(nr=2)
+        for form in browser.forms():
+            if form.attrs.get("id") == "formMaster":
+                browser.form = form
+        #browser.select_form(nr=1)
         print "Retrieving data for " + year['label']
         browser[control.name] = [year['value'],]
     
         response = browser.submit()
         response = browser.follow_link(url='AnalysisParty.aspx')
-        browser.select_form(nr=2)
+        #browser.select_form(nr=1)
     
+        for form in browser.forms():
+            if form.attrs.get("id") == "formMaster":
+                browser.form = form
         parties_select = browser.form.find_control('ctl00$ContentPlaceHolderBody$dropDownListParties')
     
         for item in parties_select.items:
             party_name = parties_select.get_item_attrs(item.name)['label']
             print "    Retrieving data for " + party_name + " for " + year['label']
     
-            browser.select_form(nr=2)
+            #browser.select_form(nr=1)
+            for form in browser.forms():
+                if form.attrs.get("id") == "formMaster":
+                    browser.form = form
             browser[parties_select.name] = [parties_select.get_item_attrs(item.name)['value'],]
             browser.submit(label='Export')
     
-            browser.select_form(nr=2)
+            #browser.select_form(nr=1)
+            for form in browser.forms():
+                if form.attrs.get("id") == "formMaster":
+                    browser.form = form
             browser['ctl00$ContentPlaceHolderBody$exportControl$dropDownListOptions'] = ['xml',]
             browser.submit(label='Continue')
     

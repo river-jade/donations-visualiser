@@ -134,7 +134,6 @@ var data_request = d3.json("data/all_data.json")
                          }
                      })
                      .on("load", function(data) { 
-                         console.log(d3.event);
                          d3.select("#loading-progress").style("width", "100%");
                          $("#loading-modal").modal('hide');
                          processData(data);
