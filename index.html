@@ -1,105 +1,177 @@
-<!doctype html>
-<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-  <title>Australian Political Donations Visualiser Tool</title>
-  <meta name="description" content="Tool for visualising donations to Australian political parties">
-  <meta name="author" content="River Satya">
+    <title>Australian Political Donations Visualiser</title>
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
 
-  <!-- CSS concatenated and minified via ant build script-->
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- end CSS-->
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/d3.slider.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
-  <script src="js/libs/modernizr-2.0.6.min.js"></script>
-</head>
+  </head>
 
-<body>
-
-  <div id="container" class="container">
-    <header>
-    <h1>Australian Political Donations</h1>
-    <p>Shows a graph of donations to Australian political parties in the 2011/2012 fiscal year.</p>
-    </header>
-    <div id="controls">
-      <div id="controls-stuff">
-        <div id="party_selection" class="control">
-          <h3>Select political party</h3>
-          <select id="party_select" autocomplete="off">
-            <option value="all.json">All parties</option>
-            <option value="australian_greens_party.json">Australian Greens</option>
-            <option value="liberal_party.json">Liberal Party</option>
-            <option value="australian_labor_party.json">Australian Labor Party</option>
-          </select>
+  <body>
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+        <p class="navmenu-brand" href="#">Filters</p>
+        <form id="filters" action="javascript:;">
+            <div class="form-group">
+                <label for="search">Search<a href="#"><span class="normal small pull-right" id="clear-search">clear</span></a></label>
+                <input type="text" class="text-input" id="search" value="" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+                <label for="year_select">Select Financial Year</label>
+                <select id="year_select" autocomplete="off">
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Select Parties
+                    <span class="normal small pull-right">select:
+                        <a href="javascript:;" id="party-select-all">all</a>&nbsp;
+                        <a href="javascript:;" id="party-select-invert">invert</a>
+                    </span>
+                </label>
+                <div id="party_select"></div>
+            </div>
+            <div class="form-group">
+                <label>Select Receipt Type
+                    <span class="normal small pull-right">select:
+                        <a href="javascript:;" id="receipt-type-select-all">all</a>&nbsp;
+                        <a href="javascript:;" id="receipt-type-select-invert">invert</a>
+                    </span>
+                </label>
+                <div id="receipt_type_select"></div>
+            </div>
+            <div class="form-group">
+                <label>Filter Values</label>
+                <div id="value-filter"></div>
+                <div><input type="text" class="pull-left value-filter-value" id="value-filter-min" value=""><input type="text" class="pull-right value-filter-value" id="value-filter-max" value=""></div>
+            </div>
+        </form>
+    </div>
+    <div class="navmenu navmenu-default navmenu-fixed-right offcanvas">
+        <p class="navmenu-brand" href="#">Information</p>
+        <div id="info-panel">
+            <h4>Click on a node to display details.</h4>
         </div>
-        <div id="layouts" class="control">
-          <h3>Layout</h3>
-          <div class="control-group">
-            <a id="force" class="active">Force Directed</a>
-            <a id="radial">Parties</a>
+    </div>
+
+    <div id="hover-info" style="display: none;"></div>
+    <div id="zoom-controls"><span class="glyphicon glyphicon-zoom-in"></span><input type="range" orient="vertical" /><span class="glyphicon glyphicon-zoom-out"></span></div>
+
+    <div id="filter-button"><button class="btn btn-default" type="button" id="filter-toggle" title="Toggle filter panel"><span class="glyphicon glyphicon-filter"></span></button></div>
+    <div id="info-button"><button class="btn btn-default" type="button" id="info-toggle" title="Toggle info panel"><span class="glyphicon glyphicon-info-sign"></span></button></div>
+
+    <div class="navbar navbar-default navbar-fixed-top">
+      <h4 class="navbar-text">Australian Political Donations</h4>
+      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal">About</button>
+      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal">Information</button>
+      <p class="navbar-text navbar-right">Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.</p>
+    </div>
+
+    <div class="modal fade" id="loading-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Loading...</h4>
           </div>
-        </div>
-        <div id="filters" class="control">
-          <h3>Filter</h3>
-          <div class="control-group">
-            <a id="all" class="active">All</a>
-            <a id="popular">Popular</a>
-            <a id="obscure">Obscure</a>
+          <div class="modal-body">
+            <p>We're now loading the dataset.  This is quite large, so it may take a little while depending
+               on your connection.</p>
+            <div class="progress">
+              <div id="loading-progress" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                <span class="sr-only">20% complete</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div id="sorts" class="control">
-          <h3>Sort</h3>
-          <div class="control-group">
-            <a id="parties" class="active">Parties</a>
-            <a id="links">Links</a>
-          </div>
-        </div>
-        <div id="search_section" class="control">
-          <h3>Search</h3>
-            <input type="text" class="text-input" id="search" value="" autocomplete="off"/></p>
         </div>
       </div>
     </div>
-    <div id="main" role="main">
-      <div id="vis"></div>
-    </div>
-    <footer>
-    <p>Data obtained from <a href="http://periodicdisclosures.aec.gov.au/AnalysisPartyGroup.aspx">AEC Periodic Disclosures</a>.</p>
+    <div class="modal fade" id="info-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Information</h4>
+          </div>
+          <div class="modal-body">
+            <p>Using this website is relatively straight forward.  The main display shows a force directed graph
+               of political parties and the information they have reported to the 
+               <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> declaring the receipts that they have received.
+               Political parties are required by Australian law to provide this information on a yearly basis for all
+               amounts greater than $12,400 (current for the 2013-2014 year). Donors to political parties in Australia must 
+               also declare their donations.</p>
+            <p>This information is required to be provided to the AEC by 20 October each year and is subsequently made public.</p>
+            <p>All periodic disclosures published by the AEC are available for analysis on this site.  Filters can help you extract 
+               meaningful information.  The filters can be accessed by clicking on the <span class="glyphicon glyphicon-filter"></span> 
+               icon on the upper left of the chart.  This will open the filter controls, allowing you to search for a party or donor, 
+               select the year, parties or receipt types that interest you and also change the type of the view to a number of different 
+               options.</p>
+            <p>It is possible that by selecting certain combinations of filters that the amount of data displayed could result in slow 
+               performance.  If this happens you can limit your filters to return a more restrictive set of data.</p>
+            <p>It is also possible to zoom in and out of the chart by using your mouse scroll wheel, track pad or the slider
+               control under the filter controls toggle button.</p>
+            <p>Additional information regarding any party or entity on the main chart is displayed if you click on a node.  This
+               will open the information panel on the right of the main display.  This panel can be toggled by clicking on the
+               <span class="glyphicon glyphicon-info-sign"></span> button, located in the upper right of the main display.  You can
+               also click on an entry in the displayed table to select another political party or payer.</p>
+            <p>We love receiving feedback, and you can reach us at 
+               <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.  We do our best to read and reply to 
+               all messages.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
-    </footer>
-  </div> <!--! end of #container -->
+    <div class="modal fade" id="about-modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">About</h4>
+          </div>
+          <div class="modal-body">
+            <p>The Political Donations visualisation website takes publically available data from the 
+               <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> and presents it in a graphical view
+               to make visual analysis of the donations to all political parties in Australia easier and
+               more intuitive.</p>
+            <p>The data is presented as a force directed layout showing both links and magnitudes of donations
+               to all major parties.  The data can be filtered and detailed information is available by clicking
+               on any node in the layout.</p>
+            <p>For questions or to provide feedback, please send email to <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
+               We love to hear about users who are extracting useful information or educating themselves about the
+               level of donations that political parties in Australia receive.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
+    <div class="body-content container-fluid">
+        <div id="vis"></div>
+    </div><!-- /.container -->
 
-  <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> -->
-  <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>')</script>
-
-
-  <script defer src="js/plugins.js"></script>
-  <script defer src="js/script.js"></script>
-  <script src="js/libs/d3.v2.js"></script>
-  <script src="js/Tooltip.js"></script>
-  <script src="js/donations-visualiser.js"></script>
-
-  <script> // Change UA-XXXXX-X to be your site's ID
-    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-    Modernizr.load({
-      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-    });
-  </script>
-
-
-  <!--[if lt IE 7 ]>
-    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-  <![endif]-->
-  
-</body>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+    <script src="js/d3.slider.js"></script>
+    <script src="js/donations-visualiser.js"></script>
+  </body>
 </html>

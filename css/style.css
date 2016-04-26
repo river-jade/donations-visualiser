@@ -1,87 +1,96 @@
+html, body {
+  //height: 100%;
+  overflow: hidden;
+}
+
 body {
-  font-family: Arial, sans-serif;
+  padding: 50px 0 0 0;
 }
 
-a, a:visited {
-  color: #4d4d4d;
-  text-decoration: underline;
+.body-content {
+    padding: 0;
 }
 
-#container {
-  width: 100%;
-  margin: auto;
+.navmenu {
+    overflow-x: hidden;
 }
 
-#main {
-  clear: both;
-}
-
-header {
-    text-align: center;
-    margin: auto;
-}
-
-#controls {
-    text-align: center;
-    margin: 0 auto;
-    background-color: #eee;
-    width: 100%;
-}
-
-#controls-stuff {
-    margin: 0 auto;
-    width: 960px;
-}
-
-#controls-stuff:after {
-    content: " ";
-    display: block;
-    height: 0;
-    clear: both;
-}
-
-.control-group {
-    margin-top: 4px;
-}
-
-.control {
+.navbar-toggle {
   float: left;
-  padding-left: 20px;
-  min-height: 40px;
+  margin-left: 15px;
 }
 
-.control a {
-  color: black;
-  font-size: 12px;
-  padding: 6px;
-  background: #E2E2E2;
-  cursor: pointer;
-  margin-right: 3px;
-  text-decoration: none;
+.navbar-toggle.right {
+  float: right;
+  margin-right: 15px;
 }
 
-.control a:hover {
-  text-decoration: underline;
-}
-
-.control a.active {
-  color: white;
-  background: #555;
-}
-
-footer {
+div#filter-button {
     position: absolute;
-    bottom: 0;
+    top: 60px;
+    left: 10px;
+}
+
+div#info-button {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+}
+
+@media (min-width: 0) {
+  .navbar-toggle {
+    display: block; /* force showing the toggle */
+  }
+}
+
+form#filters {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+form#filters label, form#filters input, form#filters select {
     width: 100%;
-    height: 20px;
-    background: #eee;
 }
 
-footer p {
-  text-align: center;
+form#filters input[type=checkbox] {
+    width: 12px;
 }
 
-.tooltip {
+.navbar-right {
+    margin-right: 15px !important;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+#info-panel {
+    margin: 0 15px 0 15px;
+}
+
+#info-table tr:hover {
+    cursor: pointer;
+}
+
+#info-table tr.nohover:hover {
+    cursor: auto;
+}
+
+#value-filter {
+    width: 260px;
+    margin: 0 auto;
+}
+
+.value-filter-value {
+    width: 40% !important;
+    margin-top: 25px;
+}
+
+.value-filter-value.pull-right {
+    text-align: right;
+}
+
+#hover-info {
   position: absolute;
   top: 100px;
   left: 100px;
@@ -91,13 +100,13 @@ footer p {
   background: #fff;
   opacity: 1;
   color: #000;
-  padding: 10px;
+  padding: 10px 10px 0 10px;
   width: 300px;
   font-size: 15px;
   z-index: 120;
 }
 
-.tooltip p.main {
+#hover-info p.main {
   font-size: 15px;
   text-align: center;
   padding:0;
@@ -109,18 +118,46 @@ hr.tooltip-hr {
   margin:3px 0 3px 0;
 }
 
-.tooltip .title {
+#hover-info .title {
   font-size: 20px;
   line-height: 24px;
 }
  
-.tooltip .name {
+#hover-info .name {
   font-weight:bold;
 }
 
-
-line.link {
-  fill: none;
-  stroke-width: 1.5px;
+#zoom-controls {
+  position: absolute;
+  top: 100px;
+  left: 24px;
 }
 
+#party_select {
+    height: 210px;
+    overflow-y: scroll;
+}
+
+input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 9px;
+    height: 175px;
+    padding: 0 5px;
+}
+
+.bar {
+  fill: #337ab7;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

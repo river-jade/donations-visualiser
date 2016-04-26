@@ -1,0 +1,388 @@
+Label|Party|Branch|DefaultState
+#Sustainable Population Party|Sustainable Population Party|National|Active
+21st Century Australia|21st Century Australia|National|Active
+4Change|4 Change|National|Active
+A Better Future for Our Children|A Better Future for Our Children|National|Active
+A Better Future For Our Children - NATIONAL|A Better Future for Our Children|National|Active
+Abolish Child Support/Family Court Party|Abolish Child Support/Family Court Party|National|Active
+Advance Australia Party|Advance Australia Party|National|Active
+Advance Australia Party - NATIONAL|Advance Australia Party|National|Active
+Animal Justice Party|Animal Justice Party|National|Active
+Australia First Party|Australia First Party|National|Active
+Australia First Party - NATIONAL|Australia First Party|National|Active
+Australia First Party (NSW) Incorporated|Australia First Party|NSW|Active
+Australia First Party Incorporated|Australia First Party|National|Active
+Australian Bill of Rights Group|Australian Bill of Rights Group|National|Active
+Australian Christians|Australian Christians|National|Active
+Australian Democrats|Australian Democrats|National|Active
+Australian Democrats - ACT Division|Australian Democrats|ACT|Active
+Australian Democrats - NATIONAL|Australian Democrats|National|Active
+Australian Democrats - National Executive|Australian Democrats|National|Active
+Australian Democrats - NSW Division|Australian Democrats|NSW|Active
+Australian Democrats - QLD Division Inc|Australian Democrats|QLD|Active
+Australian Democrats - SA Division Inc|Australian Democrats|SA|Active
+Australian Democrats - TAS Division|Australian Democrats|TAS|Active
+Australian Democrats - VIC Division|Australian Democrats|VIC|Active
+Australian Democrats - WA Division|Australian Democrats|WA|Active
+Australian Democrats ACT Division|Australian Democrats|ACT|Active
+Australian Democrats ACT Division - ACT|Australian Democrats|ACT|Active
+Australian Democrats NSW Division|Australian Democrats|NSW|Active
+Australian Democrats NSW Division - NSW|Australian Democrats|NSW|Active
+Australian Democrats Queensland Division|Australian Democrats|QLD|Active
+Australian Democrats Queensland Division - QLD|Australian Democrats|QLD|Active
+Australian Democrats SA Division|Australian Democrats|SA|Active
+Australian Democrats SA Division - SA|Australian Democrats|SA|Active
+Australian Democrats Tasmanian Division|Australian Democrats|TAS|Active
+Australian Democrats Tasmanian Division - TAS|Australian Democrats|TAS|Active
+Australian Democrats Victorian Division|Australian Democrats|VIC|Active
+Australian Democrats Victorian Division - VIC|Australian Democrats|VIC|Active
+Australian Democrats, Western Australian Division|Australian Democrats|WA|Active
+Australian Democrats, Western Australian Division - WA|Australian Democrats|WA|Active
+Australian First Nations Political Party|Australian First Nations Political Party|National|Active
+Australian Fishing and Lifestyle Party|Australian Fishing and Lifestyle Party|National|Active
+Australian Greens|Australian Greens|National|Active
+Australian Greens - ACT|Australian Greens|ACT|Active
+Australian Greens - NATIONAL|Australian Greens|National|Active
+Australian Greens - NT|Australian Greens|NT|Active
+Australian Greens - SA|Australian Greens|SA|Active
+Australian Greens - TAS|Australian Greens|TAS|Active
+Australian Greens (NT Branch)|Australian Greens|NT|Active
+Australian Greens (NT Branch) - NT|Australian Greens|NT|Active
+Australian Greens (South Australia)|Australian Greens|SA|Active
+Australian Greens Queensland Branch|Australian Greens|QLD|Active
+Australian Greens SA|Australian Greens|SA|Active
+Australian Greens SA - SA|Australian Greens|SA|Active
+Australian Greens, Australian Capital Territory Branch|Australian Greens|ACT|Active
+Australian Greens, Northern Territory Branch|Australian Greens|NT|Active
+Australian Greens, South Australian Branch|Australian Greens|SA|Active
+Australian Greens, Tasmanian Branch|Australian Greens|TAS|Active
+Australian Greens, Victorian Branch|Australian Greens|VIC|Active
+Australian Independents|Australian Indepedents|National|Active
+Australian Labor Party - National Secretariat|Australian Labor Party|National|Active
+Australian Labor Party - State of Queensland|Australian Labor Party|QLD|Active
+Australian Labor Party (ACT Branch)|Australian Labor Party|ACT|Active
+Australian Labor Party (ACT Branch) - ACT|Australian Labor Party|ACT|Active
+Australian Labor Party (ALP)|Australian Labor Party|National|Active
+Australian Labor Party (ALP) - NATIONAL|Australian Labor Party|National|Active
+Australian Labor Party (N.S.W. Branch)|Australian Labor Party|NSW|Active
+Australian Labor Party (N.S.W. Branch) - NSW|Australian Labor Party|NSW|Active
+Australian Labor Party (Northern Territory) Branch|Australian Labor Party|NT|Active
+Australian Labor Party (Northern Territory) Branch - NT|Australian Labor Party|NT|Active
+Australian Labor Party (NSW Branch)|Australian Labor Party|NSW|Active
+Australian Labor Party (NT Branch)|Australian Labor Party|NT|Active
+Australian Labor Party (SA Branch)|Australian Labor Party|SA|Active
+Australian Labor Party (South Australian Branch)|Australian Labor Party|SA|Active
+Australian Labor Party (South Australian Branch) - SA|Australian Labor Party|SA|Active
+Australian Labor Party (State of Queensland)|Australian Labor Party|QLD|Active
+Australian Labor Party (State of Queensland) - QLD|Australian Labor Party|QLD|Active
+Australian Labor Party (TAS Branch)|Australian Labor Party|TAS|Active
+Australian Labor Party (Tasmanian Branch)|Australian Labor Party|TAS|Active
+Australian Labor Party (Tasmanian Branch) - TAS|Australian Labor Party|TAS|Active
+Australian Labor Party (VIC Branch)|Australian Labor Party|VIC|Active
+Australian Labor Party (Victorian Branch)|Australian Labor Party|VIC|Active
+Australian Labor Party (Victorian Branch) - VIC|Australian Labor Party|VIC|Active
+Australian Labor Party (WA Branch)|Australian Labor Party|WA|Active
+Australian Labor Party (Western Australian Branch)|Australian Labor Party|WA|Active
+Australian Labor Party (Western Australian Branch) - WA|Australian Labor Party|WA|Active
+Australian Motoring Enthusiast Party|Australian Motoring Enthusiast Party|National|Active
+Australian Progressive Alliance - NATIONAL|Australian Progressive Alliance|National|Active
+Australian Progressive Alliance - SA|Australian Progressive Alliance|SA|Active
+Australian Protectionist Party|Australian Protectionist Party|National|Active
+Australian Reform Party|Australian Reform Party|National|Active
+Australian Reform Party - NATIONAL|Australian Reform Party|National|Active
+Australian Reform Party (Victorian Division)|Australian Reform Party|VIC|Active
+Australian Sex Party|Australian Sex Party|National|Active
+Australian Shooters Party|Australian Shooters Party|National|Active
+Australian Shooters Party - NATIONAL|Australian Shooters Party|National|Active
+Australian Sovereignty Party|Australian Sovereignty Party|National|Active
+Australian Sports Party|Australian Sports Party|National|Active
+Australian Stable Population Party|Australian Stable Population Party|National|Active
+Australian Voice Party|Australian Voice Party|National|Active
+Australian Women's Party|Australian Women's Party|National|Active
+Australian Women's Party - NATIONAL|Australian Women's Party|National|Active
+Australians Against Further Immigration|Australians Against Further Immigration|National|Active
+Australians Against Further Immigration - NATIONAL|Australians Against Further Immigration|National|Active
+Australians Against Further Immigration - NSW|Australians Against Further Immigration|NSW|Active
+Australians Against Further Immigration - SA|Australians Against Further Immigration|SA|Active
+Australians Against Further Immigration - VIC|Australians Against Further Immigration|VIC|Active
+Australia's First Nations Political Party|Austrlia's First Nations Political Party|National|Active
+Australia's Indigenous Peoples Party|Australia's Indigenous Peoples Party|National|Active
+Bank Reform Party|Bank Reform Party|National|Active
+Building Australia Party|Building Australia Party|National|Active
+Bullet Train For Australia|Bullet Train for Australia|National|Active
+Carers Alliance|Carers Alliance|National|Active
+Chris Harris|Chris Harris|National|Active
+Christian Democratic Party (Fred Nile Group)|Christian Democratic Party (Fred Nile Group)|National|Active
+Christian Democratic Party (Fred Nile Group) - ACT|Christian Democratic Party (Fred Nile Group)|ACT|Active
+Christian Democratic Party (Fred Nile Group) - NATIONAL|Christian Democratic Party (Fred Nile Group)|National|Active
+Christian Democratic Party (Fred Nile Group) - NSW|Christian Democratic Party (Fred Nile Group)|NSW|Active
+Christian Democratic Party (Fred Nile Group) - TAS|Christian Democratic Party (Fred Nile Group)|TAS|Active
+Christian Democratic Party (Fred Nile Group) - VIC|Christian Democratic Party (Fred Nile Group)|VIC|Active
+Christian Democratic Party (Fred Nile Group) - WA|Christian Democratic Party (Fred Nile Group)|WA|Active
+Christian Democratic Party (Fred Nile Group) ACT|Christian Democratic Party (Fred Nile Group)|ACT|Active
+Christian Democratic Party (Fred Nile Group) Natio|Christian Democratic Party (Fred Nile Group)|National|Active
+Christian Democratic Party (Fred Nile Group) National Body|Christian Democratic Party (Fred Nile Group)|National|Active
+Christian Democratic Party (Fred Nile Group) NSW|Christian Democratic Party (Fred Nile Group)|NSW|Active
+Christian Democratic Party (Fred Nile Group) NT|Christian Democratic Party (Fred Nile Group)|NT|Active
+Christian Democratic Party (Fred Nile Group) QLD|Christian Democratic Party (Fred Nile Group)|QLD|Active
+Christian Democratic Party (Fred Nile Group) SA|Christian Democratic Party (Fred Nile Group)|SA|Active
+Christian Democratic Party (Fred Nile Group) TAS|Christian Democratic Party (Fred Nile Group)|TAS|Active
+Christian Democratic Party (Fred Nile Group) VIC|Christian Democratic Party (Fred Nile Group)|VIC|Active
+Christian Democratic Party (Fred Nile Group) WA|Christian Democratic Party (Fred Nile Group)|WA|Active
+Christian Democratic Party (Fred Nile Group) WA Branch|Christian Democratic Party (Fred Nile Group)|WA|Active
+Christian Democratic Party (WA) Inc|Christian Democratic Party (Fred Nile Group)|WA|Active
+Citizens Electoral Council Australia (NSW Division) - NSW|Citizens Electoral Council of Australia|NSW|Active
+Citizens Electoral Council of Australia|Citizens Electoral Council of Australia|National|Active
+Citizens Electoral Council of Australia - NATIONAL|Citizens Electoral Council of Australia|National|Active
+City Country Alliance|City Country Alliance|National|Active
+Climate Change Coalition|Climate Change Coalition|National|Active
+Coke in the Bubblers|Coke in the Bubblers|National|Active
+Common Cause - No Aircraft Noise|Common Cause - No Aircraft Noise|National|Active
+Communist Alliance|Communist Alliance|National|Active
+Communist Alliance - NATIONAL|Communist Alliance|National|Active
+Consandine|Consadine|National|Active
+Conservatives for Climate and Environment Incorporated|Conservatives for Climate and the Environment|National|Active
+Country Alliance|Country Alliance|National|Active
+Country Labor Party|Country Labor Party|National|Active
+Country Labor Party - NATIONAL|Country Labor Party|National|Active
+Country Labor Party - NSW|Country Labor Party|NSW|Active
+Country Liberals (Northern Territory)|Country Liberals|NT|Active
+CTA Child Protection (Elaine Nile) Party|CTA Child Protection (Elaine Nile)|National|Active
+CTA Child Protection (Elaine Nile) Party - NATIONAL|CTA Child Protection (Elaine Nile)|National|Active
+Curtin Labor Alliance|Curtin Labor Alliance|National|Active
+Curtin Labor Alliance - VIC|Curtin Labor Alliance|VIC|Active
+David O'LOUGHLIN|David O'Loughlin|National|Active
+Democratic Labor Party (DLP) - Queensland Branch|Democratic Labor Party of Australia|QLD|Active
+Democratic Labor Party (DLP) - Victorian Branch|Democratic Labor Party of Australia|VIC|Active
+Democratic Labor Party (DLP) - WA Branch|Democratic Labor Party of Australia|WA|Active
+Democratic Labor Party (DLP) NSW Branch|Democratic Labor Party of Australia|NSW|Active
+Democratic Labor Party (DLP) of Australia|Democratic Labor Party of Australia|National|Active
+Democratic Labor Party (DLP) of Australia - NATIONAL|Democratic Labor Party of Australia|National|Active
+Democratic Labor Party (DLP) of Australia SA Branch|Democratic Labor Party of Australia|SA|Active
+Democratic Labour Party (DLP)|Democratic Labor Party of Australia|National|Active
+Democratic Socialist Electoral League|Democratic Socialist Electoral League|National|Active
+Democratic Socialist Electoral League - NATIONAL|Democratic Socialist Electoral League|National|Active
+Der Sarkissian|Der Sarkissian|National|Active
+Drug Law Reform Australia|Drug Law Reform|national|Active
+Environmentalists for Nuclear Energy Australia Incorporated|Environmentalists for Nuclear Energy Australia|National|Active
+Ex-Service, Service & Veterans Party - NATIONAL|Ex-Service, Service and Veterans Party|National|Active
+Family First Party|Family First Party|National|Active
+Family First Party - NATIONAL|Family First Party|National|Active
+Family First Party - NSW|Family First Party|NSW|Active
+Family First Party - QLD|Family First Party|QLD|Active
+Family First Party - SA|Family First Party|SA|Active
+Family First Party - VIC|Family First Party|VIC|Active
+Family First Party - VIC - VIC|Family First Party|VIC|Active
+Family First Party - WA|Family First Party|WA|Active
+Family First Party (SA)|Family First Party|SA|Active
+Family Law Reform Party|Family Law Reform Party|National|Active
+Frederick Nile|Frederick Nile|National|Active
+Freedom and Prosperity Party|Freedom and Prosperity Party|National|Active
+Future Party|Future Party|National|Active
+Hear Our Voice|Hear Our Voice|National|Active
+Helen Caldicott's - Our Common Future Party - NSW|Helen Caldicotts' Our Common Future Party|NSW|Active
+Helen Hodgson|Helen Hodgson|National|Active
+Help End Marijuana Prohibition|Help End Marijuana Prohibition (HEMP)|Natioal|Active
+Help End Marijuana Prohibition - NATIONAL|Help End Marijuana Prohibition (HEMP)|Natioal|Active
+Help End Marijuana Prohibition (HEMP) Party|Help End Marijuana Prohibition (HEMP)|Natioal|Active
+Hope Party Australia|Hope Party Australia (Ethics Equality Ecology)|National|Active
+Hope Party Australia - ethics equality ecology - NATIONAL|Hope Party Australia (Ethics Equality Ecology)|National|Active
+Hope Party Australia - NATIONAL|Hope Party Australia (Ethics Equality Ecology)|National|Active
+Independent EFF|Independent EFF|National|Active
+Katter's Australian Party|Katter's Australian Party|National|Active
+Liberal Democratic Party|Liberal Democratic Party|National|Active
+Liberal National Party of Queensland|Coalition|QLD|Active
+Liberal Party (W.A. Division) Inc.|Coalition|WA|Active
+Liberal Party (W.A. Division) Inc. - WA|Coalition|WA|Active
+Liberal Party of Australia|Coalition|National|Active
+Liberal Party of Australia - ACT Division|Coalition|ACT|Active
+Liberal Party of Australia - ACT Division - ACT|Coalition|ACT|Active
+Liberal Party of Australia - Federal Secretariat|Coalition|National|Active
+Liberal Party of Australia - NATIONAL|Coalition|National|Active
+Liberal Party of Australia - Queensland Division|Coalition|QLD|Active
+Liberal Party of Australia - Queensland Division - QLD|Coalition|QLD|Active
+Liberal Party of Australia - Tasmanian Division|Coalition|TAS|Active
+Liberal Party of Australia - Tasmanian Division - TAS|Coalition|TAS|Active
+Liberal Party of Australia (ACT Division)|Coalition|ACT|Active
+Liberal Party of Australia (NSW Division)|Coalition|NSW|Active
+Liberal Party of Australia (QLD Division)|Coalition|QLD|Active
+Liberal Party of Australia (S.A. Division)|Coalition|SA|Active
+Liberal Party of Australia (S.A. Division) - SA|Coalition|SA|Active
+Liberal Party of Australia (SA Division)|Coalition|SA|Active
+Liberal Party of Australia (TAS Division)|Coalition|TAS|Active
+Liberal Party of Australia (VIC Division)|Coalition|VIC|Active
+Liberal Party of Australia (Victorian Division)|Coalition|VIC|Active
+Liberal Party of Australia (Victorian Division) - VIC|Coalition|VIC|Active
+Liberal Party of Australia (WA Division) Inc|Coalition|WA|Active
+Liberal Party of Australia, NSW Division|Coalition|NSW|Active
+Liberal Party of Australia, NSW Division - NSW|Coalition|NSW|Active
+liberals for forests - NATIONAL|Liberals for Forests|National|Active
+liberals for forests - WA|Liberals for Forests|WA|Active
+Lower Excise Fuel and Beer Party - NATIONAL|Lower Excise Fuel and Beer Party|National|Active
+Lower Excise Fuel and Beer Party - NSW|Lower Excise Fuel and Beer Party|NSW|Active
+LPA (QLD Division)|Coalition|QLD|Active
+Mutual Party|Mutual Party|National|Active
+National Party of Australia|Coalition|National|Active
+National Party of Australia - N.S.W.|Coalition|NSW|Active
+National Party of Australia - N.S.W. - NSW|Coalition|NSW|Active
+National Party of Australia - NATIONAL|Coalition|National|Active
+National Party of Australia - National Secretariat|Coalition|National|Active
+National Party of Australia - NSW|Coalition|NSW|Active
+National Party of Australia - Victoria|Coalition|VIC|Active
+National Party of Australia - Victoria - VIC|Coalition|VIC|Active
+National Party of Australia (Queensland)|Coalition|QLD|Active
+National Party of Australia (Queensland) - QLD|Coalition|QLD|Active
+National Party of Australia (S.A.) Inc.|Coalition|SA|Active
+National Party of Australia (S.A.) Inc. - SA|Coalition|SA|Active
+National Party of Australia (SA) Inc|Coalition|SA|Active
+National Party of Australia (WA) Inc|Coalition|WA|Active
+National Party of Australia (WA) Inc - WA|Coalition|WA|Active
+Natural Law Party (ACT)|Natural Law Party|ACT|Active
+Natural Law Party (National)|Natural Law Party|National|Active
+Natural Law Party (NSW)|Natural Law Party|NSW|Active
+Natural Law Party (NT)|Natural Law Party|NT|Active
+Natural Law Party (Qld Branch) - QLD|Natural Law Party|QLD|Active
+Natural Law Party (QLD)|Natural Law Party|QLD|Active
+Natural Law Party (SA Branch) - SA|Natural Law Party|SA|Active
+Natural Law Party (SA)|Natural Law Party|SA|Active
+Natural Law Party (TAS)|Natural Law Party|TAS|Active
+Natural Law Party (VIC)|Natural Law Party|VIC|Active
+Natural Law Party (WA)|Natural Law Party|WA|Active
+Natural Medicine Party|Natural Medicine Party|National|Active
+New Country Party - NATIONAL|New Country Party|National|Active
+Nick Xenophon Group|Nick Xenophon Group|National|Active
+No Carbon Tax Climate Sceptics|No Carbon Tax Climate Sceptics|National|Active
+No Goods and Services Tax Party|No Goods and Services Tax Party|National|Active
+No Goods and Services Tax Party - NATIONAL|No Goods and Services Tax Party|National|Active
+Non-Custodial Parents Party|Non-Custodial Parents Party|National|Active
+Non-Custodial Parents Party - NATIONAL|Non-Custodial Parents Party|National|Active
+Non-Custodial Parents Party (Equal Parenting)|Non-Custodial Parents Party|National|Active
+Northern Territory Country Liberal Party|Northern Territory Country Liberal Party|National|Active
+Northern Territory Country Liberal Party - NATIONAL|Northern Territory Country Liberal Party|National|Active
+Nuclear Disarmament Party|Nuclear Disarmament Party|National|Active
+Nuclear Disarmament Party of Australia|Nuclear Disarmament Party|National|Active
+Nuclear Disarmament Party of Australia - NATIONAL|Nuclear Disarmament Party|National|Active
+O'Loughlin|O'Loughlin|National|Active
+One Australia Party|One Australia Party|National|Active
+One Nation|One Nation|National|Active
+One Nation - NATIONAL|One Nation|National|Active
+One Nation Queensland Division|One Nation|QLD|Active
+One Nation Queensland Division - QLD|One Nation|QLD|Active
+One Nation SA|One Nation|SA|Active
+One Nation Victoria|One Nation|VIC|Active
+One Nation Western Australia|One Nation|WA|Active
+One Nation Western Australia - WA|One Nation|WA|Active
+Outdoor Recreation Party - NATIONAL|Outdoor Recreation Party|National|Active
+Outdoor Recreation Party - NSW|Outdoor Recreation Party|NSW|Active
+Outdoor Recreation Party (Stop The Greens)|Outdoor Recreation Party|National|Active
+Palmer United Party|Palmer United Party|National|Active
+Pauline Hanson's One Nation|Pauline Hanson's One Nation|National|Active
+Pauline Hanson's One Nation - Northern Territory|Pauline Hanson's One Nation|NT|Active
+Pauline Hanson's One Nation - NSW|Pauline Hanson's One Nation|NSW|Active
+Pauline Hanson's One Nation - NT|Pauline Hanson's One Nation|NT|Active
+Pauline Hanson's One Nation - QLD|Pauline Hanson's One Nation|QLD|Active
+Pauline Hanson's One Nation - Queensland|Pauline Hanson's One Nation|QLD|Active
+Pauline Hanson's One Nation - SA|Pauline Hanson's One Nation|SA|Active
+Pauline Hanson's One Nation - South Australia|Pauline Hanson's One Nation|SA|Active
+Pauline Hanson's One Nation - TAS|Pauline Hanson's One Nation|TAS|Active
+Pauline Hanson's One Nation - Tasmania|Pauline Hanson's One Nation|TAS|Active
+Pauline Hanson's One Nation - VIC|Pauline Hanson's One Nation|VIC|Active
+Pauline Hanson's One Nation - Victoria|Pauline Hanson's One Nation|VIC|Active
+Pauline Hanson's One Nation - Victorian Division|Pauline Hanson's One Nation|VIC|Active
+Pauline Hanson's One Nation - WA|Pauline Hanson's One Nation|WA|Active
+Pauline Hanson's One Nation - Western Australia|Pauline Hanson's One Nation|WA|Active
+Pauline Hanson's One Nation (NSW Division) - NSW|Pauline Hanson's One Nation|NSW|Active
+Pauline's United Australia Party|Pauline's United Australia Party|National|Active
+Pensioner and C I R Alliance|Pensioner and C I R Alliance|National|Active
+People Power - NATIONAL|People Power|National|Active
+Peter Breen - Reform The Legal System - NSW|Peter Breen - Reform the Legal System|NSW|Active
+Phil Cleary - Independent Australia|Phill Cleary Independent Australia|National|Active
+Phil Cleary - Independent Australia - NATIONAL|Phill Cleary Independent Australia|National|Active
+Pirate Party Australia|Pirate Party Australia|National|Active
+Progress Party of Australia|Progress Party of Australia|National|Active
+Progressive Labour Party|Progressive Labour Party|National|Active
+Progressive Labour Party - NATIONAL|Progressive Labour Party|National|Active
+Progressive Labour Party - WA Branch - WA|Progressive Labour Party|WA|Active
+Queensland First|Queensland First|QLD|Active
+Queensland Greens|Australian Greens|QLD|Active
+Queensland Greens - NATIONAL|Australian Greens|National|Active
+Rebuild Australia Party|Rebuild Australia Party|National|Active
+Reclaim Australia: Reduce Immigration|Reclaim Australia: Reduce Immigration|National|Active
+Republican Party of Australia|Republican Party of Australia|National|Active
+Republican Party of Australia - NATIONAL|Republican Party of Australia|National|Active
+Rise Up Australia Party|Rise Up Australia Party|National|Active
+Rowell Walton|Rowell Walton|National|Active
+Save the ADI Site Party|Save the ADI Site Party|National|Active
+Save the ADI Site Party - NATIONAL|Save the ADI Site Party|National|Active
+Save the ADI Site Party - NSW|Save the ADI Site Party|NSW|Active
+Secular Party of Australia|Secular Party of Australia|National|Active
+Senator On-Line|Senator On-Line|National|Active
+Senator Online (Internet Voting Bills/Issues)|Senator On-Line|National|Active
+Shooters and Fishers Party|Shooters and Fishers Party|National|Active
+Single Parents' Party|Single Parents' Party|National|Active
+Smokers Rights Party|Smokers Rights Party|National|Active
+Socialist Alliance|Socialist Alliance|National|Active
+Socialist Alliance - NATIONAL|Socialist Alliance|National|Active
+Socialist Alliance - NSW|Socialist Alliance|NSW|Active
+Socialist Alliance - Victoria - VIC|Socialist Alliance|VIC|Active
+Socialist Alliance (ACT) - ACT|Socialist Alliance|ACT|Active
+Socialist Alliance (NSW) - NSW|Socialist Alliance|NSW|Active
+Socialist Alliance (SA) - SA|Socialist Alliance|SA|Active
+Socialist Alliance (WA) - WA|Socialist Alliance|WA|Active
+Socialist Alliance NT - NT|Socialist Alliance|NT|Active
+Socialist Alliance Queensland - QLD|Socialist Alliance|QLD|Active
+Socialist Alliance Tasmania - TAS|Socialist Alliance|TAS|Active
+Socialist Equality Party|Socialist Equality Party|National|Active
+Socialist Equality Party - NATIONAL|Socialist Equality Party|National|Active
+Stable Population Party of Australia|Stable Population Party of Australia|National|Active
+Stop CSG Party|Stop CSG Party|National|Active
+Tasmania First Party|Tasmania First Party|TAS|Active
+Tasmania First Party - NATIONAL|Tasmania First Party|National|Active
+Tasmanian Greens|Australian Greens|TAS|Active
+Tasmanian Greens - NATIONAL|Australian Greens|National|Active
+Tasmanian Independent Senator Brian Harradine Grou|Tasmanian Independent Senator Brian Harradine Group|National|Active
+Tasmanian Independent Senator Brian Harradine Group|Tasmanian Independent Senator Brian Harradine Group|National|Active
+Tasmanian Independent Senator Brian Harradine Group - NATIONAL|Tasmanian Independent Senator Brian Harradine Group|National|Active
+Taxi Operators Political Service (Oceania)|Taxi Operators Political Service (Oceania)|National|Active
+Taxi Operators Political Service (Oceania) - NATIONAL|Taxi Operators Political Service (Oceania)|National|Active
+The 23 Million|The 23 Million|National|Active
+The ACT Greens|Australian Greens|National|Active
+The ACT Greens - ACT|Australian Greens|ACT|Active
+The ACT Greens Inc|Australian Greens|National|Active
+The Aged and Disability Pensioners Party|The Aged and Disability Pensioners Party|National|Active
+The Aged and Disability Pensioners Party - NATIONAL|The Aged and Disability Pensioners Party|National|Active
+The Aged and Disability Pensioners Party - VIC|The Aged and Disability Pensioners Party|VIC|Active
+The Australian Greens - Victoria|Australian Greens|VIC|Active
+The Australian Greens - Victoria - NATIONAL|Australian Greens|National|Active
+The Australian Recreation and Fishing Party|The Australian Recreation and Fishing Party|National|Active
+The Australian Shooters Party|The Australian Shooters Party|National|Active
+The Australian Shooters Party - NATIONAL|The Australian Shooters Party|National|Active
+The Climate Sceptics|The Climate Sceptics|National|Active
+The Communists|The Communists|National|Active
+The First Nations Political Party|The First Nations Political Party|National|Active
+The Fishing Party|The Fishing Party|National|Active
+The Fishing Party - NATIONAL|The Fishing Party|National|Active
+The Fishing Party - NSW|The Fishing Party|NSW|Active
+The Fishing Party QLD - QLD|The Fishing Party|QLD|Active
+The Great Australians|The Great Australians|National|Active
+The Great Australians - NATIONAL|The Great Australians|National|Active
+The Great Australians - QLD|The Great Australians|QLD|Active
+The Greens (WA) Inc|Australian Greens|WA|Active
+The Greens (WA) Inc - NATIONAL|Australian Greens|WA|Active
+The Greens NSW|Australian Greens|NSW|Active
+The Greens NSW - NATIONAL|Australian Greens|National|Active
+The Greens NSW - NSW|Australian Greens|NSW|Active
+The Seniors|The Seniors|National|Active
+The Territory Green Party|The Territory Green Party|National|Active
+The Territory Green Party - NT|The Territory Green Party|NT|Active
+The Wikileaks Party|The Wikileaks Party|National|Active
+Uniting Australia Party|Uniting Australia Party|National|Active
+Unity - Say No To Hanson|Unity - Say No to Hanson|National|Active
+Unity - Say No To Hanson - NATIONAL|Unity - Say No to Hanson|National|Active
+Unity - Say NoTo Hanson|Unity - Say No to Hanson|National|Active
+Voluntary Euthanasia Party|Voluntary Euthanasia Party|National|Active
+Walton|Walton|National|Active
+What Women Want (Australia)|What Women Want (Australia)|National|Active
+Wynberg|Wynberg|National|Active
+Young National Party of Australia|Young National Party of Australia|National|Active
+Young National Party of Australia - NATIONAL|Young National Party of Australia|National|Active
