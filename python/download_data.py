@@ -72,8 +72,12 @@ def download_data(url):
             'value': control.get_item_attrs(item.name)['value']
         })
 
+    x = year_data[-1]
 
-    for year in year_data:
+    print x
+    
+    #for year in year_data:
+    for year in (x, ):
         for form in browser.forms():
             if form.attrs.get("id") == "formMaster":
                 browser.form = form
