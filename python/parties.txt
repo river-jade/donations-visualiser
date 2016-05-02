@@ -14,6 +14,8 @@ Australia First Party (NSW) Incorporated|Australia First Party|NSW|Active
 Australia First Party Incorporated|Australia First Party|National|Active
 Australian Bill of Rights Group|Australian Bill of Rights Group|National|Active
 Australian Christians|Australian Christians|National|Active
+Australian Cyclists Party|Australian Cyclists Party|National|Active
+Australian Defence Veterans Party|Australian Defence Veterans Party|National|Active
 Australian Democrats|Australian Democrats|National|Active
 Australian Democrats - ACT Division|Australian Democrats|ACT|Active
 Australian Democrats - NATIONAL|Australian Democrats|National|Active
@@ -38,6 +40,7 @@ Australian Democrats Victorian Division|Australian Democrats|VIC|Active
 Australian Democrats Victorian Division - VIC|Australian Democrats|VIC|Active
 Australian Democrats, Western Australian Division|Australian Democrats|WA|Active
 Australian Democrats, Western Australian Division - WA|Australian Democrats|WA|Active
+Australian Equality Party|Australian Equality Party|National|Active
 Australian First Nations Political Party|Australian First Nations Political Party|National|Active
 Australian Fishing and Lifestyle Party|Australian Fishing and Lifestyle Party|National|Active
 Australian Greens|Australian Greens|National|Active
@@ -87,6 +90,7 @@ Australian Labor Party (Western Australian Branch) - WA|Australian Labor Party|W
 Australian Motoring Enthusiast Party|Australian Motoring Enthusiast Party|National|Active
 Australian Progressive Alliance - NATIONAL|Australian Progressive Alliance|National|Active
 Australian Progressive Alliance - SA|Australian Progressive Alliance|SA|Active
+Australian Progressives|Australian Progressive Alliance|National|Active
 Australian Protectionist Party|Australian Protectionist Party|National|Active
 Australian Reform Party|Australian Reform Party|National|Active
 Australian Reform Party - NATIONAL|Australian Reform Party|National|Active
@@ -175,10 +179,12 @@ Family First Party - VIC|Family First Party|VIC|Active
 Family First Party - VIC - VIC|Family First Party|VIC|Active
 Family First Party - WA|Family First Party|WA|Active
 Family First Party (SA)|Family First Party|SA|Active
+Family First Party Australia Ltd|Family First Party|National|Active
 Family Law Reform Party|Family Law Reform Party|National|Active
 Frederick Nile|Frederick Nile|National|Active
 Freedom and Prosperity Party|Freedom and Prosperity Party|National|Active
 Future Party|Future Party|National|Active
+Health Australia Party|Health Australia Party|National|Active
 Hear Our Voice|Hear Our Voice|National|Active
 Helen Caldicott's - Our Common Future Party - NSW|Helen Caldicotts' Our Common Future Party|NSW|Active
 Helen Hodgson|Helen Hodgson|National|Active
@@ -189,6 +195,8 @@ Hope Party Australia|Hope Party Australia (Ethics Equality Ecology)|National|Act
 Hope Party Australia - ethics equality ecology - NATIONAL|Hope Party Australia (Ethics Equality Ecology)|National|Active
 Hope Party Australia - NATIONAL|Hope Party Australia (Ethics Equality Ecology)|National|Active
 Independent EFF|Independent EFF|National|Active
+Jacqui Lambie Network|Jacqui Lambie Network|National|Active
+John Madigan's Manufacturing and Farming Party|John Madigan's Manufacturing and Farming Party|National|Active
 Katter's Australian Party|Katter's Australian Party|National|Active
 Liberal Democratic Party|Liberal Democratic Party|National|Active
 Liberal National Party of Queensland|Coalition|QLD|Active
@@ -250,7 +258,8 @@ Natural Law Party (VIC)|Natural Law Party|VIC|Active
 Natural Law Party (WA)|Natural Law Party|WA|Active
 Natural Medicine Party|Natural Medicine Party|National|Active
 New Country Party - NATIONAL|New Country Party|National|Active
-Nick Xenophon Group|Nick Xenophon Group|National|Active
+Nick Xenophon Group|Nick Xenophon Team|National|Active
+Nick Xenophon Team|Nick Xenophon Team|National|Active
 No Carbon Tax Climate Sceptics|No Carbon Tax Climate Sceptics|National|Active
 No Goods and Services Tax Party|No Goods and Services Tax Party|National|Active
 No Goods and Services Tax Party - NATIONAL|No Goods and Services Tax Party|National|Active
@@ -272,6 +281,7 @@ One Nation SA|One Nation|SA|Active
 One Nation Victoria|One Nation|VIC|Active
 One Nation Western Australia|One Nation|WA|Active
 One Nation Western Australia - WA|One Nation|WA|Active
+Online Direct Democracy - (Empowering the People!)|Online Direct Democracy - (Empowering the People!)|National|Active
 Outdoor Recreation Party - NATIONAL|Outdoor Recreation Party|National|Active
 Outdoor Recreation Party - NSW|Outdoor Recreation Party|NSW|Active
 Outdoor Recreation Party (Stop The Greens)|Outdoor Recreation Party|National|Active
@@ -318,6 +328,7 @@ Save the ADI Site Party - NSW|Save the ADI Site Party|NSW|Active
 Secular Party of Australia|Secular Party of Australia|National|Active
 Senator On-Line|Senator On-Line|National|Active
 Senator Online (Internet Voting Bills/Issues)|Senator On-Line|National|Active
+Seniors United NSW|Seniors United|NSW|Active
 Shooters and Fishers Party|Shooters and Fishers Party|National|Active
 Single Parents' Party|Single Parents' Party|National|Active
 Smokers Rights Party|Smokers Rights Party|National|Active
@@ -352,6 +363,7 @@ The ACT Greens Inc|Australian Greens|National|Active
 The Aged and Disability Pensioners Party|The Aged and Disability Pensioners Party|National|Active
 The Aged and Disability Pensioners Party - NATIONAL|The Aged and Disability Pensioners Party|National|Active
 The Aged and Disability Pensioners Party - VIC|The Aged and Disability Pensioners Party|VIC|Active
+The Arts Party|The Arts Party|National|Active
 The Australian Greens - Victoria|Australian Greens|VIC|Active
 The Australian Greens - Victoria - NATIONAL|Australian Greens|National|Active
 The Australian Recreation and Fishing Party|The Australian Recreation and Fishing Party|National|Active
