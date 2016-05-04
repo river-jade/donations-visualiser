@@ -14,7 +14,6 @@ d3.select("#hover-info").style("display", "none");
 
 var zoom = d3.behavior.zoom()
                .scale(1)
-               //.translate([width/2, height/2])
                .scaleExtent([.1, 5])
                .on("zoom", zoomed);
 
@@ -152,8 +151,23 @@ function zoomed() {
 }
 
 function zoom_slided(d) {
-    zoom.scale(d3.select(this).property("value")).event(svg);
+    zoomTo(d3.select(this).property("value"));
 }
+
+function zoomTo(newScale) {
+  var scale = zoom.scale();
+  var extent = zoom.scaleExtent();
+  if (extent[0] <= newScale && newScale <= extent[1]) {
+    var t = zoom.translate();
+    var c = [width / 2, height / 2];
+    zoom
+      .scale(newScale)
+      .translate(
+        [c[0] + (t[0] - c[0]) / scale * newScale, 
+         c[1] + (t[1] - c[1]) / scale * newScale])
+      .event(svg);
+  }
+};
 
 function search() {
     var term = d3.select("#search").node().value;
