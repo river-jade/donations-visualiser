@@ -30,7 +30,7 @@ var value_slider = d3.slider().axis(true).on("slide", updateLabels).on("slideend
 
 var nodeColors = d3.scale.category20();
 
-var sizeScale = d3.scale.linear().range([10, 60, 65, 250]);
+var sizeScale = d3.scale.threshold().range([20, 60, 120, 250]);
 
 var resizeWindow = function() {
                        width = g.clientWidth,
@@ -616,7 +616,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         mean = d3.mean(nodes, function(d) { return d.total; }),
         median = d3.median(nodes, function(d) { return d.total; });    
 
-    sizeScale.domain([start, median, mean, end])
+    sizeScale.domain([10000, 100000, 1000000]);
 
     if (resetControls) {
         var displayFormat = d3.format("$0,0f");
