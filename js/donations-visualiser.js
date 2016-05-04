@@ -30,8 +30,6 @@ var value_slider = d3.slider().axis(true).on("slide", updateLabels).on("slideend
 
 var nodeColors = d3.scale.category20();
 
-var sizeScale = d3.scale.linear().range([20, 60, 120, 250, 300]);
-
 var resizeWindow = function() {
                        width = g.clientWidth,
                        height = w.innerHeight || e.clientHeight || g.clientHeight,
@@ -616,8 +614,6 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         mean = d3.mean(nodes, function(d) { return d.total; }),
         median = d3.median(nodes, function(d) { return d.total; });    
 
-    sizeScale.domain([1000, 10000, 100000, 1000000, end]);
-
     if (resetControls) {
         var displayFormat = d3.format("$0,0f");
         value_slider.scale(d3.scale.log().domain(extents));
@@ -645,7 +641,8 @@ function update(partyNodes, parties, selectedParties, resetControls) {
     nodeElements.enter().append("path").attr("class", "node");
     nodeElements.attr("d", d3.svg.symbol()
                      .size(function(d) { 
-                         d.size = sizeScale(d.total); 
+                         var log10 = Math.log(Math.max(1000, d.total)/100)/Math.LN10;
+                         d.size = 30 * Math.pow(2, log10);
                          if (d.Type == 'Party') d.size *= 2;
                          return d.size; })
                      .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
