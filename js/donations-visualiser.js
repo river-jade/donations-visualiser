@@ -27,6 +27,9 @@ var zoom_slider = d3.select("#zoom-controls").select("input")
 
 var value_slider = d3.slider().axis(true).on("slide", updateLabels).on("slideend", filterData).step(1000);
 
+d3.select("#zoom-in").on("click", zoomIn);
+d3.select("#zoom-out").on("click", zoomOut);
+
 var nodeColors = d3.scale.category20();
 
 var resizeWindow = function() {
@@ -138,6 +141,7 @@ var data_request = d3.json("data/all_data.json")
                              showInfoPanel();
                              showFilterPanel();
                          }, 500);
+                         updateSlider();
                      })
                      .on("error", function() { console.log("error"); })
                      .get();
@@ -147,11 +151,25 @@ var data_request = d3.json("data/all_data.json")
 
 function zoomed() {
     container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
-    zoom_slider.property("value", d3.event.scale);
+    updateSlider();
 }
 
 function zoom_slided(d) {
-    zoomTo(d3.select(this).property("value"));
+    zoomTo(d3.select(this).property("value")).event(svg);
+}
+
+function zoomIn() {
+  zoomTo(zoom.scale() * 1.4).event(svg.transition().duration(350));
+  updateSlider();
+}
+
+function zoomOut() {
+  zoomTo(zoom.scale() * 0.71).event(svg.transition().duration(350));
+  updateSlider();
+}
+
+function updateSlider() {
+  zoom_slider.property("value", d3.event.scale);
 }
 
 function zoomTo(newScale) {
@@ -160,13 +178,13 @@ function zoomTo(newScale) {
   if (extent[0] <= newScale && newScale <= extent[1]) {
     var t = zoom.translate();
     var c = [width / 2, height / 2];
-    zoom
+    return zoom
       .scale(newScale)
       .translate(
         [c[0] + (t[0] - c[0]) / scale * newScale, 
-         c[1] + (t[1] - c[1]) / scale * newScale])
-      .event(svg);
+         c[1] + (t[1] - c[1]) / scale * newScale]);
   }
+  return zoom;
 };
 
 function search() {

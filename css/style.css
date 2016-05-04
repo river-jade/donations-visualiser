@@ -133,6 +133,10 @@ hr.tooltip-hr {
   left: 24px;
 }
 
+#zoom-in,#zoom-out {
+  cursor: pointer; cursor: hand;
+}
+
 #party_select {
     height: 210px;
     overflow-y: scroll;
