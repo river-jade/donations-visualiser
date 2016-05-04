@@ -69,10 +69,9 @@ def process_entities(data):
     return entities
 
 def process_receipt_types(data):
-    i = 0
+    receipt_types = {'Public Funding': 0}
 
-    receipt_types = {}
-
+    i = 1
     for d in data:
         if 'ReceiptTyDs' in d and d['ReceiptTyDs'] not in receipt_types:
             receipt_types[d['ReceiptTyDs']] = i
@@ -80,6 +79,13 @@ def process_receipt_types(data):
 
     return receipt_types
 
+def munge_receipt_type(given_receipt_type, client_name):
+    if 'electoral commission' in client_name.lower() or \
+        'australian taxation office' in client_name.lower() or \
+        'department of finance' in client_name.lower():
+        return 'Public Funding'    
+    else:
+        return given_receipt_type
 
 def process_receipts(data, parties, entities, receipt_types):
     receipts = []
@@ -88,12 +94,15 @@ def process_receipts(data, parties, entities, receipt_types):
     parties_dict = dict((party, i) for (i, party) in enumerate(parties))
 
     for d in data:
+        payer_name = d['PayerClientNm']
+        receipt_type = munge_receipt_type(d['ReceiptTyDs'], payer_name)
+
         receipt = {
                      'Amount': d['AmountReceived'],
-                     'Type': receipt_types[d['ReceiptTyDs']],
+                     'Type': receipt_types[receipt_type],
                      'Party': d['Party'],
                      'Year': d['Year'],
-                     'Entity': entities_dict[d['PayerClientNm']]['id'],
+                     'Entity': entities_dict[payer_name]['id'],
                    }
 
         receipts.append(receipt)
