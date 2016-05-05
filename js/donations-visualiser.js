@@ -169,7 +169,8 @@ function zoomOut() {
 }
 
 function updateSlider() {
-  zoom_slider.property("value", d3.event.scale);
+  if (d3.event) 
+    zoom_slider.property("value", d3.event.scale);
 }
 
 function zoomTo(newScale) {
