@@ -165,3 +165,7 @@ input[type=range][orient=vertical]
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+.node {
+  cursor: pointer;
+}
