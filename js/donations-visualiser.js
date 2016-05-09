@@ -160,24 +160,14 @@ function zoom_slided(d) {
 
 function zoomIn() {
   var newScale = zoom.scale() * 1.4;
-  ga('send', {
-      hitType: 'event',
-      eventCategory: 'zoom',
-      eventAction: 'zoom_in',
-      eventLabel: newScale,
-  });
+  logClick('zoom', 'zoom_in', newScale);
   zoomTo(newScale).event(svg.transition().duration(350));
   updateSlider();
 }
 
 function zoomOut() {
   var newScale = zoom.scale() * 0.71;
-  ga('send', {
-      hitType: 'event',
-      eventCategory: 'zoom',
-      eventAction: 'zoom_out',
-      eventLabel: newScale,
-  });
+  logClick('zoom', 'zoom_out', newScale);
   zoomTo(newScale).event(svg.transition().duration(350));
   updateSlider();
 }
@@ -204,12 +194,7 @@ function zoomTo(newScale) {
 
 function search() {
     var term = d3.select("#search").node().value;
-    ga('send', {
-        hitType: 'event',
-        eventCategory: 'search',
-        eventAction: 'do_search',
-        eventLabel: term,
-    });
+    logClick('search', 'do_search', term);
 
     var searchRegEx = new RegExp(term.toLowerCase());
 
@@ -238,12 +223,7 @@ function search() {
 }
 
 function nodeClick(node, i) {
-    ga('send', {
-        hitType: 'event',
-        eventCategory: 'node',
-        eventAction: 'click',
-        eventLabel: node.name,
-    });
+    logClick('node', 'click', node.name);
 
     if (clickedNode) {
         clickedNode.clicked = false;
@@ -841,5 +821,12 @@ function processData(data) {
     filterData();
 }
 
-
+function logClick(category, action, label) {
+  ga('send', {
+      hitType: 'event',
+      eventCategory: category,
+      eventAction: action,
+      eventLabel: label,
+  });
+}
                          

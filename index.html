@@ -72,9 +72,12 @@
 
     <div class="navbar navbar-default navbar-fixed-top">
       <h4 class="navbar-text">Australian Political Donations</h4>
-      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal">About</button>
-      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal">Information</button>
-      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal">Getting Started</button>
+      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal" 
+        onclick="logClick('button', 'about')">About</button>
+      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal"
+        onclick="logClick('button', 'info')">Information</button>
+      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal" 
+        onclick="logClick('button', 'getting started')">Getting Started</button>
       <p class="navbar-text navbar-right">Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.</p>
     </div>
 
