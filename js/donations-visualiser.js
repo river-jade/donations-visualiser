@@ -159,12 +159,26 @@ function zoom_slided(d) {
 }
 
 function zoomIn() {
-  zoomTo(zoom.scale() * 1.4).event(svg.transition().duration(350));
+  var newScale = zoom.scale() * 1.4;
+  ga('send', {
+      hitType: 'event',
+      eventCategory: 'zoom',
+      eventAction: 'zoom_in',
+      eventLabel: newScale,
+  });
+  zoomTo(newScale).event(svg.transition().duration(350));
   updateSlider();
 }
 
 function zoomOut() {
-  zoomTo(zoom.scale() * 0.71).event(svg.transition().duration(350));
+  var newScale = zoom.scale() * 0.71;
+  ga('send', {
+      hitType: 'event',
+      eventCategory: 'zoom',
+      eventAction: 'zoom_out',
+      eventLabel: newScale,
+  });
+  zoomTo(newScale).event(svg.transition().duration(350));
   updateSlider();
 }
 
@@ -190,6 +204,13 @@ function zoomTo(newScale) {
 
 function search() {
     var term = d3.select("#search").node().value;
+    ga('send', {
+        hitType: 'event',
+        eventCategory: 'search',
+        eventAction: 'do_search',
+        eventLabel: term,
+    });
+
     var searchRegEx = new RegExp(term.toLowerCase());
 
     if (!nodeElements) return;
@@ -217,6 +238,13 @@ function search() {
 }
 
 function nodeClick(node, i) {
+    ga('send', {
+        hitType: 'event',
+        eventCategory: 'node',
+        eventAction: 'click',
+        eventLabel: node.name,
+    });
+
     if (clickedNode) {
         clickedNode.clicked = false;
     }
