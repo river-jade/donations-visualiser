@@ -80,9 +80,13 @@ def process_receipt_types(data):
     return receipt_types
 
 def munge_receipt_type(given_receipt_type, client_name):
-    if 'electoral commission' in client_name.lower() or \
-        'australian taxation office' in client_name.lower() or \
-        'department of finance' in client_name.lower():
+    client = client_name.lower()
+    if client in (
+        'australian taxation office',
+        'aec',
+        'australian tax office',
+        'department of finance',
+    ) or 'electoral commission' in client:
         return 'Public Funding'    
     else:
         return given_receipt_type
