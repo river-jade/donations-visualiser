@@ -682,8 +682,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
     nodeElements.enter().append("path").attr("class", "node");
     nodeElements.attr("d", d3.svg.symbol()
                      .size(function(d) { 
-                         var log10 = Math.log(Math.max(1000, d.total)/100)/Math.LN10;
-                         d.size = 30 * Math.pow(2, log10);
+                         d.size = Math.sqrt(d.total);
                          if (d.Type == 'Party') d.size *= 2;
                          return d.size; })
                      .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
