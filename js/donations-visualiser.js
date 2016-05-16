@@ -102,10 +102,10 @@ $('#info-toggle').on('click', function(d) {
     }
 });
 
-d3.select("#party-select-all").on("click", selectAllParties);
-d3.select("#party-select-invert").on("click", invertPartiesSelection);
-d3.select("#receipt-type-select-all").on("click", selectAllReceiptTypes);
-d3.select("#receipt-type-select-invert").on("click", invertReceiptTypesSelection);
+d3.select("#party-select-all").on("click", function() { selectAll('#party_select'); });
+d3.select("#party-select-clear").on("click", function() { clearSelection('#party_select'); });
+d3.select("#receipt-type-select-all").on("click", function() { selectAll('#receipt_type_select'); });
+d3.select("#receipt-type-select-clear").on("click", function() { clearSelection('#receipt_type_select'); });
 d3.select("#clear-search").on("click", clearSearch);
 
 var dollarFormat = d3.format("$,.0f");
@@ -464,42 +464,19 @@ function nodeOut(node, i) {
                 });
 }
 
-function selectAllParties(e) {
-    var party_select = d3.select("#party_select").selectAll("input"),
-        checked = party_select.filter(function(d) { return this.checked; }).size();
-
-    if (party_select.size() != checked) {
-        party_select.property("checked", true);
-        filterData();
-    }
-}
-
-function invertPartiesSelection(e) {
-    var party_select = d3.select("#party_select").selectAll("input");
-
-    party_select.property("checked", function(d) {
-        return !this.checked;
-    });
+function clearSelection(id) {
+    d3.select(id).selectAll("input").property("checked", false);
     filterData();
 }
 
-function selectAllReceiptTypes(e) {
-    var receipt_type_select = d3.select("#receipt_type_select").selectAll("input"),
-        checked = receipt_type_select.filter(function(d) { return this.checked; }).size();
+function selectAll(id) {
+    var type_select = d3.select(id).selectAll("input"),
+        checked = type_select.filter(function(d) { return this.checked; }).size();
 
-    if (receipt_type_select.size() != checked) {
-        receipt_type_select.property("checked", true);
+    if (type_select.size() != checked) {
+        type_select.property("checked", true);
         filterData();
     }
-}
-
-function invertReceiptTypesSelection(e) {
-    var receipt_type_select = d3.select("#receipt_type_select").selectAll("input");
-
-    receipt_type_select.property("checked", function(d) {
-        return !this.checked;
-    });
-    filterData();
 }
 
 function clearSearch(e) {
