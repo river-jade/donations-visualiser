@@ -25,7 +25,14 @@ var zoom_slider = d3.select("#zoom-controls").select("input")
     .attr("step", .1)
     .on("input", zoom_slided);
 
-var value_slider = d3.slider().axis(true).on("slide", updateLabels).on("slideend", filterData).step(1000);
+var value_slider = function() {
+  var tick_format = function (d) {
+    var prefix = d3.formatPrefix(d);
+    return prefix.scale(d) + prefix.symbol;
+  };
+  var slider_axis = d3.svg.axis().tickValues([1000,10000,100000,1000000, 1000000, 10000000]).tickFormat(tick_format).orient("bottom")
+  return d3.slider().axis(slider_axis).on("slide", updateLabels).on("slideend", filterData);
+}();
 
 d3.select("#zoom-in").on("click", zoomIn);
 d3.select("#zoom-out").on("click", zoomOut);
@@ -665,13 +672,6 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         d3.select("#value-filter-max").attr("value", displayFormat(extents[1]));
         d3.select("#value-filter").html("");
         d3.select("#value-filter").call(value_slider);
-        d3.select("#value-filter").selectAll(".tick text")
-            .text(null)
-          .filter(powerOfTen)
-            .text(10)
-          .append("tspan")
-            .attr("dy", "-.5em")
-            .text(function(d) { return Math.round(Math.log(d) / Math.LN10); });
     }
 
     nodeElements = nodesG.selectAll(".node")
