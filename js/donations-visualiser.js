@@ -213,7 +213,8 @@ function search() {
         match = d.name.toLowerCase().search(searchRegEx);
 
         if (term.length > 0 && match >= 0) {
-            element.style("fill", "#ff1d8e")
+          // TODO(river): remove hardcoded colour!
+            element.style("fill", "#00FFFF")
                    .style("stroke", "#000");
             //element.transition().style("fill", "#fff").transition().style("fill", "#ff18de");
             return d.searched = true;
