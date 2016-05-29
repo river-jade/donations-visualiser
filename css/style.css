@@ -169,3 +169,16 @@ input[type=range][orient=vertical]
 .node {
   cursor: pointer;
 }
+
+.mobile-intro {
+    display: none;
+}
+
+@media ( max-width: 767px ) {
+    .navbar-fixed-top {
+        padding: 1rem;
+    }
+    .mobile-intro {
+        display: block;
+    }
+}
