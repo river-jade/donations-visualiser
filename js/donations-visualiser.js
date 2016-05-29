@@ -3,7 +3,10 @@ var w = window,
     e = d.documentElement,
     g = d3.select("body").node(),
     navbar = d3.select(".navbar-default").node(),
-    hoverInfo = d3.select(".hover-info");
+    hoverInfo = d3.select(".hover-info"),
+    filterPanel = d3.select('.filter-panel'),
+    infoPanel = d3.select(".info-panel"),
+    $searchInput = $('#search');
 
 var navbarHeight,
     width,
@@ -18,6 +21,71 @@ var party_map = {},
     receipt_types,
     clickedNode = null,
     oldYear = -1;
+
+// http://bootstraptour.com/api/
+var tour = new Tour({
+    backdrop: true,
+    debug: true,
+    // orphan: true,
+    delay: {
+        show: 400,
+        hide: 0
+    },
+    steps: [
+        {
+            title: "How much did the Coalition receive in donations each year between 1998-2015?",
+            content: "...let's get started",
+            orphan: true,
+        },
+        {
+            element: "#filter-button",
+            title: "Open the filters panel",
+            // content: "Open the filters panel",
+            content: [
+                "Click this button to toggle the filters panel.",
+                "You can hide it again at any time and it will ",
+                "remember the settings you entered last."
+            ].join(' '),
+            onShow: function(tour) {
+                console.log('onShow', this);
+                window.setTimeout(function() {
+                    toggleFilterPanel(null, true);
+                }, 1500);
+                window.setTimeout(function() {
+                    tour.redraw();
+                }, 500);
+            },
+            // onNext: function (tour) {}
+        },
+        {
+            element: ".navmenu-fixed-left",
+            title: "Locate the Coalition",
+            content: [
+                "Locate the Coalition by entering it into ",
+                "the Search field in the Filter Panel",
+                "the Coalition node ",
+                "will then highlight in pink).",
+            ].join(' '),
+            onNext: function() {
+                window.setTimeout(function() {
+                    inputText($searchInput, 'coalition');
+                }, 200);
+            }
+            // backdropPadding: 0,
+        },
+        {
+            // element: ".navmenu-fixed-left",
+            title: "Step 4",
+            content: [
+                "hipster ipsum",
+            ].join(' '),
+            orphan: true
+        },
+    ],
+    afterSetState: function (key, value) {
+        logClick('tour.gettingStarted', key, value);
+    }
+});
 
 setLayoutSizes();
 
@@ -90,7 +158,6 @@ d3.select(w).on("resize", resizeWindow);
 // Handle offcanvas elements
 // ============================================================
 
-var filterPanel = d3.select('.filter-panel');
 var filterPanelOpen = false;
 
 function toggleInfoPanel(event, state) {
@@ -101,7 +168,6 @@ function toggleInfoPanel(event, state) {
 $('#info-toggle').on('click', toggleInfoPanel);
 
 
-var infoPanel = d3.select(".info-panel");
 var infoPanelOpen = false;
 
 function toggleFilterPanel(event, state) {
@@ -124,6 +190,16 @@ d3.select("#party-select-clear").on("click", function() { clearSelection('#party
 d3.select("#receipt-type-select-all").on("click", function() { selectAll('#receipt_type_select'); });
 d3.select("#receipt-type-select-clear").on("click", function() { clearSelection('#receipt_type_select'); });
 d3.select("#clear-search").on("click", clearSearch);
+
+var $gettingStarted = $('#getting-started-modal');
+d3.select('.js-handleStartTour').on('click', function() {
+    console.log('oy', this);
+    if (tour.ended) tour.restart();
+    // tour.goTo(0);
+    // $gettingStarted.one('hidden.bs.modal', function() {
+    // });
+    // $gettingStarted.modal('hide');
+});
 
 // on 'escape' key press, close the info window, and zoomToFit
 window.addEventListener("keydown", function (event) {
@@ -998,6 +1074,16 @@ function processData(data) {
 function toTrainCase(str) {
     if (!str || typeof str !== 'string') return str;
     return str.toLowerCase().replace(/ /g, '-');
+}
+
+function inputText(selector, text) {
+    var $input;
+    if (selector.jQuery) $input = selector;
+    else $input = $(selector);
+    console.log('$input, text', $input, text);
+    // $input.value = text;
+    $input.val(text);
+    $input.trigger('change');
 }
 
 // ============================================================

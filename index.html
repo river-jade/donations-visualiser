@@ -10,6 +10,7 @@
     <title>Australian Political Donations Visualiser</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-tour.min.css" />
     <link rel="stylesheet" href="css/d3.slider.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -26,6 +27,8 @@
 
         <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
         onclick="logClick('button', 'getting started')">Getting Started</button>
+
+        <button class="btn btn-success js-handleStartTour">Start Tour</button>
 
         <p class="navbar-text navbar-right">
             Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>
@@ -273,6 +276,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/d3.slider.js"></script>
+    <script src="js/bootstrap-tour.min.js"></script>
     <script src="js/donations-visualiser.js"></script>
 
     <script>
