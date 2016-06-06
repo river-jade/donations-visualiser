@@ -18,6 +18,7 @@ var nodeColors = d3.scale.category20();
 var dollarFormat = d3.format("$,.0f");
 
 var svg = d3.select("div#vis").append("svg")
+    .attr("class", "graph")
     .attr("width", width)
     .attr("height", height);
 
@@ -870,9 +871,9 @@ function processData(data) {
         .call(zoom);
 
 
-    container = svg.append("g").attr("width", width).attr("height", height);
-    linksG = container.append("g").attr("width", width).attr("height", height);
-    nodesG = container.append("g").attr("width", width).attr("height", height);
+    container = svg.append("g").attr("class", "container").attr("width", width).attr("height", height);
+    linksG = container.append("g").attr("class", "edges").attr("width", width).attr("height", height);
+    nodesG = container.append("g").attr("class", "nodes").attr("width", width).attr("height", height);
     messageG = container.append("g").attr("width", width).attr("height", height);
 
     d3.select("#party_select").on("change", filterData);
