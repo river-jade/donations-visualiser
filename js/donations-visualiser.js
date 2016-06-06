@@ -2,7 +2,8 @@ var w = window,
     d = document,
     e = d.documentElement,
     g = d3.select("body").node(),
-    navbar = d3.select(".navbar-default").node();
+    navbar = d3.select(".navbar-default").node(),
+    hoverInfo = d3.select(".hover-info");
 
 var navbarHeight,
     width,
@@ -24,8 +25,6 @@ var svg = d3.select("div#vis").append("svg")
     .attr("class", "graph")
     .attr("width", width)
     .attr("height", height);
-
-d3.select("#hover-info").style("display", "none");
 
 var zoom = d3.behavior.zoom()
     .scale(1)
@@ -463,14 +462,26 @@ function nodeClick(node, i) {
 }
 
 function nodeOver(node, i) {
-    var hoverInfo = '<p class="text-center">' + node.name + '</p>';
-    hoverInfo += '<hr class="tooltip-hr">';
-    hoverInfo += '<p class="text-center">' + dollarFormat(node.total) + '</p>';
+    var hoverContent = [
+        '<p class="text-center">' + node.name + '</p>',
+        '<hr class="tooltip-hr">',
+        '<p class="text-center">' + dollarFormat(node.total) + '</p>'
+    ].join('');
 
-    d3.select("#hover-info").html(hoverInfo);
-    d3.select("#hover-info").style("top", d3.event.clientY + 15 + "px")
-        .style("left", d3.event.clientX + 15 + "px")
-        .style("display", null);
+    // ensure that hoverInfo is always shown towards the centre of the viewPort
+    var size = hoverInfo.node().getBoundingClientRect();
+    var hoverPosition = {}
+    hoverPosition.top = (d3.event.clientY > height / 2)
+        ? d3.event.clientY - navbarHeight - 15 - size.height + "px"
+        : d3.event.clientY - navbarHeight + 15 + "px"
+    hoverPosition.left = (d3.event.clientX > width / 2)
+        ? d3.event.clientX - 15 - size.width + "px"
+        : d3.event.clientX + 15 + "px"
+
+    hoverInfo
+        .html(hoverContent)
+        .style(hoverPosition)
+        .classed("visible", true);
 
     linkElements
         .style("stroke", function(l) {
@@ -500,7 +511,7 @@ function nodeOver(node, i) {
 }
 
 function nodeOut(node, i) {
-    d3.select("#hover-info").style("display", "none");
+    hoverInfo.classed("visible", false);
 
     linkElements
         .style("stroke", "#ddd")

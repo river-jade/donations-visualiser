@@ -76,27 +76,30 @@ form#filters input[type=checkbox] {
     text-align: right;
 }
 
-#hover-info {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  -moz-border-radius:3px;
-  border-radius: 3px;
-  border: 2px solid #DDD;
-  background: #fff;
-  opacity: 1;
-  color: #000;
-  padding: 10px 10px 0 10px;
-  width: 300px;
-  font-size: 15px;
-  z-index: 120;
+.hover-info {
+    position: absolute;
+    width: 300px;
+    z-index: 120;
+    padding: 10px 10px 0 10px;
+
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    background: #fff;
+
+    opacity: 1;
+    color: #000;
+    font-size: 15px;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out, visibility 250ms;
 }
 
-#hover-info p.main {
-  font-size: 15px;
-  text-align: center;
-  padding:0;
-  margin:0;
+.hover-info p.main {
+    font-size: 15px;
+    text-align: center;
+    padding:0;
+    margin:0;
 }
 
 hr.tooltip-hr {
@@ -104,13 +107,13 @@ hr.tooltip-hr {
     margin:3px 0 3px 0;
 }
 
-#hover-info .title {
-  font-size: 20px;
-  line-height: 24px;
+.hover-info .title {
+    font-size: 20px;
+    line-height: 24px;
 }
- 
-#hover-info .name {
-  font-weight:bold;
+
+.hover-info .name {
+    font-weight:bold;
 }
 
 #zoom-controls {
