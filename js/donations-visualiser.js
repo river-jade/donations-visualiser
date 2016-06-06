@@ -887,6 +887,12 @@ function processData(data) {
     filterData();
 }
 
+
+function toTrainCase(str) {
+    if (!str || typeof str !== 'string') return str;
+    return str.toLowerCase().replace(/ /g, '-');
+}
+
 // ============================================================
 // Analytics
 // ============================================================
