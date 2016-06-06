@@ -16,6 +16,22 @@
 </head>
 
 <body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <h4 class="navbar-text">Australian Political Donations</h4>
+
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal"
+        onclick="logClick('button', 'about')">About</button>
+
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal"
+        onclick="logClick('button', 'info')">Information</button>
+
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
+        onclick="logClick('button', 'getting started')">Getting Started</button>
+
+        <p class="navbar-text navbar-right">
+            Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.
+        </p>
+    </div>
 
     <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
         <p class="navmenu-brand" href="#">Filters
@@ -75,21 +91,8 @@
 
     <div id="info-button"><button class="btn btn-default" type="button" id="info-toggle" title="Toggle info panel"><span class="glyphicon glyphicon-info-sign"></span></button></div>
 
-    <div class="navbar navbar-default navbar-fixed-top">
-        <h4 class="navbar-text">Australian Political Donations</h4>
-
-        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal"
-        onclick="logClick('button', 'about')">About</button>
-
-        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal"
-        onclick="logClick('button', 'info')">Information</button>
-
-        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
-        onclick="logClick('button', 'getting started')">Getting Started</button>
-
-        <p class="navbar-text navbar-right">
-            Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.
-        </p>
+    <div class="body-content container-fluid">
+        <div id="vis"></div>
     </div>
 
     <div class="modal fade" id="loading-modal">
@@ -255,10 +258,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="body-content container-fluid">
-        <div id="vis"></div>
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
