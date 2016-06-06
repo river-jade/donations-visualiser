@@ -350,16 +350,18 @@ function updateInfoPanel() {
             .rollup(function(leaves) { return d3.sum(leaves, function(e) { return e.Amount; }); })
             .entries(clickedNode.receipts);
 
-        html = "<h3><a href=\"http://www.google.com/#q="+ clickedNode.name + "\" title=\"Search Google for this Party\" target=\"_blank\">" + clickedNode.name + "</a></h3>\n";
-        html += "<hr />\n";
-        html += "<h4>Details</h4>\n";
-        html += "<p>Type: Party</p>\n";
-        html += "<p>Total Amount Received: " + dollarFormat(clickedNode.total) + "</p>";
-        html += "<p>Top " + top10.length + " Payers:</p>\n";
-        html += "<table id=\"info-table\" class=\"table table-striped table-condensed table-hover\"><tbody>\n";
-        html += "</tbody></table>\n";
-        html += "<h4>Total Amounts Received</h4>\n";
-        html += "<svg></svg>";
+        html = [
+            '<h3><a href="http://www.google.com/#q=' + clickedNode.name + '" title="Search Google for this Party" target="_blank">' + clickedNode.name + '</a></h3>\n',
+            '<hr />\n',
+            '<h4>Details</h4>\n',
+            '<p>Type: Party</p>\n',
+            '<p>Total Amount Received: ' + dollarFormat(clickedNode.total) + '</p>',
+            '<p>Top ' + top10.length + ' Payers:</p>\n',
+            '<table id="info-table" class="table table-striped table-condensed table-hover"><tbody>\n',
+            '</tbody></table>\n',
+            '<h4>Total Amounts Received</h4>\n',
+            '<svg></svg>',
+        ].join('');
         d3.select("#info-panel").html(html);
 
         d3.select("#info-table").select("tbody").selectAll("tr")
@@ -384,16 +386,18 @@ function updateInfoPanel() {
             .rollup(function(leaves) { return d3.sum(leaves, function(e) { return e.Amount; }); })
             .entries(clickedNode.payments);
 
-        html = "<h3><a href=\"http://www.google.com/#q="+ clickedNode.name + "\" title=\"Search Google for this Entity\" target=\"_blank\">" + clickedNode.name + "</a></h3>\n";
-        html += "<hr />\n";
-        html += "<h4>Details</h4>\n";
-        html += "<p>Type: Payer</p>\n";
-        html += "<p>Total Amount Paid: " + dollarFormat(clickedNode.total) + "</p>";
-        html += "<p>Top " + top10.length + " Receivers:</p>\n";
-        html += "<table id=\"info-table\" class=\"table table-striped table-condensed table-hover\"><tbody>\n";
-        html += "</tbody></table>\n";
-        html += "<h4>Total Amounts Paid</h4>\n";
-        html += "<svg></svg>";
+        html = [
+            '<h3><a href="http://www.google.com/#q=' + clickedNode.name + '" title="Search Google for this Entity" target="_blank">' + clickedNode.name + '</a></h3>\n',
+            '<hr />\n',
+            '<h4>Details</h4>\n',
+            '<p>Type: Payer</p>\n',
+            '<p>Total Amount Paid: ' + dollarFormat(clickedNode.total) + '</p>',
+            '<p>Top ' + top10.length + ' Receivers:</p>\n',
+            '<table id="info-table" class="table table-striped table-condensed table-hover"><tbody>\n',
+            '</tbody></table>\n',
+            '<h4>Total Amounts Paid</h4>\n',
+            '<svg></svg>',
+        ].join('');
         d3.select("#info-panel").html(html);
 
         d3.select("#info-table").select("tbody").selectAll("tr")
