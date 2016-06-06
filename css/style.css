@@ -1,10 +1,10 @@
 html, body {
-  //height: 100%;
-  overflow: hidden;
+    //height: 100%;
+    overflow: hidden;
 }
 
 body {
-  padding: 50px 0 0 0;
+    padding: 50px 0 0 0;
 }
 
 .body-content {
@@ -16,8 +16,8 @@ body {
 }
 
 .navbar-toggle {
-  float: left;
-  margin-left: 15px;
+    float: left;
+    margin-left: 15px;
 }
 
 .navbar-toggle.right {
@@ -38,9 +38,10 @@ div#info-button {
 }
 
 @media (min-width: 0) {
-  .navbar-toggle {
-    display: block; /* force showing the toggle */
-  }
+    .navbar-toggle {
+        /* force showing the toggle */
+        display: block;
+    }
 }
 
 form#filters {
@@ -48,7 +49,9 @@ form#filters {
     padding-right: 10px;
 }
 
-form#filters label, form#filters input, form#filters select {
+form#filters label,
+form#filters input,
+form#filters select {
     width: 100%;
 }
 
@@ -114,8 +117,8 @@ form#filters input[type=checkbox] {
 }
 
 hr.tooltip-hr {
-  padding:3px 0 0 0;
-  margin:3px 0 3px 0;
+    padding:3px 0 0 0;
+    margin:3px 0 3px 0;
 }
 
 #hover-info .title {
@@ -133,8 +136,10 @@ hr.tooltip-hr {
   left: 24px;
 }
 
-#zoom-in,#zoom-out {
-  cursor: pointer; cursor: hand;
+#zoom-controls > * {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
 }
 
 #party_select {
@@ -152,20 +157,20 @@ input[type=range][orient=vertical]
 }
 
 .bar {
-  fill: #337ab7;
+    fill: #337ab7;
 }
 
 .axis text {
-  font: 10px sans-serif;
+    font: 10px sans-serif;
 }
 
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .node {
-  cursor: pointer;
+    cursor: pointer;
 }
