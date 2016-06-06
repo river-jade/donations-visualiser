@@ -2,8 +2,11 @@ var w = window,
     d = document,
     e = d.documentElement,
     g = d3.select("body").node(),
-    width = g.clientWidth,
-    height = w.innerHeight || e.clientHeight || g.clientHeight;
+    navbar = d3.select(".navbar-default").node();
+
+var navbarHeight,
+    width,
+    height;
 
 var party_map = {},
     entity_map = {},
@@ -13,6 +16,8 @@ var party_map = {},
     filterShown = true,
     infoShown = true,
     oldYear = -1;
+
+setLayoutSizes();
 
 var nodeColors = d3.scale.category20();
 var dollarFormat = d3.format("$,.0f");
@@ -57,9 +62,17 @@ var value_slider = function() {
 // Handle Window Resize
 // ============================================================
 
-var resizeWindow = function() {
-    width = g.clientWidth,
-    height = w.innerHeight || e.clientHeight || g.clientHeight,
+function setLayoutSizes() {
+    // hackily set the navbar height to cater for the responsive layout
+    navbarHeight = navbar.getBoundingClientRect().height;
+    g.style.setProperty('padding', navbarHeight + 'px 0 0 0');
+
+    width = w.innerWidth || e.clientWidth || g.clientWidth;
+    height = (w.innerHeight || e.clientHeight || g.clientHeight) - navbarHeight;
+}
+
+function resizeWindow() {
+    setLayoutSizes();
 
     svg.attr("width", width)
         .attr("height", height);
@@ -67,6 +80,7 @@ var resizeWindow = function() {
     force.size([width, height]);
     force.start();
 }
+
 d3.select(w).on("resize", resizeWindow);
 
 function showFilterPanel() {
