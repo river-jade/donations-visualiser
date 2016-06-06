@@ -252,25 +252,6 @@ function search() {
     });
 }
 
-function nodeClick(node, i) {
-    logClick('node', 'click', node.name);
-
-    if (clickedNode) {
-        clickedNode.clicked = false;
-    }
-    clickedNode = node;
-    clickedNode.clicked = true;
-    nodeElements.style("stroke", function(n) {
-        if (n === clickedNode) {
-            return "#000";
-        } else {
-            return "#ddd";
-        }
-    });
-
-    updateInfoPanel();
-}
-
 function rowOver(row, i) {
     node = null;
     if (row.values.type == 'Party') {
@@ -457,6 +438,28 @@ function updateInfoPanel() {
 
     d3.select("#info-button").transition().ease("linear").style("right", "310px");
     d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
+}
+
+// ============================================================
+// Node events
+// ============================================================
+
+function nodeClick(node, i) {
+    logClick('node', 'click', node.name);
+
+    if (clickedNode) {
+        clickedNode.clicked = false;
+    }
+    clickedNode = node;
+    clickedNode.clicked = true;
+    nodeElements.style("stroke", function(n) {
+        if (n === clickedNode) {
+            return "#000";
+        } else {
+            return "#ddd";
+        }
+    });
+    updateInfoPanel();
 }
 
 function nodeOver(node, i) {
