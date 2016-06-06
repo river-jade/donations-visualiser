@@ -7,7 +7,9 @@ var w = window,
 
 var navbarHeight,
     width,
-    height;
+    height,
+    bounds = {},
+    containerDimensions = {};
 
 var party_map = {},
     entity_map = {},
@@ -780,7 +782,31 @@ updateInfoPanel();
 force.start();
 }
 
-function tick() {
+function measureBounds(node) {
+    if (bounds.reset) {
+        // prime a fresh set of dimensions using the first node
+        bounds.reset = false;
+
+        bounds.xMin = node.x;
+        bounds.xMax = node.x;
+        bounds.yMin = node.y;
+        bounds.yMax = node.y;
+    } else {
+        bounds.yMin = Math.min(bounds.yMin, node.y);
+        bounds.yMax = Math.max(bounds.yMax, node.y);
+        bounds.xMin = Math.min(bounds.xMin, node.x);
+        bounds.xMax = Math.max(bounds.xMax, node.x);
+    }
+
+    bounds.width = bounds.xMax - bounds.xMin;
+    bounds.height = bounds.yMax - bounds.yMin;
+    bounds.top = bounds.yMin;
+    bounds.left = bounds.xMin;
+}
+
+function tick(event) {
+    bounds.reset = true;
+
     linkElements.attr("x1", function(d) { return d.source.x; })
         .attr("y1", function(d) { return d.source.y; })
         .attr("x2", function(d) { return d.target.x; })
@@ -788,7 +814,9 @@ function tick() {
 
     //nodeElements.attr("cx", function(d) { return d.x; })
     //            .attr("cy", function(d) { return d.y; });
-    nodeElements.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    nodeElements
+        .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+        .each(measureBounds);
 }
 
 function processData(data) {
