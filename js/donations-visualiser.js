@@ -14,6 +14,9 @@ var party_map = {},
     infoShown = true,
     oldYear = -1;
 
+var nodeColors = d3.scale.category20();
+var dollarFormat = d3.format("$,.0f");
+
 var svg = d3.select("div#vis").append("svg")
     .attr("width", width)
     .attr("height", height);
@@ -40,16 +43,18 @@ var value_slider = function() {
     };
     var slider_axis = d3.svg.axis()
         .tickValues([1000,10000,100000,1000000, 1000000, 10000000])
-        .tickFormat(tick_format).orient("bottom")
+        .tickFormat(tick_format).orient("bottom");
+
     return d3.slider().axis(slider_axis)
         .on("slide", updateLabels)
         .on("slideend", filterData);
+// immediately invoked!
 }();
 
-d3.select("#zoom-in").on("click", zoomIn);
-d3.select("#zoom-out").on("click", zoomOut);
 
-var nodeColors = d3.scale.category20();
+// ============================================================
+// Handle Window Resize
+// ============================================================
 
 var resizeWindow = function() {
     width = g.clientWidth,
@@ -113,6 +118,12 @@ $('#info-toggle').on('click', function(d) {
         showInfoPanel();
     }
 });
+// ============================================================
+// Event Listeners
+// ============================================================
+
+d3.select("#zoom-in").on("click", zoomIn);
+d3.select("#zoom-out").on("click", zoomOut);
 
 d3.select("#party-select-all").on("click", function() { selectAll('#party_select'); });
 d3.select("#party-select-clear").on("click", function() { clearSelection('#party_select'); });
@@ -120,7 +131,10 @@ d3.select("#receipt-type-select-all").on("click", function() { selectAll('#recei
 d3.select("#receipt-type-select-clear").on("click", function() { clearSelection('#receipt_type_select'); });
 d3.select("#clear-search").on("click", clearSearch);
 
-var dollarFormat = d3.format("$,.0f");
+
+// ============================================================
+// Force Layout
+// ============================================================
 
 var force = d3.layout.force()
     .size([width, height])
@@ -131,8 +145,12 @@ var force = d3.layout.force()
     .gravity(0.4)
     .on("tick", tick);
 
-var progress_counter = 0;
 
+// ============================================================
+// Init: load json, kick off the app
+// ============================================================
+
+var progress_counter = 0;
 
 var data_request = d3.json("data/all_data.json")
     .on("progress", function() {
@@ -169,6 +187,11 @@ var data_request = d3.json("data/all_data.json")
 
 //d3.json("data/all_data.json", processData);
 
+
+// ============================================================
+// Zoom handlers
+// ============================================================
+
 function zoomed() {
     container.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     updateSlider();
@@ -192,11 +215,6 @@ function zoomOut() {
     updateSlider();
 }
 
-function updateSlider() {
-    if (d3.event)
-        zoom_slider.property("value", d3.event.scale);
-}
-
 function zoomTo(newScale) {
     var scale = zoom.scale();
     var extent = zoom.scaleExtent();
@@ -211,7 +229,12 @@ function zoomTo(newScale) {
             ]);
     }
     return zoom;
-};
+}
+
+function updateSlider() {
+    if (d3.event)
+        zoom_slider.property("value", d3.event.scale);
+}
 
 function search() {
     var term = d3.select("#search").node().value;
@@ -398,8 +421,8 @@ function updateInfoPanel() {
                 nodeClick(party_map[row.key]);
             })
             .html(function(d) {
-            return "<td class=\"small\">" + party_map[d.key].name + "</td><td class=\"pull-right small\">" + dollarFormat(d.values.total) + "</td>";
-        });
+                return "<td class=\"small\">" + party_map[d.key].name + "</td><td class=\"pull-right small\">" + dollarFormat(d.values.total) + "</td>";
+            });
     }
 
     var margins = { top: 0, right: 0, bottom: 25, left: 50 },
@@ -419,7 +442,7 @@ function updateInfoPanel() {
             .attr("width", chartWidth + margins.left + margins.right)
             .attr("height", chartHeight + margins.top + margins.bottom)
             .append("g")
-            .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+                .attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 
 
     chart.append("g")
@@ -486,7 +509,9 @@ function nodeOver(node, i) {
 
 function nodeOut(node, i) {
     d3.select("#hover-info").style("display", "none");
-    linkElements.style("stroke", "#ddd")
+
+    linkElements
+        .style("stroke", "#ddd")
         .style("stroke-opacity", 0.5);
 
     nodeElements
@@ -501,6 +526,11 @@ function nodeOut(node, i) {
             return 1.0;
         });
 }
+
+
+// ============================================================
+// User selections / filters
+// ============================================================
 
 function clearSelection(id) {
     d3.select(id).selectAll("input").property("checked", false);
@@ -611,6 +641,11 @@ function filterData() {
     update(filteredNodes, allParties, selectedParties, resetControls);
 }
 
+
+// ============================================================
+// Update
+// ============================================================
+
 function update(partyNodes, parties, selectedParties, resetControls) {
     force.stop();
 
@@ -651,20 +686,16 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .data(
             // values
             parties.sort(function(a, b) {
-                return (
-                    party_map[a].name < party_map[b].name
-                        ? -1
-                        : 1
-                );
+                return party_map[a].name < party_map[b].name ? -1 : 1;
             }),
             // key
             function(d) { return d; }
         )
         .enter().append("div")
-        .attr("class", "checkbox")
-        .html(function(d) {
-            return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
-        });
+            .attr("class", "checkbox")
+            .html(function(d) {
+                return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
+            });
 
     messageG.selectAll("text").remove();
 
@@ -676,6 +707,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
             .text("No Data Found!")
         linksG.selectAll("line.link").remove();
         nodesG.selectAll(".node").remove();
+
         return;
     }
 
@@ -852,12 +884,15 @@ function processData(data) {
     filterData();
 }
 
+// ============================================================
+// Analytics
+// ============================================================
+
 function logClick(category, action, label) {
     ga('send', {
         hitType: 'event',
         eventCategory: category,
         eventAction: action,
-        eventLabel: label,
+        eventLabel: label
     });
 }
-
