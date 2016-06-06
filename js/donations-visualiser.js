@@ -13,8 +13,6 @@ var party_map = {},
     years = [],
     receipt_types,
     clickedNode = null,
-    filterShown = true,
-    infoShown = true,
     oldYear = -1;
 
 setLayoutSizes();
@@ -83,56 +81,32 @@ function resizeWindow() {
 
 d3.select(w).on("resize", resizeWindow);
 
-function showFilterPanel() {
-    $('.navmenu-fixed-left').offcanvas('show');
-    d3.select("#filter-button").transition().ease("linear").style("left", "310px");
-    d3.select("#filter-toggle").html("<span class=\"glyphicon glyphicon-chevron-left\"></span>");
-    d3.select("#zoom-controls").transition().ease("linear").style("left", "324px");
-    filterShown = true;
+
+// ============================================================
+// Handle offcanvas elements
+// ============================================================
+
+var filterPanel = d3.select('.filter-panel');
+var filterPanelOpen = false;
+
+function toggleInfoPanel(event, state) {
+    if (typeof state !== 'undefined') infoPanelOpen = state;
+    else infoPanelOpen = !infoPanelOpen;
+    infoPanel.classed('open', infoPanelOpen);
 }
+$('#info-toggle').on('click', toggleInfoPanel);
 
-function hideFilterPanel() {
-    $('.navmenu-fixed-left').offcanvas('hide');
-    d3.select("#filter-button").transition().ease("linear").style("left", "10px");
-    d3.select("#zoom-controls").transition().ease("linear").style("left", "24px");
-    d3.select("#filter-toggle").html("<span class=\"glyphicon glyphicon-filter\"></span>");
-    filterShown = false;
+
+var infoPanel = d3.select(".info-panel");
+var infoPanelOpen = false;
+
+function toggleFilterPanel(event, state) {
+    if (typeof state !== 'undefined') filterPanelOpen = state;
+    else filterPanelOpen = !filterPanelOpen;
+    filterPanel.classed('open', filterPanelOpen);
 }
+$('#filter-toggle').on('click', toggleFilterPanel);
 
-function showInfoPanel() {
-    $('.navmenu-fixed-right').offcanvas('show');
-    d3.select("#info-button").transition().ease("linear").style("right", "310px");
-    d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
-    infoShown = true;
-}
-
-function hideInfoPanel() {
-    $('.navmenu-fixed-right').offcanvas('hide');
-    d3.select("#info-button").transition().ease("linear").style("right", "10px");
-    d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-info-sign\"></span>");
-    infoShown = false;
-}
-
-$('.navmenu-fixed-left').offcanvas({ autohide: false, toggle: false });
-//$('.navmenu-fixed-left').offcanvas('hide');
-$('#filter-toggle').on('click', function(d) {
-    if (filterShown) {
-        hideFilterPanel();
-    } else {
-        showFilterPanel();
-    }
-});
-
-$('.navmenu-fixed-right').offcanvas({autohide: false, toggle: false });
-//$('.navmenu-fixed-right').offcanvas('hide');
-$('#info-toggle').on('click', function(d) {
-    $('.navmenu-fixed-right').offcanvas('toggle');
-    if (infoShown) {
-        hideInfoPanel();
-    } else {
-        showInfoPanel();
-    }
-});
 // ============================================================
 // Event Listeners
 // ============================================================
@@ -189,10 +163,6 @@ var data_request = d3.json("data/all_data.json")
         d3.select("#loading-progress").style("width", "100%");
         $("#loading-modal").modal('hide');
         processData(data);
-        setTimeout(function() {
-            showInfoPanel();
-            showFilterPanel();
-        }, 500);
 
         updateSlider();
     })
@@ -479,8 +449,8 @@ function updateInfoPanel() {
         .attr("height", function(d) { return chartHeight - y(d.values); })
         .attr("width", x.rangeBand() - 4);
 
-    $('.navmenu-fixed-right').offcanvas('show');
-    infoShown = true;
+    toggleInfoPanel(null, true);
+
     d3.select("#info-button").transition().ease("linear").style("right", "310px");
     d3.select("#info-toggle").html("<span class=\"glyphicon glyphicon-chevron-right\"></span>");
 }

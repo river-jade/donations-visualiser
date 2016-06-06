@@ -10,7 +10,6 @@
     <title>Australian Political Donations Visualiser</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
     <link rel="stylesheet" href="css/d3.slider.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
@@ -29,71 +28,75 @@
         onclick="logClick('button', 'getting started')">Getting Started</button>
 
         <p class="navbar-text navbar-right">
-            Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.
+            Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>
         </p>
     </div>
 
-    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-        <p class="navmenu-brand" href="#">Filters
-        </p>
-        <form id="filters" action="javascript:;">
-            <div class="form-group">
-                <label for="search">Search<a href="#"><span class="normal small pull-right" id="clear-search">clear</span></a></label>
-                <input type="text" class="text-input" id="search" value="" autocomplete="off"/>
-            </div>
-            <div class="form-group">
-                <label for="year_select">Select Financial Year</label>
-                <select id="year_select" autocomplete="off">
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Select Parties
-                    <span class="normal small pull-right">select:
-                        <a href="javascript:;" id="party-select-all">all</a>&nbsp;
-                        <a href="javascript:;" id="party-select-clear">clear</a>
-                    </span>
-                </label>
-                <div id="party_select"></div>
-            </div>
-            <div class="form-group">
-                <label>Select Receipt Type
-                    <span class="normal small pull-right">select:
-                        <a href="javascript:;" id="receipt-type-select-all">all</a>&nbsp;
-                        <a href="javascript:;" id="receipt-type-select-clear">clear</a>
-                    </span>
-                </label>
-                <div id="receipt_type_select"></div>
-            </div>
-            <div class="form-group">
-                <label>Filter Values</label>
-                <div id="value-filter"></div>
-                <div><input type="text" class="pull-left value-filter-value" id="value-filter-min" value=""><input type="text" class="pull-right value-filter-value" id="value-filter-max" value=""></div>
-            </div>
-        </form>
-    </div>
+    <div class="body-content container-fluid">
 
-    <div class="navmenu navmenu-default navmenu-fixed-right offcanvas">
-        <p class="navmenu-brand" href="#">Information</p>
+        <div class="filter-panel navmenu navmenu-fixed-left offcanvas">
+            <button class="btn btn-default" type="button" id="filter-toggle" title="Toggle filter panel"><span class="glyphicon glyphicon-filter"></span></button>
 
-        <div id="info-panel">
-            <h4>Click on a node to display details.</h4>
+            <div id="zoom-controls">
+                <span id="zoom-in" class="glyphicon glyphicon-zoom-in"></span>
+                <input type="range" orient="vertical" />
+                <span id="zoom-out" class="glyphicon glyphicon-zoom-out"></span>
+            </div>
+
+            <div class="wrapper">
+                <form id="filters" class="scroll-wrapper col-xs-12" action="javascript:;">
+                    <p class="navmenu-brand" href="#">Filters</p>
+
+                    <div class="form-group">
+                        <label for="search">Search<a href="#"><span class="normal small pull-right" id="clear-search">clear</span></a></label>
+                        <input type="text" class="text-input" id="search" value="" autocomplete="off"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="year_select">Select Financial Year</label>
+                        <select id="year_select" autocomplete="off">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Parties
+                            <span class="normal small pull-right">select:
+                                <a href="javascript:;" id="party-select-all">all</a>&nbsp;
+                                <a href="javascript:;" id="party-select-clear">clear</a>
+                            </span>
+                        </label>
+                        <div id="party_select"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Receipt Type
+                            <span class="normal small pull-right">select:
+                                <a href="javascript:;" id="receipt-type-select-all">all</a>&nbsp;
+                                <a href="javascript:;" id="receipt-type-select-clear">clear</a>
+                            </span>
+                        </label>
+                        <div id="receipt_type_select"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Filter Values</label>
+                        <div id="value-filter"></div>
+                        <div><input type="text" class="pull-left value-filter-value" id="value-filter-min" value=""><input type="text" class="pull-right value-filter-value" id="value-filter-max" value=""></div>
+                    </div>
+                </form>
+            </div>
         </div>
+
+        <div class="info-panel navmenu navmenu-fixed-right offcanvas">
+            <button class="btn btn-default" type="button" id="info-toggle" title="Toggle info panel"><span class="glyphicon glyphicon-info-sign"></span></button>
+
+            <div class="wrapper">
+                <div id="info-panel" class="scroll-wrapper col-xs-12">
+                    <h4>Click on a node to display details.</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="vis"></div>
     </div>
 
     <div id="hover-info" style="display: none;"></div>
-    <div id="zoom-controls">
-        <span id="zoom-in" class="glyphicon glyphicon-zoom-in"></span>
-        <input type="range" orient="vertical" />
-        <span id="zoom-out" class="glyphicon glyphicon-zoom-out"></span>
-    </div>
-
-    <div id="filter-button"><button class="btn btn-default" type="button" id="filter-toggle" title="Toggle filter panel"><span class="glyphicon glyphicon-filter"></span></button></div>
-
-    <div id="info-button"><button class="btn btn-default" type="button" id="info-toggle" title="Toggle info panel"><span class="glyphicon glyphicon-info-sign"></span></button></div>
-
-    <div class="body-content container-fluid">
-        <div id="vis"></div>
-    </div>
 
     <div class="modal fade" id="loading-modal">
         <div class="modal-dialog">
@@ -268,11 +271,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="js/d3.slider.js"></script>
     <script src="js/donations-visualiser.js"></script>
 
-    <!-- Google Analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

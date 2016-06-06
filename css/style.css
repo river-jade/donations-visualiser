@@ -8,6 +8,8 @@ body {
 }
 
 .body-content {
+    position: relative;
+    overflow: hidden;
     padding: 0;
 }
 
@@ -21,20 +23,8 @@ body {
 }
 
 .navbar-toggle.right {
-  float: right;
-  margin-right: 15px;
-}
-
-div#filter-button {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-}
-
-div#info-button {
-    position: absolute;
-    top: 60px;
-    right: 10px;
+    float: right;
+    margin-right: 15px;
 }
 
 @media (min-width: 0) {
@@ -42,11 +32,6 @@ div#info-button {
         /* force showing the toggle */
         display: block;
     }
-}
-
-form#filters {
-    padding-left: 10px;
-    padding-right: 10px;
 }
 
 form#filters label,
@@ -67,9 +52,7 @@ form#filters input[type=checkbox] {
     font-weight: normal;
 }
 
-#info-panel {
-    margin: 0 15px 0 15px;
-}
+#info-panel {}
 
 #info-table tr:hover {
     cursor: pointer;
@@ -131,9 +114,9 @@ hr.tooltip-hr {
 }
 
 #zoom-controls {
-  position: absolute;
-  top: 100px;
-  left: 24px;
+    position: absolute;
+    top: 60px;
+    right: -36px;
 }
 
 #zoom-controls > * {
@@ -173,4 +156,62 @@ input[type=range][orient=vertical]
 
 .node {
     cursor: pointer;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.offcanvas {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    overflow: visible;
+
+    background-color: white;
+
+    transform: translateZ(0);
+    transition: transform 250ms ease-in-out;
+}
+.offcanvas .wrapper {
+    height: 100%;
+    overflow: visible;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out;
+}
+.scroll-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 2rem;
+}
+.offcanvas.open {
+    transform: translateX(0);
+}
+.offcanvas.open .wrapper {
+    opacity: 1;
+}
+
+.filter-panel {
+    left: 0;
+    transform: translateX(-300px);
+    border-right: 1px solid #e7e7e7;
+}
+.info-panel {
+    right: 0;
+    transform: translateX(300px);
+    border-left: 1px solid #e7e7e7;
+}
+
+#filter-toggle {
+    position: absolute;
+    top: 24px;
+    right: -48px;
+}
+
+#info-toggle {
+    position: absolute;
+    top: 24px;
+    left: -50px;
 }
