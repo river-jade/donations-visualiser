@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -9,19 +9,17 @@
 
     <title>Australian Political Donations Visualiser</title>
 
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-
-    <!-- Custom styles for this template -->
     <link rel="stylesheet" href="css/d3.slider.css" />
     <link rel="stylesheet" href="css/style.css" />
+</head>
 
-  </head>
+<body>
 
-  <body>
     <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-        <p class="navmenu-brand" href="#">Filters</p>
+        <p class="navmenu-brand" href="#">Filters
+        </p>
         <form id="filters" action="javascript:;">
             <div class="form-group">
                 <label for="search">Search<a href="#"><span class="normal small pull-right" id="clear-search">clear</span></a></label>
@@ -57,187 +55,228 @@
             </div>
         </form>
     </div>
+
     <div class="navmenu navmenu-default navmenu-fixed-right offcanvas">
         <p class="navmenu-brand" href="#">Information</p>
+
         <div id="info-panel">
             <h4>Click on a node to display details.</h4>
         </div>
     </div>
 
     <div id="hover-info" style="display: none;"></div>
-    <div id="zoom-controls"><span id="zoom-in" class="glyphicon glyphicon-zoom-in"></span><input type="range" orient="vertical" /><span id="zoom-out" class="glyphicon glyphicon-zoom-out"></span></div>
+    <div id="zoom-controls">
+        <span id="zoom-in" class="glyphicon glyphicon-zoom-in"></span>
+        <input type="range" orient="vertical" />
+        <span id="zoom-out" class="glyphicon glyphicon-zoom-out"></span>
+    </div>
 
     <div id="filter-button"><button class="btn btn-default" type="button" id="filter-toggle" title="Toggle filter panel"><span class="glyphicon glyphicon-filter"></span></button></div>
+
     <div id="info-button"><button class="btn btn-default" type="button" id="info-toggle" title="Toggle info panel"><span class="glyphicon glyphicon-info-sign"></span></button></div>
 
     <div class="navbar navbar-default navbar-fixed-top">
-      <h4 class="navbar-text">Australian Political Donations</h4>
-      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal" 
+        <h4 class="navbar-text">Australian Political Donations</h4>
+
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal"
         onclick="logClick('button', 'about')">About</button>
-      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal"
+
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#info-modal"
         onclick="logClick('button', 'info')">Information</button>
-      <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal" 
+
+        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
         onclick="logClick('button', 'getting started')">Getting Started</button>
-      <p class="navbar-text navbar-right">Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.</p>
+
+        <p class="navbar-text navbar-right">
+            Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>.
+        </p>
     </div>
 
     <div class="modal fade" id="loading-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">Loading...</h4>
-          </div>
-          <div class="modal-body">
-            <p>We're now loading the dataset.  This is quite large, so it may take a little while depending
-               on your connection.</p>
-            <div class="progress">
-              <div id="loading-progress" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                <span class="sr-only">20% complete</span>
-              </div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Loading...</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        We're now loading the dataset.  This is quite large, so it may take a little while depending
+                        on your connection.
+                    </p>
+                    <div class="progress">
+                        <div id="loading-progress" class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                            <span class="sr-only">20% complete</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
+
     <div class="modal fade" id="info-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Information</h4>
-          </div>
-          <div class="modal-body">
-            <p>Using this website is relatively straight forward.  The main display shows a force directed graph
-               of political parties and the information they have reported to the 
-               <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> declaring the receipts that they have received.
-               Political parties are required by Australian law to provide this information on a yearly basis for all
-               amounts greater than $12,400 (current for the 2013-2014 year). Donors to political parties in Australia must 
-               also declare their donations.</p>
-            <p>This information is required to be provided to the AEC by 20 October each year and is subsequently made public.</p>
-            <p>All periodic disclosures published by the AEC are available for analysis on this site.  Filters can help you extract 
-               meaningful information.  The filters can be accessed by clicking on the <span class="glyphicon glyphicon-filter"></span> 
-               icon on the upper left of the chart.  This will open the filter controls, allowing you to search for a party or donor, 
-               select the year, parties or receipt types that interest you and also change the type of the view to a number of different 
-               options.</p>
-            <p>It is possible that by selecting certain combinations of filters that the amount of data displayed could result in slow 
-               performance.  If this happens you can limit your filters to return a more restrictive set of data.</p>
-            <p>It is also possible to zoom in and out of the chart by using your mouse scroll wheel, track pad or the slider
-               control under the filter controls toggle button.</p>
-            <p>Additional information regarding any party or entity on the main chart is displayed if you click on a node.  This
-               will open the information panel on the right of the main display.  This panel can be toggled by clicking on the
-               <span class="glyphicon glyphicon-info-sign"></span> button, located in the upper right of the main display.  You can
-               also click on an entry in the displayed table to select another political party or payer.</p>
-            <p>We love receiving feedback, and you can reach us at 
-               <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.  We do our best to read and reply to 
-               all messages.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Information</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Using this website is relatively straight forward.  The main display shows a force directed graph
+                        of political parties and the information they have reported to the
+                        <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> declaring the receipts that they have received.
+                        Political parties are required by Australian law to provide this information on a yearly basis for all
+                        amounts greater than $12,400 (current for the 2013-2014 year). Donors to political parties in Australia must
+                        also declare their donations.
+                    </p>
+                    <p>
+                        This information is required to be provided to the AEC by 20 October each year and is subsequently made public.
+                    </p>
+                    <p>
+                        All periodic disclosures published by the AEC are available for analysis on this site.  Filters can help you extract
+                        meaningful information.  The filters can be accessed by clicking on the <span class="glyphicon glyphicon-filter"></span>
+                        icon on the upper left of the chart.  This will open the filter controls, allowing you to search for a party or donor,
+                        select the year, parties or receipt types that interest you and also change the type of the view to a number of different
+                        options.
+                    </p>
+                    <p>
+                        It is possible that by selecting certain combinations of filters that the amount of data displayed could result in slow
+                        performance.  If this happens you can limit your filters to return a more restrictive set of data.
+                    </p>
+                    <p>
+                        It is also possible to zoom in and out of the chart by using your mouse scroll wheel, track pad or the slider
+                        control under the filter controls toggle button.
+                    </p>
+                    <p>
+                        Additional information regarding any party or entity on the main chart is displayed if you click on a node.  This
+                        will open the information panel on the right of the main display.  This panel can be toggled by clicking on the
+                        <span class="glyphicon glyphicon-info-sign"></span> button, located in the upper right of the main display.  You can
+                        also click on an entry in the displayed table to select another political party or payer.
+                    </p>
+                    <p>
+                        We love receiving feedback, and you can reach us at
+                        <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.  We do our best to read and reply to
+                        all messages.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="about-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">About</h4>
-          </div>
-          <div class="modal-body">
-            <p>The Political Donations visualisation website takes publically available data from the 
-               <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> and presents it in a graphical view
-               to make visual analysis of the donations to all political parties in Australia easier and
-               more intuitive.</p>
-            <p>The data is presented as a force directed layout showing both links and magnitudes of donations
-               to all major parties.  The data can be filtered and detailed information is available by clicking
-               on any node in the layout.</p>
-            <p>For questions or to provide feedback, please send email to <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
-               We love to hear about users who are extracting useful information or educating themselves about the
-               level of donations that political parties in Australia receive.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">About</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        The Political Donations visualisation website takes publically available data from the
+                        <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> and presents it in a graphical view
+                        to make visual analysis of the donations to all political parties in Australia easier and
+                        more intuitive.
+                    </p>
+                    <p>
+                        The data is presented as a force directed layout showing both links and magnitudes of donations
+                        to all major parties.  The data can be filtered and detailed information is available by clicking
+                        on any node in the layout.
+                    </p>
+                    <p>
+                        For questions or to provide feedback, please send email to <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
+                        We love to hear about users who are extracting useful information or educating themselves about the
+                        level of donations that political parties in Australia receive.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="getting-started-modal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Getting Started</h4>
-          </div>
-          <div class="modal-body">
-		<p>With politicaldonations.info it&rsquo;s easy to get all sorts of interesting and useful information regarding donations to political parites. To get you started here are some examples of ways you can use the site to answer simple questions.</p>
-		<p></p>
-		<p><b>How much did the Coalition receive in donations each year between 1998-2015?</b></p>
-		<ol start="1">
-		<li>If the Filter Panel on the left is not visible click the filter button above the zoom slider, then select 2014-2015. </li> <li>
-		Zoom out until you can see the full network.</li>
-		<li>Click on the square node that represents the Coalition (an easy way to find this node is to type Coalition into the Search field in the Filter Panel&ndash;the Coalition node will then highlight in pink).</li>
-		<li>Click on the Coalition node and details will appear on the Info Panel on the right side of the screen. Here you can see the total money received each year for the Coalition since 1998. The top 10 donors to the Coalition for the year currently selected in Filter Panel will also be shown.</li>
-		<li>Useful tips:&nbsp;Clicking on the name in the top of the Info Panel will launch a Google search for that donor. Clicking on a name in the details list in the Info Panel will take you to information on that party or donor.</li>
-		</ol>
-		<p></p>
-		<p><b>Who donated to both ALP and Coalition in 2013-2014?</b></p>
-		<ol start="1">
-		<li>If the filter panel on the left is not visible click the filter button above the zoom slider, then select 2013-2014. </li>
-		<li>Zoom out until you can see the full network. &nbsp;</li>
-		<li>Under Select Parties make sure only &ldquo;Australian Labour Party&rdquo; and &ldquo;Coalition&rdquo; are selected&rdquo; (if all parties are selected the easiest way to do this is to first click the clear link).</li>
-
-		<li>You can then see all the donors (round nodes) to both the &ldquo;Australian Labour Party&rdquo; and &ldquo;Coalition&rdquo; (square nodes). The entities that donated to both parties are clear as they have links to both parties. </li>
-		<li>You can click on the donors to both parties and details will come up for that donor on the Info Panel on the right side of the screen. For example the largest donor was Village Roadshow Limited (largest circle with a link to both parties). From the Info Panel you can see Village Roadshow Limited donated a total of $532,500 ($305,00 to Labour and $227,500 to the Coalition). The Info Panel also shows the full donation history of Village Roadshow Limited since 1998.</li>
-		</ol>
-		<p> </p>
-		<p><b>Who gave donations over a $1 million in 2014-2015?</b></p>
-		<ol start="1">
-		<li>If the Filter Panel on the left is not visible click the filter button above the zoom slider, then select 2014-2015 as the Financial year.</li>
-		<li>Zoom out until you can see the full network. &nbsp;</li>
-		<li>At the bottom of the Filter Panel there are sliders where you can select the minimum and maximum donations to display. Adjust the lower slider till it is just under $1,000,000. </li>
-		<li>The donors (round nodes) who donated over this account are displayed.Click on donors or parties, and their details will come up on the right side of the screen in the Info Panel.</li>
-		</ol>
-		<p></p>
-		<p><b>Searching for a specific donor to see how much they gave &iacute;n a specific year?</b></p>
-		<ol start="1">
-		<li>If the Filter Panel on the left is not visible click the filter button above the zoom slider, then select the year of interest (for this example use 2014-2015) and zoom out so the whole network is displayed</li>
-		<li>Type text in the search bar in the Filter Panel to find specific donors (for this example search for &ldquo;Cormack&rdquo;). You&rsquo;ll see the node representing the &ldquo;Cormack Foundation&rdquo; highlighted in pink. Click on that node and you&rsquo;ll see in the Info Panel that the Cormack Foundation donated $4,460,000 to the Coalition in 2014-2015. The history of all donations by the Cormack Foundation is also shown.</li>
-		</ol>
-	  </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Getting Started</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        With politicaldonations.info it&rsquo;s easy to get all sorts of interesting and useful information regarding donations to political parites. To get you started here are some examples of ways you can use the site to answer simple questions.
+                    </p>
+                    <p></p>
+                    <p>
+                        <b>How much did the Coalition receive in donations each year between 1998-2015?</b>
+                    </p>
+                    <ol start="1">
+                        <li>If the Filter Panel on the left is not visible click the filter button above the zoom slider, then select 2014-2015. </li>
+                        <li>Zoom out until you can see the full network.</li>
+                        <li>Click on the square node that represents the Coalition (an easy way to find this node is to type Coalition into the Search field in the Filter Panel&ndash;the Coalition node will then highlight in pink).</li>
+                        <li>Click on the Coalition node and details will appear on the Info Panel on the right side of the screen. Here you can see the total money received each year for the Coalition since 1998. The top 10 donors to the Coalition for the year currently selected in Filter Panel will also be shown.</li>
+                        <li>Useful tips:&nbsp;Clicking on the name in the top of the Info Panel will launch a Google search for that donor. Clicking on a name in the details list in the Info Panel will take you to information on that party or donor.</li>
+                    </ol>
+                    <p></p>
+                    <p>
+                        <b>Who donated to both ALP and Coalition in 2013-2014?</b>
+                    </p>
+                    <ol start="1">
+                        <li>If the filter panel on the left is not visible click the filter button above the zoom slider, then select 2013-2014. </li>
+                        <li>Zoom out until you can see the full network. &nbsp;</li>
+                        <li>Under Select Parties make sure only &ldquo;Australian Labour Party&rdquo; and &ldquo;Coalition&rdquo; are selected&rdquo; (if all parties are selected the easiest way to do this is to first click the clear link).</li>
+                        <li>You can then see all the donors (round nodes) to both the &ldquo;Australian Labour Party&rdquo; and &ldquo;Coalition&rdquo; (square nodes). The entities that donated to both parties are clear as they have links to both parties. </li>
+                        <li>You can click on the donors to both parties and details will come up for that donor on the Info Panel on the right side of the screen. For example the largest donor was Village Roadshow Limited (largest circle with a link to both parties). From the Info Panel you can see Village Roadshow Limited donated a total of $532,500 ($305,00 to Labour and $227,500 to the Coalition). The Info Panel also shows the full donation history of Village Roadshow Limited since 1998.</li>
+                    </ol>
+                    <p></p>
+                    <p>
+                        <b>Who gave donations over a $1 million in 2014-2015?</b>
+                    </p>
+                    <ol start="1">
+                        <li>If the Filter Panel on the left is not visible click the filter button above the zoom slider, then select 2014-2015 as the Financial year.</li>
+                        <li>Zoom out until you can see the full network. &nbsp;</li>
+                        <li>At the bottom of the Filter Panel there are sliders where you can select the minimum and maximum donations to display. Adjust the lower slider till it is just under $1,000,000. </li>
+                        <li>The donors (round nodes) who donated over this account are displayed.Click on donors or parties, and their details will come up on the right side of the screen in the Info Panel.</li>
+                    </ol>
+                    <p></p>
+                    <p>
+                        <b>Searching for a specific donor to see how much they gave &iacute;n a specific year?</b>
+                    </p>
+                    <ol start="1">
+                        <li>If the Filter Panel on the left is not visible click the filter button above the zoom slider, then select the year of interest (for this example use 2014-2015) and zoom out so the whole network is displayed</li>
+                        <li>Type text in the search bar in the Filter Panel to find specific donors (for this example search for &ldquo;Cormack&rdquo;). You&rsquo;ll see the node representing the &ldquo;Cormack Foundation&rdquo; highlighted in pink. Click on that node and you&rsquo;ll see in the Info Panel that the Cormack Foundation donated $4,460,000 to the Coalition in 2014-2015. The history of all donations by the Cormack Foundation is also shown.</li>
+                    </ol>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="body-content container-fluid">
         <div id="vis"></div>
-    </div><!-- /.container -->
+    </div>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
     <script src="js/d3.slider.js"></script>
     <script src="js/donations-visualiser.js"></script>
-  </body>
 
-  <!-- Google Analytics -->
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-    ga('create', 'UA-77241683-1', 'auto');
-    ga('send', 'pageview');
-
-  </script>
+        ga('create', 'UA-77241683-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>
