@@ -13,6 +13,15 @@ body {
     padding: 0;
 }
 
+.navbar-default {
+    padding: 0 2rem;
+}
+@media ( min-width: 768px ) {
+    .navbar-default {
+        padding: 0;
+    }
+}
+
 .navmenu {
     overflow-x: hidden;
 }
