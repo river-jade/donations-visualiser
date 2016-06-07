@@ -125,6 +125,27 @@ d3.select("#receipt-type-select-all").on("click", function() { selectAll('#recei
 d3.select("#receipt-type-select-clear").on("click", function() { clearSelection('#receipt_type_select'); });
 d3.select("#clear-search").on("click", clearSearch);
 
+// on 'escape' key press, close the info window, and zoomToFit
+window.addEventListener("keydown", function (event) {
+  if (event.defaultPrevented) return;
+
+  var handled = false;
+  if (event.key === 27) {
+    handled = true;
+  } else if (event.keyIdentifier === 27) {
+    handled = true;
+  } else if (event.keyCode === 27) {
+    handled = true;
+  }
+
+  if (handled) {
+    zoomToFit();
+    toggleInfoPanel(null, false);
+    toggleFilterPanel(null, false);
+    // Suppress "double action" if event handled
+    event.preventDefault();
+  }
+}, true);
 
 // ============================================================
 // Force Layout
