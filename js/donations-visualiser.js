@@ -190,6 +190,9 @@ var data_request = d3.json("data/all_data.json")
         $("#loading-modal").modal('hide');
         processData(data);
 
+        // zoom out a ways initially
+        zoomTo(0.5).event(container);
+
         updateSlider();
     })
     .on("error", function() { console.log("error"); })
