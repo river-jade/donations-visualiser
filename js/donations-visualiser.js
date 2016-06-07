@@ -815,7 +815,13 @@ function update(partyNodes, parties, selectedParties, resetControls) {
     nodeElements.enter()
         .append("path")
         .attr("id", function(d) { return "node-" + d.id; })
-        .attr("class", "node")
+        .attr("class", function(d) {
+            return [
+                'node',
+                toTrainCase(d.name),
+                toTrainCase(d.Type)
+            ].join(' ');
+        })
         .attr("title", function(n) { return n.name; })
         .attr("d", d3.svg.symbol()
         .size(function(d) {
