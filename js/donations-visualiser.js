@@ -716,70 +716,68 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         return;
     }
 
-//var entity_nodes = nodes.filter(function(d) { return d.Type == "Entity"; });
+    //var extents = d3.extent(entity_nodes, function(n) { return n.total; });
+    var extents = d3.extent(nodes, function(n) { return n.total; });
 
-//var extents = d3.extent(entity_nodes, function(n) { return n.total; });
-var extents = d3.extent(nodes, function(n) { return n.total; });
+    var start = extents[0],
+        end = extents[1],
+        mean = d3.mean(nodes, function(d) { return d.total; }),
+        median = d3.median(nodes, function(d) { return d.total; });
 
+    if (resetControls) {
+        var displayFormat = d3.format("$0,0f");
+        value_slider.scale(d3.scale.log().domain(extents));
+        value_slider.min(extents[0]).max(extents[1]);
+        value_slider.value([20000, extents[1]]);
 
-var start = extents[0],
-end = extents[1],
-//mean = d3.mean(entity_nodes, function(d) { return d.total; }),
-//median = d3.median(entity_nodes, function(d) { return d.total; });
-mean = d3.mean(nodes, function(d) { return d.total; }),
-median = d3.median(nodes, function(d) { return d.total; });
+        d3.select("#value-filter-min").attr("value", displayFormat(20000));
+        d3.select("#value-filter-max").attr("value", displayFormat(extents[1]));
+        d3.select("#value-filter").html("");
+        d3.select("#value-filter").call(value_slider);
+    }
 
-if (resetControls) {
-    var displayFormat = d3.format("$0,0f");
-    value_slider.scale(d3.scale.log().domain(extents));
-    value_slider.min(extents[0]).max(extents[1]);
-    value_slider.value([20000, extents[1]]);
+    nodeElements = nodesG.selectAll(".node")
+        .data(force.nodes(), function(d, i) {
+            return d.name + "-" + i;
+        });
 
-    d3.select("#value-filter-min").attr("value", displayFormat(20000));
-    d3.select("#value-filter-max").attr("value", displayFormat(extents[1]));
-    d3.select("#value-filter").html("");
-    d3.select("#value-filter").call(value_slider);
-}
-
-nodeElements = nodesG.selectAll(".node")
-    .data(force.nodes(), function(d, i) {
-        return d.name + "-" + i;
-    });
-
-nodeElements.enter().append("path").attr("class", "node");
-nodeElements
-    .attr("d", d3.svg.symbol()
+    // enter
+    nodeElements.enter()
+        .append("path")
+        .attr("id", function(d) { return "node-" + d.id; })
+        .attr("class", "node")
+        .attr("title", function(n) { return n.name; })
+        .attr("d", d3.svg.symbol()
         .size(function(d) {
             return d.size = Math.sqrt(d.total);
         })
-        .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); })
-    )
-    .attr("id", function(d, i) { return "node-" + i; })
-    .style("stroke", "#ddd")
-    .style("stroke-width", 1.0)
-    .style("fill", function(d, i) { return nodeColors(d.name); })
-    .on("mouseover", nodeOver)
-    .on("click", nodeClick)
-    .on("mouseout", nodeOut);
+        .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
+        .style("stroke", "#ddd")
+        .style("stroke-width", 1.0)
+        .style("fill", function(d, i) { return nodeColors(d.name); })
+        .on("mouseover", nodeOver)
+        .on("click", nodeClick)
+        .on("mouseout", nodeOut);
 
-nodeElements.exit().remove();
-nodeElements.attr("title", function(n) {
-    return n.name;
-});
+    // no update required
 
+    // exit
+    nodeElements.exit().remove();
 
-linkElements = linksG.selectAll("line.link")
-    .data(force.links(), function(d) { return d.source.id + "-" + d.target.id; })
+    linkElements = linksG.selectAll("line.link")
+        .data(force.links(), function(d) {
+            return d.source.id + "-" + d.target.id;
+        });
 
-linkElements.enter().append("line").attr("class", "link")
-    .style("stroke", "#ddd")
-    .style("stroke-width", 1.0)
-    .style("stroke-opacity", 0.5);
-linkElements.exit().remove();
+    linkElements.enter().append("line")
+        .attr("class", "link")
+        .style("stroke", "#ddd")
+        .style("stroke-width", 1.0)
+        .style("stroke-opacity", 0.5);
+    linkElements.exit().remove();
 
-updateInfoPanel();
-
-force.start();
+    updateInfoPanel();
+    force.start();
 }
 
 function measureBounds(node) {
