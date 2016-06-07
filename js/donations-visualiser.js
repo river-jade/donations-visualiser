@@ -10,6 +10,7 @@ var navbarHeight,
     height,
     bounds = {},
     containerDimensions = {};
+    initialZoom = true;
 
 var party_map = {},
     entity_map = {},
@@ -76,6 +77,8 @@ function resizeWindow() {
     svg.attr("width", width)
         .attr("height", height);
 
+    initialZoom = true;
+
     force.size([width, height]);
     force.start();
 }
@@ -114,6 +117,7 @@ $('#filter-toggle').on('click', toggleFilterPanel);
 
 d3.select("#zoom-in").on("click", zoomIn);
 d3.select("#zoom-out").on("click", zoomOut);
+d3.select("#zoom-to-fit").on("click", zoomToFit);
 
 d3.select("#party-select-all").on("click", function() { selectAll('#party_select'); });
 d3.select("#party-select-clear").on("click", function() { clearSelection('#party_select'); });
@@ -215,6 +219,30 @@ function zoomTo(newScale) {
             ]);
     }
     return zoom;
+}
+
+function zoomToFit() {
+    var xRatio = width / bounds.width;
+    var yRatio = height / bounds.height;
+    // zoom out a bit further than our greateset dimension requires
+    var newScale = Math.min(xRatio, yRatio) * 0.95;
+
+    const topLeft = [
+        0 - bounds.left,
+        0 - bounds.top,
+    ];
+
+    // the leading zero here is the viewPort origin
+    const centreScaled = [
+        (0 + width / 2) - ((bounds.left + bounds.width / 2) * newScale),
+        (0 + height / 2) - ((bounds.top + bounds.height / 2) * newScale),
+    ];
+
+    zoom.scale(newScale)
+        .translate(centreScaled)
+        .event(container.transition().duration(350));
+
+    updateSlider();
 }
 
 function updateSlider() {
@@ -815,6 +843,11 @@ function tick(event) {
     nodeElements
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .each(measureBounds);
+
+    if (initialZoom && event.alpha < 0.05) {
+        initialZoom = false;
+        zoomToFit();
+    }
 }
 
 function processData(data) {
