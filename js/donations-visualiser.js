@@ -266,6 +266,22 @@ function zoomToFit() {
     updateSlider();
 }
 
+// prefer using id as a selector, as there are duplicate classnames
+function zoomToNode(selector) {
+    var node = d3.select(selector).node().__data__;
+    var newScale = 0.8;
+
+    const nodeCentred = [
+        (0 + width / 2) - (node.x * newScale),
+        (0 + height / 2) - (node.y * newScale),
+    ];
+    zoom.scale(newScale)
+        .translate(nodeCentred)
+        .event(container.transition().duration(350));
+
+    updateSlider();
+}
+
 function updateSlider() {
     if (d3.event)
         zoom_slider.property("value", d3.event.scale);
@@ -392,6 +408,7 @@ function updateInfoPanel() {
             '</tbody></table>\n',
             '<h4>Total Amounts Received</h4>\n',
             '<svg></svg>',
+            '<button class="btn btn-default" onClick="zoomToNode(\'#node-' + clickedNode.id + '\')">Zoom to node</button>',
         ].join('');
         d3.select("#info-panel").html(html);
 
@@ -428,6 +445,7 @@ function updateInfoPanel() {
             '</tbody></table>\n',
             '<h4>Total Amounts Paid</h4>\n',
             '<svg></svg>',
+            '<button class="btn btn-default" onClick="zoomToNode(\'#node-' + clickedNode.id + '\')">Zoom to node</button>',
         ].join('');
         d3.select("#info-panel").html(html);
 
