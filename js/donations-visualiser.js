@@ -10,7 +10,7 @@ var navbarHeight,
     height,
     bounds = {},
     containerDimensions = {};
-    initialZoom = true;
+    fireCoolingHandler = true;
 
 var party_map = {},
     entity_map = {},
@@ -77,7 +77,7 @@ function resizeWindow() {
     svg.attr("width", width)
         .attr("height", height);
 
-    initialZoom = true;
+    fireCoolingHandler = true;
 
     force.size([width, height]);
     force.start();
@@ -186,6 +186,19 @@ var data_request = d3.json("data/all_data.json")
     .on("error", function() { console.log("error"); })
     .get();
 
+
+// called by tick() when the force has cooled down
+function coolHandler() {
+    if (fireCoolingHandler) {
+        fireCoolingHandler = false;
+        zoomToFit();
+
+        window.setTimeout(function() {
+            toggleFilterPanel(null, true);
+            toggleInfoPanel(null, true);
+        }, 300);
+    }
+}
 
 //d3.json("data/all_data.json", processData);
 
@@ -880,9 +893,9 @@ function tick(event) {
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
         .each(measureBounds);
 
-    if (initialZoom && event.alpha < 0.05) {
-        initialZoom = false;
-        zoomToFit();
+    // alpha is the internal cooling value: when it reaches zero, the force layout has finished moving
+    if (event.alpha < 0.05) {
+        coolHandler();
     }
 }
 
