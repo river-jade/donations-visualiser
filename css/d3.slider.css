@@ -8,7 +8,7 @@
 
 .d3-slider-horizontal {
     height: .8em;
-}  
+}
 
 .d3-slider-range {
   background:#2980b9;
@@ -29,7 +29,7 @@
 .d3-slider-vertical {
     width: .8em;
     height: 100px;
-}      
+}
 
 .d3-slider-handle {
     position: absolute;
@@ -53,7 +53,7 @@
 
 .d3-slider-axis {
     position: relative;
-    z-index: 1;    
+    z-index: 1;
 }
 
 .d3-slider-axis-bottom {
@@ -82,5 +82,5 @@
 .d3-slider-vertical .d3-slider-handle {
     left: -.25em;
     margin-left: 0;
-    margin-bottom: -.6em;      
+    margin-bottom: -.6em;
 }
