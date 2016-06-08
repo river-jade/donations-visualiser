@@ -46,38 +46,72 @@ var tour = new Tour({
                 "You can hide it again at any time and it will ",
                 "remember the settings you entered last."
             ].join(' '),
-            onShow: function(tour) {
-                console.log('onShow', this);
-                window.setTimeout(function() {
-                    toggleFilterPanel(null, true);
-                }, 1500);
-                window.setTimeout(function() {
-                    tour.redraw();
-                }, 500);
+            // onShown: function(tour) {
+            //     window.setTimeout(function() {
+            //         // not working, use other events instead
+            //         tour.redraw();
+            //     }, 1700);
+            // }
+            onNext: function(tour) {
+                toggleFilterPanel(null, true);
             },
-            // onNext: function (tour) {}
         },
         {
-            element: ".navmenu-fixed-left",
+            element: "#search",
             title: "Locate the Coalition",
             content: [
-                "Locate the Coalition by entering it into ",
+                "...by entering 'coalition' into ",
                 "the Search field in the Filter Panel",
-                "the Coalition node ",
-                "will then highlight in pink).",
             ].join(' '),
-            onNext: function() {
+            onShown: function(tour) {
                 window.setTimeout(function() {
                     inputText($searchInput, 'coalition');
-                }, 200);
+                    // search();
+                }, 800);
             }
-            // backdropPadding: 0,
         },
         {
-            // element: ".navmenu-fixed-left",
+            element: "#search",
+            title: "Locate the Coalition",
+            content: [
+                "...the Coalition node will then highlight in pink).",
+            ].join(' '),
+            onShown: function(tour) {
+                window.setTimeout(function() {
+                    // inputText($searchInput, 'coalition');
+                    search();
+                }, 800);
+            }
+        },
+        {
+            element: '.coalition.party',
             title: "Step 4",
             content: [
-                "hipster ipsum",
+                "Click on the Coalition party to reveal its details in the ",
+                "info panel. Parties are shown as squares and donors are circles.",
+            ].join(' '),
+            onNext: function() {
+                tour.pause();
+                d3Click('.coalition.party');
+                // wait for the element to exist before proceeding
+                window.setTimeout(function() {
+                    tour.resume();
+                }, 500);
+            }
+        },
+        {
+            element: '#info-table',
+            placement: "left",
+            title: "Browse top donors and receipts by year",
+            content: [
+                "If you loose track of the node, you can zoom to it by clicking the button ",
+                "at the bottom of the info panel."
+            ].join(' ')
+        },
+        {
+            title: "End!",
+            content: [
+                "Explore other tours by clicking in an option in the top navigation bar.",
             ].join(' '),
             orphan: true
         },
@@ -1080,10 +1114,21 @@ function inputText(selector, text) {
     var $input;
     if (selector.jQuery) $input = selector;
     else $input = $(selector);
-    console.log('$input, text', $input, text);
     // $input.value = text;
+
     $input.val(text);
+    console.log('$input, text', $input, text);
+    // why is the search not triggered?
     $input.trigger('change');
+}
+
+// programmatically trigger a click with the expected parameters in the correct context
+// http://stackoverflow.com/a/24259102/2586761
+function d3Click(selector) {
+    d3.selectAll(selector).each(function(d, i) {
+        var onClickFunc = d3.select(this).on("click");
+        onClickFunc.apply(this, [d, i]);
+    });
 }
 
 // ============================================================
