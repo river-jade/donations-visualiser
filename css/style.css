@@ -1,14 +1,25 @@
 html, body {
-  //height: 100%;
-  overflow: hidden;
+    //height: 100%;
+    overflow: hidden;
 }
 
 body {
-  padding: 50px 0 0 0;
+    padding: 50px 0 0 0;
 }
 
 .body-content {
+    position: relative;
+    overflow: hidden;
     padding: 0;
+}
+
+.navbar-default {
+    padding: 0 2rem;
+}
+@media ( min-width: 768px ) {
+    .navbar-default {
+        padding: 0;
+    }
 }
 
 .navmenu {
@@ -16,39 +27,25 @@ body {
 }
 
 .navbar-toggle {
-  float: left;
-  margin-left: 15px;
+    float: left;
+    margin-left: 15px;
 }
 
 .navbar-toggle.right {
-  float: right;
-  margin-right: 15px;
-}
-
-div#filter-button {
-    position: absolute;
-    top: 60px;
-    left: 10px;
-}
-
-div#info-button {
-    position: absolute;
-    top: 60px;
-    right: 10px;
+    float: right;
+    margin-right: 15px;
 }
 
 @media (min-width: 0) {
-  .navbar-toggle {
-    display: block; /* force showing the toggle */
-  }
+    .navbar-toggle {
+        /* force showing the toggle */
+        display: block;
+    }
 }
 
-form#filters {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-form#filters label, form#filters input, form#filters select {
+form#filters label,
+form#filters input,
+form#filters select {
     width: 100%;
 }
 
@@ -64,9 +61,7 @@ form#filters input[type=checkbox] {
     font-weight: normal;
 }
 
-#info-panel {
-    margin: 0 15px 0 15px;
-}
+#info-panel {}
 
 #info-table tr:hover {
     cursor: pointer;
@@ -90,51 +85,56 @@ form#filters input[type=checkbox] {
     text-align: right;
 }
 
-#hover-info {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  -moz-border-radius:3px;
-  border-radius: 3px;
-  border: 2px solid #DDD;
-  background: #fff;
-  opacity: 1;
-  color: #000;
-  padding: 10px 10px 0 10px;
-  width: 300px;
-  font-size: 15px;
-  z-index: 120;
+.hover-info {
+    position: absolute;
+    width: 300px;
+    z-index: 120;
+    padding: 10px 10px 0 10px;
+
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    background: #fff;
+
+    opacity: 1;
+    color: #000;
+    font-size: 15px;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out, visibility 250ms;
 }
 
-#hover-info p.main {
-  font-size: 15px;
-  text-align: center;
-  padding:0;
-  margin:0;
+.hover-info p.main {
+    font-size: 15px;
+    text-align: center;
+    padding:0;
+    margin:0;
 }
 
 hr.tooltip-hr {
-  padding:3px 0 0 0;
-  margin:3px 0 3px 0;
+    padding:3px 0 0 0;
+    margin:3px 0 3px 0;
 }
 
-#hover-info .title {
-  font-size: 20px;
-  line-height: 24px;
+.hover-info .title {
+    font-size: 20px;
+    line-height: 24px;
 }
- 
-#hover-info .name {
-  font-weight:bold;
+
+.hover-info .name {
+    font-weight:bold;
 }
 
 #zoom-controls {
-  position: absolute;
-  top: 100px;
-  left: 24px;
+    position: absolute;
+    top: 60px;
+    right: -36px;
 }
 
-#zoom-in,#zoom-out {
-  cursor: pointer; cursor: hand;
+#zoom-controls > * {
+    display: block;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
 }
 
 #party_select {
@@ -152,20 +152,78 @@ input[type=range][orient=vertical]
 }
 
 .bar {
-  fill: #337ab7;
+    fill: #337ab7;
 }
 
 .axis text {
-  font: 10px sans-serif;
+    font: 10px sans-serif;
 }
 
 .axis path,
 .axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .node {
-  cursor: pointer;
+    cursor: pointer;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.offcanvas {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    overflow: visible;
+
+    background-color: white;
+
+    transform: translateZ(0);
+    transition: transform 250ms ease-in-out;
+}
+.offcanvas .wrapper {
+    height: 100%;
+    overflow: visible;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out;
+}
+.scroll-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 2rem;
+}
+.offcanvas.open {
+    transform: translateX(0);
+}
+.offcanvas.open .wrapper {
+    opacity: 1;
+}
+
+.filter-panel {
+    left: 0;
+    transform: translateX(-300px);
+    border-right: 1px solid #e7e7e7;
+}
+.info-panel {
+    right: 0;
+    transform: translateX(300px);
+    border-left: 1px solid #e7e7e7;
+}
+
+#filter-toggle {
+    position: absolute;
+    top: 24px;
+    right: -48px;
+}
+
+#info-toggle {
+    position: absolute;
+    top: 24px;
+    left: -50px;
 }
