@@ -23,7 +23,8 @@ setLayoutSizes();
 
 // 1, 10k, 100k, 1M, 10M, 100M
 var domain = [0, 4, 5, 6, 7, 8].map(function(x) { return Math.pow(10, x); });
-var nodeColors = d3.scale.threshold().domain(domain).range(d3.scale.category10().range());
+var range = ["#7bd84e", "#1d306e", "#125551", "#13a89e", "#2fd696", "#094c67"];
+var nodeColors = d3.scale.threshold().domain(domain).range(range);
 var dollarFormat = d3.format("$,.0f");
 
 var svg = d3.select("div#vis").append("svg")
@@ -521,8 +522,8 @@ function nodeClick(node, i) {
     logClick('node', 'click', node.name);
 
     if (clickedNode === node) {
-	toggleInfoPanel(null);
-	return;
+        toggleInfoPanel(null);
+        return;
     }
     if (clickedNode) {
         clickedNode.clicked = false;
