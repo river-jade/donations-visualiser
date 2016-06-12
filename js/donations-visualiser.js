@@ -21,7 +21,9 @@ var party_map = {},
 
 setLayoutSizes();
 
-var nodeColors = d3.scale.category20();
+// 1, 10k, 100k, 1M, 10M, 100M
+var domain = [0, 4, 5, 6, 7, 8].map(function(x) { return Math.pow(10, x); });
+var nodeColors = d3.scale.threshold().domain(domain).range(d3.scale.category10().range());
 var dollarFormat = d3.format("$,.0f");
 
 var svg = d3.select("div#vis").append("svg")
@@ -316,7 +318,7 @@ function search() {
                 .style("stroke", "#ddd");
         } else {
             d.searched = false;
-            return element.style("fill", function(d, i) { return nodeColors(d.name); })
+            return element.style("fill", function(d, i) { return nodeColors(d.total); })
                 .style("stroke", "#ddd");
         }
     });
@@ -831,7 +833,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
         .style("stroke", "#ddd")
         .style("stroke-width", 1.0)
-        .style("fill", function(d, i) { return nodeColors(d.name); })
+        .style("fill", function(d, i) { return nodeColors(d.total); })
         .on("mouseover", nodeOver)
         .on("click", nodeClick)
         .on("mouseout", nodeOut);
@@ -926,7 +928,6 @@ function processData(data) {
 
     names = data.parties;
     names.concat(data.entities.map(function(d) { return d.Name; }));
-    nodeColors.domain(names);
 
     data.receipts.forEach(function(d, i) {
         d.party = party_map[d.Party];
