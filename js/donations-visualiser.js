@@ -854,7 +854,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
 
     linkElements.enter().append("line")
         .attr("class", "link")
-        .style("stroke", "#ddd")
+        .style("stroke", "#888")
         .style("stroke-width", 1.0)
         .style("stroke-opacity", 0.5);
     linkElements.exit().remove();
