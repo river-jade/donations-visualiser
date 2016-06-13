@@ -26,7 +26,6 @@ var party_map = {},
 var tour = new Tour({
     backdrop: true,
     debug: true,
-    // orphan: true,
     delay: {
         show: 400,
         hide: 0
@@ -204,12 +203,7 @@ d3.select("#clear-search").on("click", clearSearch);
 
 var $gettingStarted = $('#getting-started-modal');
 d3.select('.js-handleStartTour').on('click', function() {
-    console.log('oy', this);
     if (tour.ended) tour.restart();
-    // tour.goTo(0);
-    // $gettingStarted.one('hidden.bs.modal', function() {
-    // });
-    // $gettingStarted.modal('hide');
 });
 
 // on 'escape' key press, close the info window, and zoomToFit
@@ -274,6 +268,17 @@ var data_request = d3.json("data/all_data.json")
     .get();
 
 
+// returns true if this is the first time the app has loaded
+// (or cookies have been reset)
+function firstLoad() {
+    if (Cookies.get("loaded") === "true") {
+        return false;
+    } else {
+        Cookies.set("loaded", "true", { expires: Infinity });
+        return true;
+    }
+}
+
 // called by tick() when the force has cooled down
 function coolHandler() {
     if (fireCoolingHandler) {
@@ -282,6 +287,10 @@ function coolHandler() {
 
         window.setTimeout(function() {
             toggleFilterPanel(null, true);
+            if (firstLoad()) {
+                tour.init();
+                tour.restart();
+            }
         }, 300);
     }
 }
