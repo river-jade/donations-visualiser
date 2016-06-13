@@ -522,8 +522,8 @@ function nodeClick(node, i) {
     logClick('node', 'click', node.name);
 
     if (clickedNode === node) {
-	toggleInfoPanel(null);
-	return;
+        toggleInfoPanel(null);
+        return;
     }
     if (clickedNode) {
         clickedNode.clicked = false;
