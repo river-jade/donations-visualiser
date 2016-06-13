@@ -22,8 +22,9 @@ var party_map = {},
 setLayoutSizes();
 
 // 1, 10k, 100k, 1M, 10M, 100M
-var domain = [0, 4, 5, 6, 7, 8].map(function(x) { return Math.pow(10, x); });
-var nodeColors = d3.scale.threshold().domain(domain).range(d3.scale.category10().range());
+var domain = [4, 5, 6, 7, 8].map(function(x) { return Math.pow(10, x); });
+var range = ["#0E403D", "#125551", "#21A271", "#25B880", "#2fd696"];
+var nodeColors = d3.scale.threshold().domain(domain).range(range);
 var dollarFormat = d3.format("$,.0f");
 
 var svg = d3.select("div#vis").append("svg")
