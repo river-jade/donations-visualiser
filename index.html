@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <!-- code for fb share button -->
+    <!-- code for social share buttons -->
     <div id="fb-root"></div>
     <script>(function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
@@ -23,8 +23,25 @@
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=206952646117768";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-    <!-- end code for fb share button -->
+    }(document, 'script', 'facebook-jssdk'));
+
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));</script>
+    <!-- end code for social share buttons -->
 
     <div class="navbar navbar-default navbar-fixed-top">
         <h4 class="navbar-text">Australian Political Donations</h4>
@@ -35,11 +52,12 @@
         <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
         onclick="logClick('button', 'getting started')">Getting Started</button>
 
-        <!-- fb share button -->
-        <div class="fb-share-button navbar-text navbar-right" data-href="http://au.politicicaldonations.info/" data-layout="button" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fau.politicicaldonations.info%2F&amp;src=sdkpreparse">Share</a></div>
         <div class="navbar-text navbar-right">
             Data obtained from <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/">AEC</a>
         </div>
+        <!-- share buttons -->
+        <div class="navbar-text navbar-right"><a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="politicaldonationsau">Tweet</a></div> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div class="fb-share-button navbar-text navbar-right" data-href="http://au.politicicaldonations.info/" data-layout="button" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fau.politicicaldonations.info%2F&amp;src=sdkpreparse">Share</a></div>
     </div>
 
     <div class="body-content container-fluid">
