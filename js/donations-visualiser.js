@@ -33,87 +33,61 @@ var tour = new Tour({
     },
     steps: [
         {
-            title: "How much did the Coalition receive in donations each year between 1998-2015?",
-            content: "...let's get started",
+            title: "About this site",
+            content: "This graph represents all of the donations to Australian " +
+               "federal political parties in a given financial year.",
+            element: "#vis .graph .container",
             orphan: true,
+            backdrop: true,
         },
         {
-            element: "#filter-button",
-            title: "Open the filters panel",
-            // content: "Open the filters panel",
-            content: [
-                "Click this button to toggle the filters panel.",
-                "You can hide it again at any time and it will ",
-                "remember the settings you entered last."
-            ].join(' '),
-            // onShown: function(tour) {
-            //     window.setTimeout(function() {
-            //         // not working, use other events instead
-            //         tour.redraw();
-            //     }, 1700);
-            // }
-            onNext: function(tour) {
-                toggleFilterPanel(null, true);
-            },
+            title: "About this site",
+            content: "Square nodes represent political parties",
+            element: "path.node.australian-labor-party.party",
+            orphan: true,
+            backdrop: true,
         },
         {
-            element: "#search",
-            title: "Locate the Coalition",
-            content: [
-                "...by entering 'coalition' into ",
-                "the Search field in the Filter Panel",
-            ].join(' '),
-            onShown: function(tour) {
-                window.setTimeout(function() {
-                    inputText($searchInput, 'coalition');
-                    // search();
-                }, 800);
-            }
+            title: "About this site",
+            content: "Circular nodes represent donors",
+            element: "path.node.westpac-banking-corporation.entity",
+            orphan: true,
+            backdrop: true,
         },
         {
-            element: "#search",
-            title: "Locate the Coalition",
-            content: [
-                "...the Coalition node will then highlight in pink).",
-            ].join(' '),
-            onShown: function(tour) {
-                window.setTimeout(function() {
-                    // inputText($searchInput, 'coalition');
-                    search();
-                }, 800);
-            }
-        },
-        {
-            element: '.coalition.party',
-            title: "Step 4",
-            content: [
-                "Click on the Coalition party to reveal its details in the ",
-                "info panel. Parties are shown as squares and donors are circles.",
-            ].join(' '),
-            onNext: function() {
-                tour.pause();
-                d3Click('.coalition.party');
-                // wait for the element to exist before proceeding
-                window.setTimeout(function() {
-                    tour.resume();
-                }, 500);
-            }
-        },
-        {
-            element: '#info-table',
+            title: "Details view",
+            content: "Clicking on a node gives details for that entity (eg party or " +
+                "donor), including top donations, and donations over time.",
+            element: "path.node.coalition.party",
+            backdrop: true,
             placement: "left",
-            title: "Browse top donors and receipts by year",
-            content: [
-                "If you loose track of the node, you can zoom to it by clicking the button ",
-                "at the bottom of the info panel."
-            ].join(' ')
+            onShow: function(tour) {
+                d3Click("path.node.coalition.party");
+                toggleInfoPanel(null, true);
+            }
         },
         {
-            title: "End!",
-            content: [
-                "Explore other tours by clicking in an option in the top navigation bar.",
-            ].join(' '),
-            orphan: true
+            title: "Details view",
+            content: "Clicking the name in the details panel opens a Google search for that entity.",
+            element: "#info-panel h3 a",
+            backdrop: true,
+            placement: "left",
+        },
+        {
+            title: "Details view",
+            content: "Hovering over the donor name shows them in the graph. Click on a name for more details.",
+            element: "#info-table",
+            backdrop: true,
+            placement: "left",
+        },
+        {
+            title: "Filter panel",
+            content: "You can filter the results, and show different years, by opening the filter panel.",
+            element: "#filter-toggle",
+            backdrop: true,
+            onShow: function(tour) {
+                toggleFilterPanel(null, true);
+            }
         },
     ],
     afterSetState: function (key, value) {
