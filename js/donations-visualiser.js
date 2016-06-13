@@ -197,7 +197,6 @@ function coolHandler() {
 
         window.setTimeout(function() {
             toggleFilterPanel(null, true);
-            toggleInfoPanel(null, true);
         }, 300);
     }
 }
