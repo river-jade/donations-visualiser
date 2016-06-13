@@ -3,10 +3,7 @@ var w = window,
     e = d.documentElement,
     g = d3.select("body").node(),
     navbar = d3.select(".navbar-default").node(),
-    hoverInfo = d3.select(".hover-info"),
-    filterPanel = d3.select('.filter-panel'),
-    infoPanel = d3.select(".info-panel"),
-    $searchInput = $('#search');
+    hoverInfo = d3.select(".hover-info");
 
 var navbarHeight,
     width,
@@ -22,81 +19,12 @@ var party_map = {},
     clickedNode = null,
     oldYear = -1;
 
-// http://bootstraptour.com/api/
-var tour = new Tour({
-    backdrop: true,
-    debug: true,
-    delay: {
-        show: 400,
-        hide: 0
-    },
-    steps: [
-        {
-            title: "About this site",
-            content: "This graph represents all of the donations to Australian " +
-               "federal political parties in a given financial year.",
-            element: "#vis .graph .container",
-            placement: "left",
-            backdrop: true,
-        },
-        {
-            title: "About this site",
-            content: "Square nodes represent political parties",
-            element: "path.node.australian-labor-party.party",
-            backdrop: true,
-        },
-        {
-            title: "About this site",
-            content: "Circular nodes represent donors",
-            element: "path.node.westpac-banking-corporation.entity",
-            backdrop: true,
-        },
-        {
-            title: "Details view",
-            content: "Clicking on a node gives details for that entity (eg party or " +
-                "donor), including top donations, and donations over time.",
-            element: "path.node.coalition.party",
-            backdrop: true,
-            placement: "left",
-            onShow: function(tour) {
-                d3Click("path.node.coalition.party");
-                toggleInfoPanel(null, true);
-            }
-        },
-        {
-            title: "Details view",
-            content: "Clicking the name in the details panel opens a Google search for that entity.",
-            element: "#info-panel h3 a",
-            backdrop: true,
-            placement: "left",
-        },
-        {
-            title: "Details view",
-            content: "Hovering over the donor name shows them in the graph. Click on a name for more details.",
-            element: "#info-table",
-            backdrop: true,
-            placement: "left",
-        },
-        {
-            title: "Filter panel",
-            content: "You can filter the results, and show different years, by opening the filter panel.",
-            element: "#filter-toggle",
-            backdrop: true,
-            onShow: function(tour) {
-                toggleFilterPanel(null, true);
-            }
-        },
-    ],
-    afterSetState: function (key, value) {
-        logClick('tour.gettingStarted', key, value);
-    }
-});
-
 setLayoutSizes();
 
 // 1, 10k, 100k, 1M, 10M, 100M
 var domain = [4, 5, 6, 7, 8].map(function(x) { return Math.pow(10, x); });
-var range = ["#2fd696", "#25B880", "#21A271", "#209991", "#1B8079" ];
+
+var range = ["#ca69c9", "#e86b5e", "#13a89e", "#d7d300", "#3f5ec4", "#65db2b"];
 var nodeColors = d3.scale.threshold().domain(domain).range(range);
 var dollarFormat = d3.format("$,.0f");
 
@@ -166,6 +94,7 @@ d3.select(w).on("resize", resizeWindow);
 // Handle offcanvas elements
 // ============================================================
 
+var filterPanel = d3.select('.filter-panel');
 var filterPanelOpen = false;
 
 function toggleInfoPanel(event, state) {
@@ -176,6 +105,7 @@ function toggleInfoPanel(event, state) {
 $('#info-toggle').on('click', toggleInfoPanel);
 
 
+var infoPanel = d3.select(".info-panel");
 var infoPanelOpen = false;
 
 function toggleFilterPanel(event, state) {
@@ -198,11 +128,6 @@ d3.select("#party-select-clear").on("click", function() { clearSelection('#party
 d3.select("#receipt-type-select-all").on("click", function() { selectAll('#receipt_type_select'); });
 d3.select("#receipt-type-select-clear").on("click", function() { clearSelection('#receipt_type_select'); });
 d3.select("#clear-search").on("click", clearSearch);
-
-var $gettingStarted = $('#getting-started-modal');
-d3.select('.js-handleStartTour').on('click', function() {
-    if (tour.ended) tour.restart();
-});
 
 // on 'escape' key press, close the info window, and zoomToFit
 $("body").on("keydown", function (event) {
@@ -266,17 +191,6 @@ var data_request = d3.json("data/all_data.json")
     .get();
 
 
-// returns true if this is the first time the app has loaded
-// (or cookies have been reset)
-function firstLoad() {
-    if (Cookies.get("loaded") === "true") {
-        return false;
-    } else {
-        Cookies.set("loaded", "true", { expires: Infinity });
-        return true;
-    }
-}
-
 // called by tick() when the force has cooled down
 function coolHandler() {
     if (fireCoolingHandler) {
@@ -285,10 +199,7 @@ function coolHandler() {
 
         window.setTimeout(function() {
             toggleFilterPanel(null, true);
-            if (firstLoad()) {
-                tour.init();
-                tour.restart();
-            }
+            toggleInfoPanel(null, true);
         }, 300);
     }
 }
@@ -613,8 +524,8 @@ function nodeClick(node, i) {
     logClick('node', 'click', node.name);
 
     if (clickedNode === node) {
-        toggleInfoPanel(null);
-        return;
+	toggleInfoPanel(null);
+	return;
     }
     if (clickedNode) {
         clickedNode.clicked = false;
@@ -928,7 +839,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
         .style("stroke", "#ddd")
         .style("stroke-width", 1.0)
-        .style("fill", function(d, i) { return d.Type == "Party" ? "#337AB7" : nodeColors(d.total); })
+        .style("fill", function(d, i) { return nodeColors(d.total); })
         .on("mouseover", nodeOver)
         .on("click", nodeClick)
         .on("mouseout", nodeOut);
@@ -945,7 +856,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
 
     linkElements.enter().append("line")
         .attr("class", "link")
-        .style("stroke", "#888")
+        .style("stroke", "#ddd")
         .style("stroke-width", 1.0)
         .style("stroke-opacity", 0.5);
     linkElements.exit().remove();
@@ -1095,27 +1006,6 @@ function processData(data) {
 function toTrainCase(str) {
     if (!str || typeof str !== 'string') return str;
     return str.toLowerCase().replace(/ /g, '-');
-}
-
-function inputText(selector, text) {
-    var $input;
-    if (selector.jQuery) $input = selector;
-    else $input = $(selector);
-    // $input.value = text;
-
-    $input.val(text);
-    console.log('$input, text', $input, text);
-    // why is the search not triggered?
-    $input.trigger('change');
-}
-
-// programmatically trigger a click with the expected parameters in the correct context
-// http://stackoverflow.com/a/24259102/2586761
-function d3Click(selector) {
-    d3.selectAll(selector).each(function(d, i) {
-        var onClickFunc = d3.select(this).on("click");
-        onClickFunc.apply(this, [d, i]);
-    });
 }
 
 // ============================================================
