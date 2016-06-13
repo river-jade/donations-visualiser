@@ -36,21 +36,19 @@ var tour = new Tour({
             content: "This graph represents all of the donations to Australian " +
                "federal political parties in a given financial year.",
             element: "#vis .graph .container",
-            orphan: true,
+            placement: "left",
             backdrop: true,
         },
         {
             title: "About this site",
             content: "Square nodes represent political parties",
             element: "path.node.australian-labor-party.party",
-            orphan: true,
             backdrop: true,
         },
         {
             title: "About this site",
             content: "Circular nodes represent donors",
             element: "path.node.westpac-banking-corporation.entity",
-            orphan: true,
             backdrop: true,
         },
         {
