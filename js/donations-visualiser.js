@@ -14,7 +14,7 @@ var navbarHeight,
     width,
     height,
     bounds = {},
-    containerDimensions = {};
+    containerDimensions = {},
     fireCoolingHandler = true;
 
 var party_map = {},
@@ -23,6 +23,10 @@ var party_map = {},
     receipt_types,
     clickedNode = null,
     oldYear = -1;
+
+var narrowClient = $(window).width() < 800,
+    extremelyNarrowClient = $(window).width() < 400;
+
 
 // http://bootstraptour.com/api/
 var tour = new Tour({
@@ -168,22 +172,46 @@ d3.select(w).on("resize", resizeWindow);
 // Handle offcanvas elements
 // ============================================================
 
+function toggleChevron(e) {
+    $('#chevron').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+}
+$('#dialog-buttons').on('hidden.bs.collapse', toggleChevron);
+$('#dialog-buttons').on('shown.bs.collapse', toggleChevron);
+
+
+
 var filterPanelOpen = false;
+var filterToggleHidden = false;
 
 function toggleInfoPanel(event, state) {
     if (typeof state !== 'undefined') infoPanelOpen = state;
     else infoPanelOpen = !infoPanelOpen;
     infoPanel.classed('open', infoPanelOpen);
+
+    // if on extremely narrow client, hide info button
+    if (extremelyNarrowClient) {
+      filterControl.classed('hidden', infoPanelOpen);
+    }
+    // if on narrow client, make sure info panel gets hidden
+    if (narrowClient && infoPanelOpen) filterPanel.classed('open', false);
 }
 $('#info-toggle').on('click', toggleInfoPanel);
 
 
 var infoPanelOpen = false;
+var infoToggleHidden = false;
 
 function toggleFilterPanel(event, state) {
     if (typeof state !== 'undefined') filterPanelOpen = state;
     else filterPanelOpen = !filterPanelOpen;
     filterPanel.classed('open', filterPanelOpen);
+
+    // if on extremely narrow client, hide info button
+    if (extremelyNarrowClient) {
+      infoControl.classed('hidden', filterPanelOpen);
+    }
+    // if on narrow client, make sure info panel gets hidden
+    if (narrowClient && filterPanelOpen) infoPanel.classed('open', false);
 }
 $('#filter-toggle').on('click', toggleFilterPanel);
 
