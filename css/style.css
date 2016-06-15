@@ -239,6 +239,9 @@ input[type=range][orient=vertical]
     .mobile-intro {
         display: block;
     }
+    .mobile-layout-block {
+        display: block;
+    }
 }
 
 /* force show scrollbars on mac
@@ -251,4 +254,16 @@ from http://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-
     border-radius: 4px;
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.aec-link {
+  float: left;
+}
+
+.share-button {
+  float: right;
+}
+
+.clear {
+  clear: both
 }
