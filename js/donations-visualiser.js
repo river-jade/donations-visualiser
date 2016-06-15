@@ -6,6 +6,8 @@ var w = window,
     hoverInfo = d3.select(".hover-info"),
     filterPanel = d3.select('.filter-panel'),
     infoPanel = d3.select(".info-panel"),
+    filterControl = d3.select('#filter-toggle'),
+    infoControl = d3.select('#info-toggle'),
     $searchInput = $('#search');
 
 var navbarHeight,
