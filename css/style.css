@@ -1,260 +1,259 @@
 html, body {
-  //height: 100%;
-  overflow: hidden;
+    //height: 100%;
+    overflow: hidden;
 }
 
 body {
-  padding: 50px 0 0 0;
+    padding: 50px 0 0 0;
 }
 
 .body-content {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
 }
 
 .navbar-default {
-  padding: 0 2rem;
+    padding: 0 2rem;
 }
 @media ( min-width: 768px ) {
-  .navbar-default {
-    padding: 0;
-  }
+    .navbar-default {
+        padding: 0;
+    }
 }
 
 .navmenu {
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
 
 .navbar-toggle {
-  float: left;
-  margin-left: 15px;
+    float: left;
+    margin-left: 15px;
 }
 
 .navbar-toggle.right {
-  float: right;
-  margin-right: 15px;
+    float: right;
+    margin-right: 15px;
 }
 
 @media (min-width: 0) {
-  .navbar-toggle {
-    /* force showing the toggle */
-    display: block;
-  }
+    .navbar-toggle {
+        /* force showing the toggle */
+        display: block;
+    }
 }
 
 form#filters label,
-  form#filters input,
-    form#filters select {
-      width: 100%;
-    }
-    
-    form#filters input[type=checkbox] {
-      width: 12px;
-    }
-    
-    .navbar-right {
-      margin-right: 15px !important;
-    }
-    
-    .normal {
-      font-weight: normal;
-    }
-    
-    #info-panel {}
-    
-    #info-table tr:hover {
+form#filters input,
+form#filters select {
+    width: 100%;
+}
+
+form#filters input[type=checkbox] {
+    width: 12px;
+}
+
+.navbar-right {
+    margin-right: 15px !important;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+#info-panel {}
+
+#info-table tr:hover {
     cursor: pointer;
-    }
-    
-    #info-table tr.nohover:hover {
+}
+
+#info-table tr.nohover:hover {
     cursor: auto;
-    }
-    
-    #value-filter {
+}
+
+#value-filter {
     width: 260px;
     margin: 0 auto;
-    }
-    
-    .value-filter-value {
-      width: 40% !important;
-      margin-top: 25px;
-    }
-    
-    .value-filter-value.pull-right {
-      text-align: right;
-    }
-    
-    .hover-info {
-      position: absolute;
-      width: 300px;
-      z-index: 120;
-      padding: 10px 10px 0 10px;
-      
-      border: 2px solid #DDD;
-      border-radius: 3px;
-      background: #fff;
-      
-      opacity: 1;
-      color: #000;
-      font-size: 15px;
-      
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 250ms ease-in-out, visibility 250ms;
-    }
-    
-    .hover-info p.main {
-      font-size: 15px;
-      text-align: center;
-      padding:0;
-      margin:0;
-    }
-    
-    hr.tooltip-hr {
-      padding:3px 0 0 0;
-      margin:3px 0 3px 0;
-    }
-    
-    .hover-info .title {
-      font-size: 20px;
-      line-height: 24px;
-    }
-    
-    .hover-info .name {
-      font-weight:bold;
-    }
-    
-    #zoom-controls {
+}
+
+.value-filter-value {
+    width: 40% !important;
+    margin-top: 25px;
+}
+
+.value-filter-value.pull-right {
+    text-align: right;
+}
+
+.hover-info {
+    position: absolute;
+    width: 300px;
+    z-index: 120;
+    padding: 10px 10px 0 10px;
+
+    border: 2px solid #DDD;
+    border-radius: 3px;
+    background: #fff;
+
+    opacity: 1;
+    color: #000;
+    font-size: 15px;
+
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out, visibility 250ms;
+}
+
+.hover-info p.main {
+    font-size: 15px;
+    text-align: center;
+    padding:0;
+    margin:0;
+}
+
+hr.tooltip-hr {
+    padding:3px 0 0 0;
+    margin:3px 0 3px 0;
+}
+
+.hover-info .title {
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.hover-info .name {
+    font-weight:bold;
+}
+
+#zoom-controls {
     position: absolute;
     top: 60px;
     right: -36px;
-    }
-    
-    #zoom-controls > * {
+}
+
+#zoom-controls > * {
     display: block;
     margin-bottom: 0.5rem;
     cursor: pointer;
-    }
-    
-    #party_select {
+}
+
+#party_select {
     height: 210px;
     overflow-y: scroll;
-    }
-    
-    hr.parties_separator {
-      margin-top: 0px;
-      margin-bottom: 0px;
-    }
-    
-    input[type=range][orient=vertical]
-    {
-      writing-mode: bt-lr; /* IE */
-      -webkit-appearance: slider-vertical; /* WebKit */
-      width: 9px;
-      height: 175px;
-      padding: 0 5px;
-    }
-    
-    .bar {
-      fill: #337ab7;
-    }
-    
-    .axis text {
-      font: 10px sans-serif;
-    }
-    
-    .axis path,
-    .axis line {
-      fill: none;
-      stroke: #000;
-      shape-rendering: crispEdges;
-    }
-    
-    .node {
-      cursor: pointer;
-    }
-    
-    .visible {
-      visibility: visible;
-      opacity: 1;
-    }
-    
-    .offcanvas {
-      position: absolute;
-      top: 0;
-      width: 300px;
-      height: 100%;
-      overflow: visible;
-      
-      background-color: white;
-      
-      transform: translateZ(0);
-      transition: transform 250ms ease-in-out;
-    }
-    .offcanvas .wrapper {
-      height: 100%;
-      overflow: visible;
-      opacity: 0;
-      transition: opacity 450ms ease-in-out;
-    }
-    .scroll-wrapper {
-      height: 100%;
-      overflow-y: scroll;
-      padding-bottom: 2rem;
-    }
-    .offcanvas.open {
-      transform: translateX(0);
-    }
-    .offcanvas.open .wrapper {
-      opacity: 1;
-    }
-    
-    .filter-panel {
-      left: 0;
-      transform: translateX(-300px);
-      border-right: 1px solid #e7e7e7;
-    }
-    .info-panel {
-      right: 0;
-      transform: translateX(300px);
-      border-left: 1px solid #e7e7e7;
-    }
-    
-    #filter-toggle {
+}
+
+hr.parties_separator {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+input[type=range][orient=vertical]
+{
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 9px;
+    height: 175px;
+    padding: 0 5px;
+}
+
+.bar {
+    fill: #337ab7;
+}
+
+.axis text {
+    font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.offcanvas {
+    position: absolute;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    overflow: visible;
+
+    background-color: white;
+
+    transform: translateZ(0);
+    transition: transform 250ms ease-in-out;
+}
+.offcanvas .wrapper {
+    height: 100%;
+    overflow: visible;
+    opacity: 0;
+    transition: opacity 450ms ease-in-out;
+}
+.scroll-wrapper {
+    height: 100%;
+    overflow-y: scroll;
+    padding-bottom: 2rem;
+}
+.offcanvas.open {
+    transform: translateX(0);
+}
+.offcanvas.open .wrapper {
+    opacity: 1;
+}
+
+.filter-panel {
+    left: 0;
+    transform: translateX(-300px);
+    border-right: 1px solid #e7e7e7;
+}
+.info-panel {
+    right: 0;
+    transform: translateX(300px);
+    border-left: 1px solid #e7e7e7;
+}
+
+#filter-toggle {
     position: absolute;
     top: 24px;
     right: -48px;
-    }
-    
-    #info-toggle {
+}
+
+#info-toggle {
     position: absolute;
     top: 24px;
     left: -50px;
-    }
-    
-    .mobile-intro {
-      display: none;
-    }
-    
-    @media ( max-width: 767px ) {
-      .navbar-fixed-top {
+}
+
+.mobile-intro {
+    display: none;
+}
+
+@media ( max-width: 767px ) {
+    .navbar-fixed-top {
         padding: 1rem;
-      }
-      .mobile-intro {
+    }
+    .mobile-intro {
         display: block;
-      }
     }
-    
-    /* force show scrollbars on mac
-     *from http://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vertical-scroll-bar */
-    ::-webkit-scrollbar {
-      -webkit-appearance: none;
-      width: 7px;
-    }
-    ::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      background-color: rgba(0,0,0,.5);
-      -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
-    }
-    
+}
+
+/* force show scrollbars on mac
+from http://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vertical-scroll-bar */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
