@@ -855,10 +855,40 @@ function update(partyNodes, parties, selectedParties, resetControls) {
 
     d3.select("#party_select").selectAll(".checkbox").remove();
 
-    party_checkboxes = d3.select("#party_select").selectAll(".checkbox")
+    parties_grouped = []
+    parties_grouped_search = ["Coalition", "Australian Labor Party", "Australian Greens", "Palmer United Party"]
+    parties.map(function(item){
+      var index = parties_grouped_search.indexOf(party_map[item].name);
+      if (index > -1) {
+        parties_grouped[index] = item;
+      }
+    });
+
+    createCheckbox = function(d) {
+       return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
+    }
+
+    party_checkboxes_grouped = d3.select("#party_select").selectAll(".checkbox")
+        .data(
+            // values for selected grouped parties
+            // make sure they're all present in this year
+            parties_grouped.filter(function(item) {return item || item === 0;}),
+            // key
+            function(d) { return d; }
+        )
+        .enter().append("div")
+            .attr("class", "checkbox")
+            .html(createCheckbox);
+
+    d3.select("#party_select").append("hr").attr("class", "parties_separator");
+
+    party_checkboxes_alphabetical = d3.select("#party_select").selectAll(".checkbox")
         .data(
             // values
-            parties.sort(function(a, b) {
+
+            // filter out the coalition, labor, greens and PUP
+            parties.filter(function (party) {return !(parties_grouped_search.indexOf(party_map[party].name) > -1);})
+              .sort(function(a, b) {
                 return party_map[a].name < party_map[b].name ? -1 : 1;
             }),
             // key
@@ -866,9 +896,8 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         )
         .enter().append("div")
             .attr("class", "checkbox")
-            .html(function(d) {
-                return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
-            });
+            .html(createCheckbox);
+
 
     messageG.selectAll("text").remove();
 
