@@ -142,6 +142,11 @@ hr.tooltip-hr {
     overflow-y: scroll;
 }
 
+hr.parties_separator {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
 input[type=range][orient=vertical]
 {
     writing-mode: bt-lr; /* IE */
