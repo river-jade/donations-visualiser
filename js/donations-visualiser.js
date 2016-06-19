@@ -855,49 +855,47 @@ function update(partyNodes, parties, selectedParties, resetControls) {
 
     d3.select("#party_select").selectAll(".checkbox").remove();
 
-    parties_grouped = []
-    parties_grouped_search = ["Coalition", "Australian Labor Party", "Australian Greens", "Palmer United Party"]
-    parties.map(function(item){
-      var index = parties_grouped_search.indexOf(party_map[item].name);
+    var major_party_names = ["Coalition", "Australian Labor Party", "Australian Greens", "Palmer United Party"];
+    // party indexes
+    var major_parties = [-1, -1, -1, -1];
+    var minor_parties = [];
+
+    // split party indexes between major and minor
+    parties.forEach(function(item){
+      var index = major_party_names.indexOf(party_map[item].name);
+      // if it's a major party
       if (index > -1) {
-        parties_grouped[index] = item;
+        // put in same index as names has, to preserve order
+        major_parties[index] = item;
+      } else {
+        minor_parties.push(item);
       }
     });
+    // filter any remaining -1's (PUP not present in all years)
+    major_parties = major_parties.filter(function(item) {return item !== -1;});
+    // sort minor parties alphabetically
+    minor_parties = minor_parties.sort(function(a, b) {
+      return party_map[a].name < party_map[b].name ? -1 : 1;
+    });
 
-    createCheckbox = function(d) {
-       return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
-    }
-
-    party_checkboxes_grouped = d3.select("#party_select").selectAll(".checkbox")
-        .data(
-            // values for selected grouped parties
-            // make sure they're all present in this year
-            parties_grouped.filter(function(item) {return item || item === 0;}),
-            // key
-            function(d) { return d; }
-        )
-        .enter().append("div")
-            .attr("class", "checkbox")
-            .html(createCheckbox);
-
-    d3.select("#party_select").append("hr").attr("class", "parties_separator");
-
-    party_checkboxes_alphabetical = d3.select("#party_select").selectAll(".checkbox")
+    var createCheckboxes = function(party_indexes) {
+      d3.select("#party_select").selectAll(".checkbox")
         .data(
             // values
-
-            // filter out the coalition, labor, greens and PUP
-            parties.filter(function (party) {return !(parties_grouped_search.indexOf(party_map[party].name) > -1);})
-              .sort(function(a, b) {
-                return party_map[a].name < party_map[b].name ? -1 : 1;
-            }),
+            party_indexes,
             // key
             function(d) { return d; }
         )
         .enter().append("div")
             .attr("class", "checkbox")
-            .html(createCheckbox);
+            .html(function(d) {
+               return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
+            });
+    }
 
+    createCheckboxes(major_parties);
+    d3.select("#party_select").append("hr").attr("class", "parties_separator");
+    createCheckboxes(minor_parties);
 
     messageG.selectAll("text").remove();
 
