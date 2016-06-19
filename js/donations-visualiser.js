@@ -857,7 +857,7 @@ function update(partyNodes, parties, selectedParties, resetControls) {
 
     var major_party_names = ["Coalition", "Australian Labor Party", "Australian Greens", "Palmer United Party"];
     // party indexes
-    var major_parties = [-1, -1, -1, -1];
+    var major_parties = [];
     var minor_parties = [];
 
     // split party indexes between major and minor
@@ -871,8 +871,6 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         minor_parties.push(item);
       }
     });
-    // filter any remaining -1's (PUP not present in all years)
-    major_parties = major_parties.filter(function(item) {return item !== -1;});
     // sort minor parties alphabetically
     minor_parties = minor_parties.sort(function(a, b) {
       return party_map[a].name < party_map[b].name ? -1 : 1;
