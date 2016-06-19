@@ -871,6 +871,13 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         minor_parties.push(item);
       }
     });
+
+    // collapse sparse array: d3 doesn't like them
+    major_parties = major_parties.reduce(function(accum, item) {
+        accum.push(item);
+        return accum;
+    }, []);
+
     // sort minor parties alphabetically
     minor_parties = minor_parties.sort(function(a, b) {
       return party_map[a].name < party_map[b].name ? -1 : 1;
