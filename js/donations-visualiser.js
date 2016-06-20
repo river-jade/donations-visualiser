@@ -872,11 +872,8 @@ function update(partyNodes, parties, selectedParties, resetControls) {
       }
     });
 
-    // collapse sparse array: d3 doesn't like them
-    major_parties = major_parties.reduce(function(accum, item) {
-        accum.push(item);
-        return accum;
-    }, []);
+    // collapse sparse array; d3 doesn't like them
+    major_parties = major_parties.filter(function (x) { return x !== undefined && x != null; });
 
     // sort minor parties alphabetically
     minor_parties = minor_parties.sort(function(a, b) {
