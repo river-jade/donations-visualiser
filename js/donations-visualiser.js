@@ -133,6 +133,37 @@ var value_slider = function() {
 // immediately invoked!
 }();
 
+// ============================================================
+// Set image svg pattern defs
+// ============================================================
+[
+  {
+    id: 'coalition',
+    image: "img/coalition.png"
+  },
+  {
+    id: 'labor',
+    image: "img/alp.svg"
+  },
+  {
+    id: 'greens',
+    image: "img/greens.svg"
+  },
+  {
+    id: 'pup',
+    image: "img/pup.jpeg"
+  }
+].forEach(function(item) {
+  svg.append("filter")
+       .attr('id', item.id)
+       .attr('patternUnits', 'objectBoundingBox')
+       .attr('x', '0%')
+       .attr('y', '0%')
+       .attr('width', '100%')
+       .attr('height', '100%')
+       .append("feImage")
+       .attr("xlink:href", item.image);
+});
 
 // ============================================================
 // Handle Window Resize
@@ -986,6 +1017,20 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .style("stroke", "#ddd")
         .style("stroke-width", 1.0)
         .style("fill", function(d, i) { return d.Type == "Party" ? "#337AB7" : nodeColors(d.total); })
+        .attr('filter', function(d, i) { if (d.Type == "Party") {
+            if (d.name === "Coalition") {
+              return "url(#coalition)";
+            } else if (d.name === "Australian Labor Party") {
+              return "url(#labor)";
+            } else if (d.name === "Australian Greens") {
+              return "url(#greens)";
+            } else if (d.name === "Palmer United Party") {
+              return "url(#pup)";
+            }
+          } else {
+            return  "none";
+          }
+        })
         .on("mouseover", nodeOver)
         .on("click", nodeClick)
         .on("mouseout", nodeOut);
