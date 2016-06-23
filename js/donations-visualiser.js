@@ -883,20 +883,49 @@ function update(partyNodes, parties, selectedParties, resetControls) {
 
     d3.select("#party_select").selectAll(".checkbox").remove();
 
-    party_checkboxes = d3.select("#party_select").selectAll(".checkbox")
+    var major_party_names = ["Coalition", "Australian Labor Party", "Australian Greens", "Palmer United Party"];
+    // party indexes
+    var major_parties = [];
+    var minor_parties = [];
+
+    // split party indexes between major and minor
+    parties.forEach(function(item){
+      var index = major_party_names.indexOf(party_map[item].name);
+      // if it's a major party
+      if (index > -1) {
+        // put in same index as names has, to preserve order
+        major_parties[index] = item;
+      } else {
+        minor_parties.push(item);
+      }
+    });
+
+    // collapse sparse array; d3 doesn't like them
+    major_parties = major_parties.filter(function (x) { return x !== undefined && x != null; });
+
+    // sort minor parties alphabetically
+    minor_parties = minor_parties.sort(function(a, b) {
+      return party_map[a].name < party_map[b].name ? -1 : 1;
+    });
+
+    var createCheckboxes = function(party_indexes) {
+      d3.select("#party_select").selectAll(".checkbox")
         .data(
             // values
-            parties.sort(function(a, b) {
-                return party_map[a].name < party_map[b].name ? -1 : 1;
-            }),
+            party_indexes,
             // key
             function(d) { return d; }
         )
         .enter().append("div")
             .attr("class", "checkbox")
             .html(function(d) {
-                return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
+               return "<label><input type=\"checkbox\" value=\"" + d + "\"" +  (selectedParties.indexOf(d) != -1 ? " checked=\"checked\"" : "") + ">" + party_map[d].name + "</label>";
             });
+    }
+
+    createCheckboxes(major_parties);
+    d3.select("#party_select").append("hr").attr("class", "parties_separator");
+    createCheckboxes(minor_parties);
 
     messageG.selectAll("text").remove();
 

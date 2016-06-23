@@ -3,9 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <meta name="description" content="This website takes publically available data from the Australian Electoral Commission (AEC) Annual Returns Locator Service, and converts it to a form that can easily be visualised and analysed.">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <meta property="og:url" content="http://au.politicaldonations.info/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Australian Political Donations Visualiser" />
+    <meta property="og:description" content="Explore the money behind the Australian political parties." />
+    <meta property="og:image" content="http://au.politicaldonations.info/img/thumb.png" />
 
     <title>Australian Political Donations Visualiser</title>
 
@@ -170,20 +176,25 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        The Political Donations visualisation website takes publically available data from the
-                        <a href="http://periodicdisclosures.aec.gov.au/">AEC</a> and presents it in a graphical view
-                        to make visual analysis of the donations to all political parties in Australia easier and
-                        more intuitive.
+                        This website takes publically available data from the Australian Electoral
+                        Commission (AEC) <a href="http://periodicdisclosures.aec.gov.au/" target="_blank">Annual Returns Locator Service</a>,
+                        and converts it to a form that can easily be visualised and analysed.
+                    <p>
+                        The data is presented as a network, with political parties depicted as squares and
+                        donors as circles. Each donor is linked to the party they donated to, and
+                        the size and colour of the donor circles represent the size of the donations.
                     </p>
                     <p>
-                        The data is presented as a force directed layout showing both links and magnitudes of donations
-                        to all major parties.  The data can be filtered and detailed information is available by clicking
-                        on any node in the layout.
+                        Clicking on a donor or party opens the info panel on
+                        the right providing more information. The filter panel on the left allows the
+                        data to be filtered many different ways.
                     </p>
                     <p>
-                        For questions or to provide feedback, please send email to <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
-                        We love to hear about users who are extracting useful information or educating themselves about the
-                        level of donations that political parties in Australia receive.
+                        The visualisation is primarily done using the javascript <a href="https://d3js.org/" target="_blank">d3 library</a>.
+                        The code to munge the AEC data and run the visualisation is open
+                        source and available on <a href="https://github.com/river-jade/donations-visualiser" target="_blank">github</a>.</p><p>We&rsquo;re
+                        always keen to hear suggestions for how the site could be made more useful, or how it has been used. We can be
+                        contacted at <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
                     </p>
                 </div>
                 <div class="modal-footer">
