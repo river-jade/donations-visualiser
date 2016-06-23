@@ -197,50 +197,22 @@ d3.select(w).on("resize", resizeWindow);
 // Handle offcanvas elements
 // ============================================================
 
-function toggleChevron(e) {
-    $('#chevron').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
-}
-$('#dialog-buttons').on('hidden.bs.collapse', toggleChevron);
-$('#dialog-buttons').on('shown.bs.collapse', toggleChevron);
-
-
-var narrowClient = $(window).width() < 800
-var extremelyNarrowClient = $(window).width() < 400
-
 var filterPanelOpen = false;
-var filterToggleHidden = false;
 
 function toggleInfoPanel(event, state) {
     if (typeof state !== 'undefined') infoPanelOpen = state;
     else infoPanelOpen = !infoPanelOpen;
     infoPanel.classed('open', infoPanelOpen);
-
-    // if on extremely narrow client, hide info button
-    if (extremelyNarrowClient) {
-      d3.select('#filter-toggle').classed('hidden', infoPanelOpen);
-      d3.select('#zoom-controls').classed('hidden', infoPanelOpen);
-    }
-    // if on narrow client, make sure info panel gets hidden
-    if (narrowClient && infoPanelOpen) filterPanel.classed('open', false);
 }
 $('#info-toggle').on('click', toggleInfoPanel);
 
 
 var infoPanelOpen = false;
-var infoToggleHidden = false;
 
 function toggleFilterPanel(event, state) {
     if (typeof state !== 'undefined') filterPanelOpen = state;
     else filterPanelOpen = !filterPanelOpen;
     filterPanel.classed('open', filterPanelOpen);
-
-    // if on extremely narrow client, hide info button
-    if (extremelyNarrowClient) {
-      d3.select('#info-toggle').classed('hidden', filterPanelOpen);
-      d3.select('#zoom-controls').classed('hidden', filterPanelOpen);
-    }
-    // if on narrow client, make sure info panel gets hidden
-    if (narrowClient && filterPanelOpen) infoPanel.classed('open', false);
 }
 $('#filter-toggle').on('click', toggleFilterPanel);
 
