@@ -92,6 +92,29 @@ var tour = new Tour({
     }
 });
 
+var party_logos = [
+  {
+    name: "Coalition",
+    id: 'coalition',
+    image: "img/coalition.png"
+  },
+  {
+    name: "Australian Labor Party",
+    id: 'labor',
+    image: "img/alp.svg"
+  },
+  {
+    name: "Australian Greens",
+    id: 'greens',
+    image: "img/greens.svg"
+  },
+  {
+    name: "Palmer United Party",
+    id: 'pup',
+    image: "img/pup.jpeg"
+  }
+];
+
 setLayoutSizes();
 
 // 1, 10k, 100k, 1M, 10M, 100M
@@ -134,26 +157,10 @@ var value_slider = function() {
 }();
 
 // ============================================================
-// Set image svg pattern defs
+// Set image svg pattern defs from declared logos
 // ============================================================
-[
-  {
-    id: 'coalition',
-    image: "img/coalition.png"
-  },
-  {
-    id: 'labor',
-    image: "img/alp.svg"
-  },
-  {
-    id: 'greens',
-    image: "img/greens.svg"
-  },
-  {
-    id: 'pup',
-    image: "img/pup.jpeg"
-  }
-].forEach(function(item) {
+
+party_logos.forEach(function(item) {
   svg.append("filter")
        .attr('id', item.id)
        .attr('patternUnits', 'objectBoundingBox')
@@ -164,6 +171,13 @@ var value_slider = function() {
        .append("feImage")
        .attr("xlink:href", item.image);
 });
+
+// Compute mapping once
+var name_to_logo = {};
+party_logos.forEach(function(item) {
+  name_to_logo[item.name] = item.id;
+});
+
 
 // ============================================================
 // Handle Window Resize
@@ -989,16 +1003,8 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .style("stroke", "#ddd")
         .style("stroke-width", 1.0)
         .style("fill", function(d, i) { return d.Type == "Party" ? "#337AB7" : nodeColors(d.total); })
-        .attr('filter', function(d, i) { if (d.Type == "Party") {
-            if (d.name === "Coalition") {
-              return "url(#coalition)";
-            } else if (d.name === "Australian Labor Party") {
-              return "url(#labor)";
-            } else if (d.name === "Australian Greens") {
-              return "url(#greens)";
-            } else if (d.name === "Palmer United Party") {
-              return "url(#pup)";
-            }
+        .attr('filter', function(d, i) { if (d.Type == "Party" && name_to_logo[d.name]) {
+            return "url(#"+name_to_logo[d.name]+")";
           } else {
             return  "none";
           }
