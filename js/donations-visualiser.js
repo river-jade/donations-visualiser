@@ -20,7 +20,8 @@ var party_map = {},
     years = [],
     receipt_types,
     clickedNode = null,
-    oldYear = -1;
+    oldYear = -1,
+    data_loaded = false;
 
 // http://bootstraptour.com/api/
 var tour = new Tour({
@@ -156,7 +157,7 @@ function resizeWindow() {
     fireCoolingHandler = true;
 
     force.size([width, height]);
-    force.start();
+    if (data_loaded) force.start();
 }
 
 d3.select(w).on("resize", resizeWindow);
@@ -256,6 +257,7 @@ var data_request = d3.json("data/all_data.json")
         d3.select("#loading-progress").style("width", "100%");
         $("#loading-modal").modal('hide');
         processData(data);
+        data_loaded = true;
 
         // zoom out a ways initially
         zoomTo(0.5).event(container);
