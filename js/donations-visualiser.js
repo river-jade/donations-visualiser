@@ -92,6 +92,29 @@ var tour = new Tour({
     }
 });
 
+var party_logos = [
+  {
+    name: "Coalition",
+    id: 'coalition',
+    image: "img/coalition.png"
+  },
+  {
+    name: "Australian Labor Party",
+    id: 'labor',
+    image: "img/alp.svg"
+  },
+  {
+    name: "Australian Greens",
+    id: 'greens',
+    image: "img/greens.svg"
+  },
+  {
+    name: "Palmer United Party",
+    id: 'pup',
+    image: "img/pup.jpeg"
+  }
+];
+
 setLayoutSizes();
 
 // 1, 10k, 100k, 1M, 10M, 100M
@@ -132,6 +155,28 @@ var value_slider = function() {
         .on("slideend", filterData);
 // immediately invoked!
 }();
+
+// ============================================================
+// Set image svg pattern defs from declared logos
+// ============================================================
+
+party_logos.forEach(function(item) {
+  svg.append("filter")
+       .attr('id', item.id)
+       .attr('patternUnits', 'objectBoundingBox')
+       .attr('x', '0%')
+       .attr('y', '0%')
+       .attr('width', '100%')
+       .attr('height', '100%')
+       .append("feImage")
+       .attr("xlink:href", item.image);
+});
+
+// Compute mapping once
+var name_to_logo = {};
+party_logos.forEach(function(item) {
+  name_to_logo[item.name] = item.id;
+});
 
 
 // ============================================================
@@ -958,6 +1003,12 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .style("stroke", "#ddd")
         .style("stroke-width", 1.0)
         .style("fill", function(d, i) { return d.Type == "Party" ? "#337AB7" : nodeColors(d.total); })
+        .attr('filter', function(d, i) { if (d.Type == "Party" && name_to_logo[d.name]) {
+            return "url(#"+name_to_logo[d.name]+")";
+          } else {
+            return  "none";
+          }
+        })
         .on("mouseover", nodeOver)
         .on("click", nodeClick)
         .on("mouseout", nodeOut);
