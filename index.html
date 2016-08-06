@@ -51,8 +51,14 @@
     <!-- end code for social share buttons -->
 
     <div class="navbar navbar-default navbar-fixed-top">
-        <h4 class="navbar-text">Australian Political Donations</h4>
+        <h4 class="navbar-text">
+          <div id="dialog-button-toggle" data-toggle="collapse" href="#dialog-buttons">
+            Australian Political Donations
+            <div id="chevron" class="visible-xs-block pull-right indicator glyphicon glyphicon-chevron-down" />
+          </div>
+        </h4>
 
+    <div id="dialog-buttons" class="panel-collapse collapse in">
         <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal"
         onclick="logClick('button', 'about')">About</button>
 
@@ -67,11 +73,12 @@
         <div class="navbar-text navbar-right"><a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="politicaldonationsau">Tweet</a></div> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
         <div class="fb-share-button navbar-text navbar-right" data-href="http://www.politicaldonations.info/au" data-layout="button" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.politicaldonations.info%2Fau%2F&amp;src=sdkpreparse">Share</a></div>
 
-      <div class="mobile-intro alert alert-warning alert-dismissible" role="alert">
+      <div id="mobile-warning" class="mobile-intro alert alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <p><strong>Sorry!</strong> We're working on making the site available on mobile, until then, please browse the site on a larger device.</p>
       </div>
     </div>
+  </div>
 
     <div class="body-content container-fluid">
 
