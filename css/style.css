@@ -247,6 +247,38 @@ input[type=range][orient=vertical]
     .mobile-layout-block {
         display: block;
     }
+    .navbar-right {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 320px) {
+    #info-toggle {
+        left: -45px;
+    }
+    #filter-toggle {
+        right: -45px;
+    }
+    .offcanvas {
+        width: 270px; /* works down to 320px wide iPhone 4 */
+    }
+    .filter-panel {
+        transform: translateX(-270px);
+    }
+    .info-panel {
+        transform: translateX(270px);
+    }
+        #info-panel {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        #info-panel svg {
+            position: relative;
+            left: -10px;
+        }
+    .hover-info {
+        display: none; /* on small screens we pull up node info sidebar instead */
+    }
 }
 
 /* force show scrollbars on mac

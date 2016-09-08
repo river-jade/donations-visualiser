@@ -663,7 +663,7 @@ function updateInfoPanel() {
             });
     }
 
-    var margins = { top: 0, right: 0, bottom: 25, left: 50 },
+    var margins = { top: 0, right: 5, bottom: 25, left: extremelyNarrowClient ? 40 : 50 },
         chartWidth = 270 - margins.left - margins.right,
         chartHeight = 120 - margins.top - margins.bottom,
         x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1)).rangeRoundBands([0, chartWidth]),
