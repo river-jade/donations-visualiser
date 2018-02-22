@@ -118,6 +118,17 @@ party_logos.forEach(function(item) {
   name_to_logo[item.name] = item.id;
 });
 
+// ============================================================
+// Receipt type to tooltip
+// ============================================================
+
+var receipt_to_tooltip = {
+  "Public Funding": "Funding from State and Commonwealth electoral bodies", 
+  "Subscription": "Membership fees, affiliation fees or levies on members of parliament", 
+  "Donation": "Cash or non-cash donations (e.g. services provided to a party for no payment)", 
+  "Unspecified": "Transactions where parties have not identified whether the funds are donations or receipts", 
+  "Other Receipt": "Non-donation amounts received, such as dividends or shares or rent on properties owned"
+}
 
 // ============================================================
 // Handle Window Resize
@@ -1124,8 +1135,10 @@ function processData(data) {
                 checked="";
             else
                 checked="checked=\"true\" ";
+            
+            var tooltip = receipt_to_tooltip[d];
 
-            return "<label><input type=\"checkbox\" value=\"" + i + "\" " + checked + ">" + d + "</label>";
+            return "<label title=\""+tooltip +"\"><input type=\"checkbox\" value=\"" + i + "\" " + checked + ">" + d + "</label>";
         });
 
     d3.select("#year_select").selectAll("option")
