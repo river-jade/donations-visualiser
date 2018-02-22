@@ -977,7 +977,13 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .attr("title", function(n) { return n.name; })
         .attr("d", d3.svg.symbol()
         .size(function(d) {
-            return d.size = Math.sqrt(d.total);
+            if (d.Type == "Party" && name_to_logo[d.name]) {
+              // if party has logo defined, set a static size
+              // this provides better readability and consistency
+              return d.size = 20000;
+            } else {
+              return d.size = Math.sqrt(d.total);
+            }
         })
         .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
         .style("stroke", "#ddd")
