@@ -16,40 +16,11 @@
     <title>Australian Political Donations Visualiser</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-tour.css" />
     <link rel="stylesheet" href="css/d3.slider.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-    <!-- code for social share buttons -->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=206952646117768";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));</script>
-    <!-- end code for social share buttons -->
-
     <div class="navbar navbar-default navbar-fixed-top">
         <h4 class="navbar-text">
             <div id="dialog-button-toggle" data-toggle="collapse" href="#dialog-buttons">
@@ -63,23 +34,13 @@
             onclick="logClick('button', 'about')">About</button>
             <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
             onclick="logClick('button', 'getting started')">Getting Started</button>
-            <button class="btn btn-success js-handleStartTour">Start Tour</button>
 
             <span class="mobile-layout-block">
                 <div class="navbar-text navbar-right">
-                    Data from the <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/" target="_blank">AEC</a>
+                    Data from the <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/" target="_blank">AEC</a> (1998 to 2016)
                 </div>
-
-                <!-- share buttons -->
-                <div class="navbar-text navbar-right share-button"><a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="politicaldonationsau">Tweet</a></div>
-                <div class="fb-share-button navbar-text navbar-right share-button" data-href="http://au.politicaldonations.info/au" data-layout="button" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fau.politicaldonations.info%2Fau%2F&amp;src=sdkpreparse">Share</a></div>
                 <div class="clear"></div>
             </span>
-
-            <div id="mobile-warning" class="mobile-intro alert alert-warning alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <p><strong>Sorry!</strong> We're working on making the site available on mobile, until then, please browse the site on a larger device.</p>
-            </div>
         </div>
     </div>
 
@@ -280,7 +241,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/d3.slider.js"></script>
     <script src="js/cookies.min.js"></script>
-    <script src="js/bootstrap-tour.min.js"></script>
     <script src="js/donations-visualiser.js"></script>
 
     <script>
