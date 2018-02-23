@@ -515,6 +515,12 @@ function rowOut(row, i) {
         .style("stroke-width", 1.0);
 }
 
+function formatYear(year) {
+  var modYear = year%100;
+  // ensures two digits (inserts leading 0 as required)
+  return ("0" + modYear).slice(-2);
+}
+
 function updateInfoPanel() {
     var html,
         yearTotals = [];
@@ -599,7 +605,7 @@ function updateInfoPanel() {
     var margins = { top: 0, right: 5, bottom: 25, left: extremelyNarrowClient ? 40 : 50 },
         chartWidth = 270 - margins.left - margins.right,
         chartHeight = 120 - margins.top - margins.bottom,
-        x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1)).rangeRoundBands([0, chartWidth]),
+        x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1).map(formatYear)).rangeRoundBands([0, chartWidth]),
         y = d3.scale.linear().domain([0, d3.max(yearTotals, function(d) { return d.values; })]).range([chartHeight, 0]),
         xAxis = d3.svg.axis()
             .scale(x)
@@ -619,7 +625,14 @@ function updateInfoPanel() {
     chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
-        .call(xAxis);
+        .call(xAxis)
+        // rotate x-axis labels 90 degrees
+          .selectAll("text")
+          .attr("y", 0)
+          .attr("x", 9)
+          .attr("dy", ".35em")
+          .attr("transform", "rotate(90)")
+          .style("text-anchor", "start");
 
     chart.append("g")
         .attr("class", "y axis")
