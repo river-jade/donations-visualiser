@@ -660,12 +660,20 @@ function updateInfoPanel() {
 
 function nodeClick(node, i) {
     logClick('node', 'click', node.name);
-
+    
     if (clickedNode === node) {
-        toggleInfoPanel(null);
+        // Double click will clear the effects and force panel shut
+                
+        toggleInfoPanel(undefined, false);
+        clickedNode = null;
+        
+        nodeOut(clickedNode);
+        
         return;
     }
+    
     if (clickedNode) {
+        nodeOut(clickedNode);
         clickedNode.clicked = false;
     }
     clickedNode = node;
@@ -677,7 +685,12 @@ function nodeClick(node, i) {
             return "#ddd";
         }
     });
+    nodeOver(clickedNode);
     updateInfoPanel();
+}
+
+function isLinkOfClickedNode(l) {
+    return l.source === clickedNode || l.target === clickedNode;
 }
 
 function nodeOver(node, i) {
@@ -704,14 +717,14 @@ function nodeOver(node, i) {
 
     linkElements
         .style("stroke", function(l) {
-            if (l.source === node || l.target === node) {
+            if (l.source === node || l.target === node || isLinkOfClickedNode(l)) {
                 return "#555";
             } else {
                 return "#ddd";
             }
         })
         .style("stroke-opacity", function(l) {
-            if (l.source === node || l.target === node) {
+            if (l.source === node || l.target === node || isLinkOfClickedNode(l)) {
                 return 1.0;
             } else {
                 return 0.5;
@@ -730,11 +743,14 @@ function nodeOver(node, i) {
 }
 
 function nodeOut(node, i) {
+    // don't nodeOut on the clicked node
+    if (node === clickedNode) return;
+  
     hoverInfo.classed("visible", false);
 
     linkElements
-        .style("stroke", "#ddd")
-        .style("stroke-opacity", 0.5);
+        .style("stroke", function(l) { return isLinkOfClickedNode(l) ? "#555" : "#ddd"})
+        .style("stroke-opacity", function(l) { return isLinkOfClickedNode(l) ? 1.0 : 0.5});
 
     nodeElements
         .style("stroke", function(n) {
