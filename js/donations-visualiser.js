@@ -515,6 +515,12 @@ function rowOut(row, i) {
         .style("stroke-width", 1.0);
 }
 
+function formatYear(year) {
+  var modYear = year%100;
+  // ensures two digits (inserts leading 0 as required)
+  return ("0" + modYear).slice(-2);
+}
+
 function updateInfoPanel() {
     var html,
         yearTotals = [];
@@ -599,7 +605,7 @@ function updateInfoPanel() {
     var margins = { top: 0, right: 5, bottom: 25, left: extremelyNarrowClient ? 40 : 50 },
         chartWidth = 270 - margins.left - margins.right,
         chartHeight = 120 - margins.top - margins.bottom,
-        x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1)).rangeRoundBands([0, chartWidth]),
+        x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1).map(formatYear)).rangeRoundBands([0, chartWidth]),
         y = d3.scale.linear().domain([0, d3.max(yearTotals, function(d) { return d.values; })]).range([chartHeight, 0]),
         xAxis = d3.svg.axis()
             .scale(x)
@@ -619,7 +625,14 @@ function updateInfoPanel() {
     chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
-        .call(xAxis);
+        .call(xAxis)
+        // rotate x-axis labels 90 degrees
+          .selectAll("text")
+          .attr("y", 0)
+          .attr("x", 9)
+          .attr("dy", ".35em")
+          .attr("transform", "rotate(90)")
+          .style("text-anchor", "start");
 
     chart.append("g")
         .attr("class", "y axis")
@@ -647,12 +660,20 @@ function updateInfoPanel() {
 
 function nodeClick(node, i) {
     logClick('node', 'click', node.name);
-
+    
     if (clickedNode === node) {
-        toggleInfoPanel(null);
+        // Double click will clear the effects and force panel shut
+                
+        toggleInfoPanel(undefined, false);
+        clickedNode = null;
+        
+        nodeOut(clickedNode);
+        
         return;
     }
+    
     if (clickedNode) {
+        nodeOut(clickedNode);
         clickedNode.clicked = false;
     }
     clickedNode = node;
@@ -664,7 +685,12 @@ function nodeClick(node, i) {
             return "#ddd";
         }
     });
+    nodeOver(clickedNode);
     updateInfoPanel();
+}
+
+function isLinkOfClickedNode(l) {
+    return l.source === clickedNode || l.target === clickedNode;
 }
 
 function nodeOver(node, i) {
@@ -691,14 +717,14 @@ function nodeOver(node, i) {
 
     linkElements
         .style("stroke", function(l) {
-            if (l.source === node || l.target === node) {
+            if (l.source === node || l.target === node || isLinkOfClickedNode(l)) {
                 return "#555";
             } else {
                 return "#ddd";
             }
         })
         .style("stroke-opacity", function(l) {
-            if (l.source === node || l.target === node) {
+            if (l.source === node || l.target === node || isLinkOfClickedNode(l)) {
                 return 1.0;
             } else {
                 return 0.5;
@@ -717,11 +743,14 @@ function nodeOver(node, i) {
 }
 
 function nodeOut(node, i) {
+    // don't nodeOut on the clicked node
+    if (node === clickedNode) return;
+  
     hoverInfo.classed("visible", false);
 
     linkElements
-        .style("stroke", "#ddd")
-        .style("stroke-opacity", 0.5);
+        .style("stroke", function(l) { return isLinkOfClickedNode(l) ? "#555" : "#ddd"})
+        .style("stroke-opacity", function(l) { return isLinkOfClickedNode(l) ? 1.0 : 0.5});
 
     nodeElements
         .style("stroke", function(n) {
