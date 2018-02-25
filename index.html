@@ -34,13 +34,6 @@
             onclick="logClick('button', 'about')">About</button>
             <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
             onclick="logClick('button', 'getting started')">Getting Started</button>
-
-            <span class="mobile-layout-block">
-                <div class="navbar-text navbar-right">
-                    Data from the <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/" target="_blank">AEC</a> (1998 to 2016)
-                </div>
-                <div class="clear"></div>
-            </span>
         </div>
     </div>
 
@@ -150,15 +143,14 @@
                         through our political system, and explore where it's coming from.
                     </p>
                     <p>
+                        This website uses party receipt data between 1998 and 2016 from the Australian Electoral
+                        Commission (AEC) <a href="http://periodicdisclosures.aec.gov.au/" target="_blank">Annual Returns Locator Service</a>. Data is published in terms of financial years, and typically released
+                        early in the year after the financial year ends. 
+                    </p>
+                    <p>
                         The data is presented as a network, with political parties depicted as squares and
                         donors as circles. Each donor is linked to the party they donated to, and
                         the size and colour of the donor circles represent the size of the donations.
-                    </p>
-                    <p>
-                        This website takes publically available data from the Australian Electoral
-                        Commission (AEC) <a href="http://periodicdisclosures.aec.gov.au/" target="_blank">Annual Returns Locator Service</a>,
-                        and converts it to a form that can be visualised and analysed. Data is published in terms of financial years, and typically released
-                        early in the year after the financial year ends.
                     </p>
                     <p>
                         The visualisation is primarily performed using the javascript <a href="https://d3js.org/" target="_blank">d3 library</a>.
