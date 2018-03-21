@@ -32,77 +32,6 @@ var narrowClient = $(window).width() < 800,
 if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
     || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0,4))) isMobile = true;
 
-
-// http://bootstraptour.com/api/
-var tour = new Tour({
-    backdrop: true,
-    debug: true,
-    delay: {
-        show: 400,
-        hide: 0
-    },
-    steps: [
-        {
-            title: "About this site",
-            content: "This graph represents all of the donations to Australian " +
-               "federal political parties in a given financial year.",
-            element: "#vis .graph .container",
-            placement: "left",
-            backdrop: true,
-        },
-        {
-            title: "About this site",
-            content: "Square nodes represent political parties",
-            element: "path.node.australian-labor-party.party",
-            backdrop: true,
-        },
-        {
-            title: "About this site",
-            content: "Circular nodes represent donors",
-            element: "path.node.westpac-banking-corporation.entity",
-            backdrop: true,
-        },
-        {
-            title: "Details view",
-            content: "Clicking on a node gives details for that entity (eg party or " +
-                "donor), including top donations, and donations over time.",
-            element: "path.node.coalition.party",
-            backdrop: true,
-            placement: "left",
-            onShow: function(tour) {
-                d3Click("path.node.coalition.party");
-                toggleInfoPanel(null, true);
-            }
-        },
-        {
-            title: "Details view",
-            content: "Clicking the name in the details panel opens a Google search for that entity.",
-            element: "#info-panel h3 a",
-            backdrop: true,
-            placement: "left",
-        },
-        {
-            title: "Details view",
-            content: "Hovering over the donor name shows them in the graph. Click on a name for more details.",
-            element: "#info-table",
-            backdrop: true,
-            placement: "left",
-        },
-        {
-            title: "Filter panel",
-            content: "You can filter the results, and show different years, by opening the filter panel.",
-            element: "#filter-toggle",
-            backdrop: true,
-            onShow: function(tour) {
-                toggleFilterPanel(null, true);
-            }
-        },
-    ],
-    afterSetState: function (key, value) {
-        logClick('tour.gettingStarted', key, value);
-    }
-});
-
 var party_logos = [
   {
     name: "Coalition",
@@ -189,6 +118,17 @@ party_logos.forEach(function(item) {
   name_to_logo[item.name] = item.id;
 });
 
+// ============================================================
+// Receipt type to tooltip
+// ============================================================
+
+var receipt_to_tooltip = {
+  "Public Funding": "Funding from State and Commonwealth electoral bodies", 
+  "Subscription": "Membership fees, affiliation fees or levies on members of parliament", 
+  "Donation": "Cash or non-cash donations (e.g. services provided to a party for no payment)", 
+  "Unspecified": "Transactions where parties have not identified whether the funds are donations or receipts", 
+  "Other Receipt": "Non-donation amounts received, such as dividends or shares or rent on properties owned"
+}
 
 // ============================================================
 // Handle Window Resize
@@ -302,9 +242,6 @@ d3.select("#receipt-type-select-clear").on("click", function() { clearSelection(
 d3.select("#clear-search").on("click", clearSearch);
 
 var $gettingStarted = $('#getting-started-modal');
-d3.select('.js-handleStartTour').on('click', function() {
-    if (tour.ended) tour.restart();
-});
 
 // on 'escape' key press, close the info window, and zoomToFit
 $("body").on("keydown", function (event) {
@@ -388,10 +325,6 @@ function coolHandler() {
 
         window.setTimeout(function() {
             if (!isMobile) toggleFilterPanel(null, true);
-            if (firstLoad()) {
-                tour.init();
-                tour.restart();
-            }
         }, 300);
     }
 }
@@ -582,6 +515,12 @@ function rowOut(row, i) {
         .style("stroke-width", 1.0);
 }
 
+function formatYear(year) {
+  var modYear = year%100;
+  // ensures two digits (inserts leading 0 as required)
+  return ("0" + modYear).slice(-2);
+}
+
 function updateInfoPanel() {
     var html,
         yearTotals = [];
@@ -666,7 +605,7 @@ function updateInfoPanel() {
     var margins = { top: 0, right: 5, bottom: 25, left: extremelyNarrowClient ? 40 : 50 },
         chartWidth = 270 - margins.left - margins.right,
         chartHeight = 120 - margins.top - margins.bottom,
-        x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1)).rangeRoundBands([0, chartWidth]),
+        x = d3.scale.ordinal().domain(d3.range(years[0], years[1] +1, 1).map(formatYear)).rangeRoundBands([0, chartWidth]),
         y = d3.scale.linear().domain([0, d3.max(yearTotals, function(d) { return d.values; })]).range([chartHeight, 0]),
         xAxis = d3.svg.axis()
             .scale(x)
@@ -686,7 +625,14 @@ function updateInfoPanel() {
     chart.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
-        .call(xAxis);
+        .call(xAxis)
+        // rotate x-axis labels 90 degrees
+          .selectAll("text")
+          .attr("y", 0)
+          .attr("x", 9)
+          .attr("dy", ".35em")
+          .attr("transform", "rotate(90)")
+          .style("text-anchor", "start");
 
     chart.append("g")
         .attr("class", "y axis")
@@ -714,12 +660,20 @@ function updateInfoPanel() {
 
 function nodeClick(node, i) {
     logClick('node', 'click', node.name);
-
+    
     if (clickedNode === node) {
-        toggleInfoPanel(null);
+        // Double click will clear the effects and force panel shut
+                
+        toggleInfoPanel(undefined, false);
+        clickedNode = null;
+        
+        nodeOut(clickedNode);
+        
         return;
     }
+    
     if (clickedNode) {
+        nodeOut(clickedNode);
         clickedNode.clicked = false;
     }
     clickedNode = node;
@@ -731,7 +685,12 @@ function nodeClick(node, i) {
             return "#ddd";
         }
     });
+    nodeOver(clickedNode);
     updateInfoPanel();
+}
+
+function isLinkOfClickedNode(l) {
+    return l.source === clickedNode || l.target === clickedNode;
 }
 
 function nodeOver(node, i) {
@@ -758,14 +717,14 @@ function nodeOver(node, i) {
 
     linkElements
         .style("stroke", function(l) {
-            if (l.source === node || l.target === node) {
+            if (l.source === node || l.target === node || isLinkOfClickedNode(l)) {
                 return "#555";
             } else {
                 return "#ddd";
             }
         })
         .style("stroke-opacity", function(l) {
-            if (l.source === node || l.target === node) {
+            if (l.source === node || l.target === node || isLinkOfClickedNode(l)) {
                 return 1.0;
             } else {
                 return 0.5;
@@ -784,11 +743,14 @@ function nodeOver(node, i) {
 }
 
 function nodeOut(node, i) {
+    // don't nodeOut on the clicked node
+    if (node === clickedNode) return;
+  
     hoverInfo.classed("visible", false);
 
     linkElements
-        .style("stroke", "#ddd")
-        .style("stroke-opacity", 0.5);
+        .style("stroke", function(l) { return isLinkOfClickedNode(l) ? "#555" : "#ddd"})
+        .style("stroke-opacity", function(l) { return isLinkOfClickedNode(l) ? 1.0 : 0.5});
 
     nodeElements
         .style("stroke", function(n) {
@@ -1055,7 +1017,13 @@ function update(partyNodes, parties, selectedParties, resetControls) {
         .attr("title", function(n) { return n.name; })
         .attr("d", d3.svg.symbol()
         .size(function(d) {
-            return d.size = Math.sqrt(d.total);
+            if (d.Type == "Party" && name_to_logo[d.name]) {
+              // if party has logo defined, set a static size
+              // this provides better readability and consistency
+              return d.size = 20000;
+            } else {
+              return d.size = Math.sqrt(d.total);
+            }
         })
         .type(function(d) { return (d.Type == "Party" ? "square" : "circle"); }))
         .style("stroke", "#ddd")
@@ -1196,8 +1164,10 @@ function processData(data) {
                 checked="";
             else
                 checked="checked=\"true\" ";
+            
+            var tooltip = receipt_to_tooltip[d];
 
-            return "<label><input type=\"checkbox\" value=\"" + i + "\" " + checked + ">" + d + "</label>";
+            return "<label title=\""+tooltip +"\"><input type=\"checkbox\" value=\"" + i + "\" " + checked + ">" + d + "</label>";
         });
 
     d3.select("#year_select").selectAll("option")
