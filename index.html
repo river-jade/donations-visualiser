@@ -7,70 +7,34 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <meta property="og:url" content="http://au.politicaldonations.info/" />
+    <meta property="og:url" content="http://www.politicaldonations.info/au/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Australian Political Donations Visualiser" />
     <meta property="og:description" content="Explore the money behind the Australian political parties." />
-    <meta property="og:image" content="http://au.politicaldonations.info/img/thumb.png" />
+    <meta property="og:image" content="http://www.politicaldonations.info/au/img/thumb.png" />
 
     <title>Australian Political Donations Visualiser</title>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/bootstrap-tour.css" />
     <link rel="stylesheet" href="css/d3.slider.css" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
-    <!-- code for social share buttons -->
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6&appId=206952646117768";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
-
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
-
-      return t;
-    }(document, "script", "twitter-wjs"));</script>
-    <!-- end code for social share buttons -->
-
     <div class="navbar navbar-default navbar-fixed-top">
-        <h4 class="navbar-text">Australian Political Donations</h4>
+        <h4 class="navbar-text">
+            <div id="dialog-button-toggle" data-toggle="collapse" href="#dialog-buttons">
+                Australian Political Donations
+                <div id="chevron" class="visible-xs-block pull-right indicator glyphicon glyphicon-chevron-down" />
+            </div>
+        </h4>
 
-        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal"
-        onclick="logClick('button', 'about')">About</button>
-
-        <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
-        onclick="logClick('button', 'getting started')">Getting Started</button>
-        <button class="btn btn-success js-handleStartTour">Start Tour</button>
-
-        <div class="navbar-text navbar-right">
-            Data obtained from the <a class="navbar-link" href="http://periodicdisclosures.aec.gov.au/" target="_blank">AEC</a>
+        <div id="dialog-buttons" class="panel-collapse collapse in">
+            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#about-modal"
+            onclick="logClick('button', 'about')">About</button>
+            <button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#getting-started-modal"
+            onclick="logClick('button', 'getting started')">Getting Started</button>
         </div>
-        <!-- share buttons -->
-        <div class="navbar-text navbar-right"><a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="politicaldonationsau">Tweet</a></div> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-        <div class="fb-share-button navbar-text navbar-right" data-href="http://au.politicicaldonations.info/" data-layout="button" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fau.politicicaldonations.info%2F&amp;src=sdkpreparse">Share</a></div>
-
-      <div class="mobile-intro alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <p><strong>Sorry!</strong> We're working on making the site available on mobile, until then, please browse the site on a larger device.</p>
-      </div>
     </div>
 
     <div class="body-content container-fluid">
@@ -171,8 +135,17 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        This website takes publically available data from the Australian Electoral
-                        Commission (AEC) <a href="http://periodicdisclosures.aec.gov.au/" target="_blank">Annual Returns Locator Service</a>, and converts it to a form that can easily be visualised and analysed.
+                        We believe that easy access to insights into donations received by political
+                        parties is fundamentally important for the integrity of our democracy.
+                    </p>
+                    <p>
+                        This site can be used to quickly gain an impression of the money that is flowing 
+                        through our political system, and explore where it's coming from.
+                    </p>
+                    <p>
+                        This website uses party receipt data between 1998 and 2016 from the Australian Electoral
+                        Commission (AEC) <a href="http://periodicdisclosures.aec.gov.au/" target="_blank">Annual Returns Locator Service</a>. Data is published in terms of financial years, and typically released
+                        early in the year after the financial year ends. 
                     </p>
                     <p>
                         The data is presented as a network, with political parties depicted as squares and
@@ -180,22 +153,17 @@
                         the size and colour of the donor circles represent the size of the donations.
                     </p>
                     <p>
-                        Clicking on a donor or party opens the info panel on
-                        the right providing more information. The filter panel on the left allows the
-                        data to be filtered many different ways.
-                    </p>
-                    <p>
-                        The visualisation is primarily done using the javascript <a href="https://d3js.org/" target="_blank">d3 library</a>.
-                        The code to munge the AEC data and run the visualisation is open
+                        The visualisation is primarily performed using the javascript <a href="https://d3js.org/" target="_blank">d3 library</a>.
+                        The code to download the AEC data and run the visualisation is open
                         source and available on <a href="https://github.com/river-jade/donations-visualiser" target="_blank">github</a>.</p><p>We&rsquo;re
                         always keen to hear suggestions for how the site could be made more useful, or how it has been used. We can be
                         contacted at <a href="mailto:info@politicaldonations.info">info@politicaldonations.info</a>.
                     <p>
                         <b>Contributors</b> (in alphabetical order)<br>
-                        <a href="mailto:ascelin@gmail.com">Ascelin Gordon</a> <a href="https://twitter.com/ascelin" target="_blank">@ascelin</a><br>
+                        Ascelin Gordon <a href="https://twitter.com/ascelin" target="_blank">@ascelin</a><br>
                         Ben Lyall <a href="https://twitter.com/benlyall" target="_blank">@BenLyall</a><br>
-                        <a href="mailto:jarrahbloomfield@gmail.com">Jarrah Bloomfield</a><br>
-                        <a href="mailto:river.satya@gmail.com">River Satya</a> <br>
+                        Jarrah Bloomfield<br>
+                        River Satya <br>
                         Tim Osborn <a href="https://twitter.com/memelab" target="_blank">@memelab</a><br>
                     </p>
 
@@ -271,7 +239,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/d3.slider.js"></script>
     <script src="js/cookies.min.js"></script>
-    <script src="js/bootstrap-tour.min.js"></script>
     <script src="js/donations-visualiser.js"></script>
 
     <script>

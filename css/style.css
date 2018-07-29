@@ -244,6 +244,41 @@ input[type=range][orient=vertical]
     .mobile-intro {
         display: block;
     }
+    .mobile-layout-block {
+        display: block;
+    }
+    .navbar-right {
+        display: inline-block;
+    }
+}
+
+@media (max-width: 320px) {
+    #info-toggle {
+        left: -45px;
+    }
+    #filter-toggle {
+        right: -45px;
+    }
+    .offcanvas {
+        width: 270px; /* works down to 320px wide iPhone 4 */
+    }
+    .filter-panel {
+        transform: translateX(-270px);
+    }
+    .info-panel {
+        transform: translateX(270px);
+    }
+        #info-panel {
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        #info-panel svg {
+            position: relative;
+            left: -10px;
+        }
+    .hover-info {
+        display: none; /* on small screens we pull up node info sidebar instead */
+    }
 }
 
 /* force show scrollbars on mac
@@ -256,4 +291,16 @@ from http://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-
     border-radius: 4px;
     background-color: rgba(0,0,0,.5);
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
+.aec-link {
+  float: left;
+}
+
+.share-button {
+  float: right;
+}
+
+.clear {
+  clear: both
 }
