@@ -643,7 +643,7 @@ function updateInfoPanel() {
         .enter().append("rect")
         .attr("class", "bar")
         .attr("title", function(d) { return d.key + ": " + dollarFormat(d.values); })
-        .attr("x", function(d) { return x(+d.key) + 2; })
+        .attr("x", function(d) { return x(+formatYear(d.key)) + 2; })
         .attr("y", function(d) { return y(d.values); })
         .attr("height", function(d) { return chartHeight - y(d.values); })
         .attr("width", x.rangeBand() - 4);
