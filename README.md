@@ -24,7 +24,7 @@ You can run the entire site with a simple HTTP server, like SimpleHTTPServer fro
 
 ## Update the data file used by the visualisation
 
-1. Move the datafile to the right spot: `mv data/all_data1.json ../data/all_data.json`
+1. Move the datafile to the right spot: `all_data1.json ../data/all_data.json`
 
 ## run the server
 
