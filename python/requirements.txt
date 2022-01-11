@@ -1,2 +1,3 @@
 mechanize==0.4.2
 xmltodict==0.12.0
+requests==2.26.0
