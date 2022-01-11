@@ -44,7 +44,7 @@ var party_logos = [
     image: "img/alp.svg"
   },
   {
-    name: "Australian Greens",
+    name: "The Greens",
     id: 'greens',
     image: "img/greens.svg"
   },
@@ -52,8 +52,50 @@ var party_logos = [
     name: "Palmer United Party",
     id: 'pup',
     image: "img/pup.jpeg"
+  },
+  {
+    name: "Liberal",
+    id: 'liberal',
+    image: "img/liberal.jpg"
+  },
+  {
+    name: "The Nationals",
+    id: 'nationals',
+    image: "img/nationals.jpg"
+  },
+  {
+    name: "United Australia Party",
+    id: 'uap',
+    image: "img/unitedaus.jpg"
+  },
+  {
+    name: "One Nation",
+    id: 'onenation',
+    image: "img/onenation.jpg"
+  },
+  {
+    name: "The Great Australian Party",
+    id: 'thegreataustralia',
+    image: "img/gap.jpg"
+  },
+  {
+    name: "Animal Justice Party",
+    id: 'animaljustice',
+    image: "img/animaljusticeparty.jpg"
+  },
+  {
+    name: "Country Liberal Party (NT)",
+    id: 'countryliberals',
+    image: "img/countryliberals.jpg"
+  },
+  {
+    name: "Jacqui Lambie Network",
+    id: 'jacquilambie',
+    image: "img/jacquilambie.jpg"
   }
 ];
+
+// All Party Logos are used only for identification purposes
 
 setLayoutSizes();
 
@@ -1131,12 +1173,15 @@ function processData(data) {
     names.concat(data.entities.map(function(d) { return d.Name; }));
 
     data.receipts.forEach(function(d, i) {
-        d.party = party_map[d.Party];
-        d.entity = entity_map[d.Entity];
-        d.receipt_type = receipt_types[d.Type];
+        if (d.Entity != -1) // Fix for invalid entity entries
+        {
+            d.party = party_map[d.Party];
+            d.entity = entity_map[d.Entity];
+            d.receipt_type = receipt_types[d.Type];
 
-        party_map[d.Party].receipts.push(d);
-        entity_map[d.Entity].payments.push(d);
+            party_map[d.Party].receipts.push(d);
+            entity_map[d.Entity].payments.push(d);
+        }
     });
 
     var yearTotalsReceiptType = d3.nest()
